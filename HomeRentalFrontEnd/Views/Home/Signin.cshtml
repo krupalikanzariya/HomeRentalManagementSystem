@@ -1,0 +1,36 @@
+﻿<div class="auth-container d-flex align-items-center justify-content-center">
+    <div class="auth-card">
+        <h2 class="text-center mb-4">Welcome Back</h2>
+
+        <form class="mb-4">
+            <div class="mb-3">
+                <label class="form-label">Email address</label>
+                <input type="email" class="form-control form-control-lg" placeholder="Enter your email">
+            </div>
+            <div class="mb-4">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control form-control-lg" placeholder="Enter your password">
+            </div>
+            <button type="submit" class="btn btn-rose w-100 mb-3">Sign In</button>
+        </form>
+
+        <div class="text-center mb-4">
+            <span class="text-muted">Don't have an account?</span>
+            <a asp-controller="Home" asp-action="Signup" class="text-rose ms-1">Sign up</a>
+        </div>
+
+        <div class="position-relative mb-4">
+            <hr>
+            <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted">or</span>
+        </div>
+
+        <button class="social-btn mb-3">
+            <img src="https://www.google.com/favicon.ico" alt="Google" width="20">
+            Continue with Google
+        </button>
+        <button class="social-btn">
+            <i class="bi bi-facebook text-primary"></i>
+            Continue with Facebook
+        </button>
+    </div>
+</div>

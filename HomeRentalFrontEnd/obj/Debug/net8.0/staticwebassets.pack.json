@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\HomeRentalFrontEnd.bundle.scp.css",
+      "PackagePath": "staticwebassets\\HomeRentalFrontEnd.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\booking.js",
+      "PackagePath": "staticwebassets\\booking.js"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\main.js",
+      "PackagePath": "staticwebassets\\main.js"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\styles.css",
+      "PackagePath": "staticwebassets\\styles.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.HomeRentalFrontEnd.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.HomeRentalFrontEnd.props",
+      "PackagePath": "build\\HomeRentalFrontEnd.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.HomeRentalFrontEnd.props",
+      "PackagePath": "buildMultiTargeting\\HomeRentalFrontEnd.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.HomeRentalFrontEnd.props",
+      "PackagePath": "buildTransitive\\HomeRentalFrontEnd.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

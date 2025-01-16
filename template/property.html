@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Beach Villa - VacayStay</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+     <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-rose fw-bold" href="#">VacayStay</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="property.html">Properties</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex gap-3">
+                    <a href="signin.html" class="btn btn-outline">Sign In</a>
+                    <a href="signup.html" class="btn btn-rose">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+
+    <!-- Property Details -->
+    <main class="container py-5 mt-5">
+        <div class="row">
+            <!-- Property Gallery -->
+            <div class="col-12 mb-4">
+                <div class="property-gallery">
+                    <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688" alt="Luxury Beach Villa" class = "img-fluid">
+                </div>
+            </div>
+
+            <!-- Property Information -->
+            <div class="col-lg-8">
+                <div class="property-info">
+                    <div class="d-flex justify-content-between align-items-start mb-4">
+                        <div>
+                            <h1 class="h2 mb-2">Luxury Beach Villa</h1>
+                            <p class="text-muted mb-2">Malibu, CA</p>
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-star-fill text-warning me-1"></i>
+                                <span class="fw-bold me-1">4.9</span>
+                                <span class="text-muted">(128 reviews)</span>
+                            </div>
+                        </div>
+                        <button class="favorite-btn">
+                            <i class="bi bi-heart"></i>
+                        </button>
+                    </div>
+
+                    <hr>
+
+                    <!-- Host Info -->
+                    <div class="d-flex align-items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80" 
+                             alt="Host" 
+                             class="rounded-circle me-3"
+                             style="width: 60px; height: 60px; object-fit: cover;"
+                             >
+                        <div>
+                            <h3 class="h5 mb-1">Hosted by Sarah</h3>
+                            <p class="text-muted mb-0">Superhost · 245 properties</p>
+                        </div>
+                    </div>
+
+                    <!-- Amenities -->
+                    <h3 class="h4 mb-3">Amenities</h3>
+                    <div class="row g-3 mb-4">
+                        <div class="col-6 col-md-4">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-wifi me-2"></i>
+                                <span>Free WiFi</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-water me-2"></i>
+                                <span>Pool</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-car-front me-2"></i>
+                                <span>Free parking</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-snow me-2"></i>
+                                <span>Air conditioning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <h3 class="h4 mb-3">About this place</h3>
+                    <p class="mb-4">
+                        Experience luxury living in this stunning beachfront villa. Wake up to panoramic ocean views
+                        and fall asleep to the sound of gentle waves. This newly renovated property features modern
+                        amenities while maintaining its classic coastal charm.
+                    </p>
+
+                    <!-- Reviews -->
+                    <h3 class="h4 mb-3">Reviews</h3>
+                    <div class="review-card">
+                        <div class="d-flex mb-3">
+                             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" 
+                                 alt="Reviewer" 
+                                 class="avatar me-3" style="border-radius: 50%;"
+                                 >
+                                 <div>
+                                <h4 class="h6 mb-1">John Smith</h4>
+                                <p class="text-muted small mb-0">Stayed in July 2023</p>
+                            </div>
+                        </div>
+                        <p class="mb-0">
+                            Amazing property with breathtaking views! The host was very accommodating and the amenities
+                            were top-notch. Would definitely stay here again.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Card -->
+            <div class="col-lg-4">
+                <div class="booking-card">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3 class="h4 mb-0">$299 <small class="text-muted">/night</small></h3>
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-star-fill text-warning me-1"></i>
+                            <span class="fw-bold">4.9</span>
+                        </div>
+                    </div>
+
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Dates</label>
+                            <div class="input-group">
+                                <input type="date" class="form-control" placeholder="Check-in">
+                                <input type="date" class="form-control" placeholder="Check-out">
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Guests</label>
+                            <select class="form-select">
+                                <option>1 guest</option>
+                                <option>2 guests</option>
+                                <option>3 guests</option>
+                                <option>4 guests</option>
+                            </select>
+                        </div>
+
+                        <a href="booking.html" class="btn btn-rose w-100 mb-3">Reserve Now</a>
+                        <p class="text-center text-muted small mb-0">You won't be charged yet</p>
+
+                        <hr>
+
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>$299 × 5 nights</span>
+                            <span>$1,495</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Cleaning fee</span>
+                            <span>$85</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Service fee</span>
+                            <span>$237</span>
+                        </div>
+
+                        <hr>
+
+                        <div class="d-flex justify-content-between fw-bold">
+                            <span>Total</span>
+                            <span>$1,817</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (same as index.html) -->
+    <footer class="bg-dark text-light border-top py-5 mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-4">About VacayStay</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link">How it works</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Careers</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Newsroom</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Investors</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-4">Community</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link">Referral program</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Gift cards</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">VacayStay associates</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Community forum</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-4">Host</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link">Host your home</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Host an experience</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Responsible hosting</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Resource center</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-4">Support</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="footer-link">Help center</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Cancellation options</a></li>
+                        <li class="mb-2"><a href="#" class="footer-link">Trust & Safety</a></li>
+                        <li class="mb-4"><a href="#" class="footer-link">Contact us</a></li>
+                        <div class="d-flex gap-3">
+                            <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 text-muted">© 2024 VacayStay. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-4">
+                        <a href="#" class="footer-link">Privacy</a>
+                        <a href="#" class="footer-link">Terms</a>
+                        <a href="#" class="footer-link">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+Fonts
+	Inter: light 300 italic, regular 400 italic
+	Poppins: ExtraLight 200, Light 300
+
+kahani paradise: https://dynamic-media-cdn.tripadvisor.com/media/photo-o/13/bb/37/1b/getlstd-property-photo.jpg?w=1000&h=-1&s=1

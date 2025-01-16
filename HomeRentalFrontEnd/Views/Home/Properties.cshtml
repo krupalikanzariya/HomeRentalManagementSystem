@@ -1,0 +1,160 @@
+﻿<!-- Property Details -->
+    <div class="container py-5 mt-5">
+        <div class="row">
+            <!-- Property Gallery -->
+            <div class="col-12 mb-4">
+                <div class="property-gallery">
+                    <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688" alt="Luxury Beach Villa" class = "img-fluid">
+                </div>
+            </div>
+
+            <!-- Property Information -->
+            <div class="col-lg-8">
+                <div class="property-info">
+                    <div class="d-flex justify-content-between align-items-start mb-4">
+                        <div>
+                            <h1 class="h2 mb-2">Luxury Beach Villa</h1>
+                            <p class="text-muted mb-2">Malibu, CA</p>
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-star-fill text-warning me-1"></i>
+                                <span class="fw-bold me-1">4.9</span>
+                                <span class="text-muted">(128 reviews)</span>
+                            </div>
+                        </div>
+                        <button class="favorite-btn">
+                            <i class="bi bi-heart"></i>
+                        </button>
+                    </div>
+
+                    <hr>
+
+                    <!-- Host Info -->
+                    <div class="d-flex align-items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80" 
+                             alt="Host" 
+                             class="rounded-circle me-3"
+                             style="width: 60px; height: 60px; object-fit: cover;"
+                             >
+                        <div>
+                            <h3 class="h5 mb-1">Hosted by Sarah</h3>
+                            <p class="text-muted mb-0">Superhost · 245 properties</p>
+                        </div>
+                    </div>
+
+                    <!-- Amenities -->
+                    <h3 class="h4 mb-3">Amenities</h3>
+                    <div class="row g-3 mb-4">
+                        <div class="col-6 col-md-4">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-wifi me-2"></i>
+                                <span>Free WiFi</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-water me-2"></i>
+                                <span>Pool</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-car-front me-2"></i>
+                                <span>Free parking</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-snow me-2"></i>
+                                <span>Air conditioning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <h3 class="h4 mb-3">About this place</h3>
+                    <p class="mb-4">
+                        Experience luxury living in this stunning beachfront villa. Wake up to panoramic ocean views
+                        and fall asleep to the sound of gentle waves. This newly renovated property features modern
+                        amenities while maintaining its classic coastal charm.
+                    </p>
+
+                    <!-- Reviews -->
+                    <h3 class="h4 mb-3">Reviews</h3>
+                    <div class="review-card">
+                        <div class="d-flex mb-3">
+                             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" 
+                                 alt="Reviewer" 
+                                 class="avatar me-3" style="border-radius: 50%;"
+                                 >
+                                 <div>
+                                <h4 class="h6 mb-1">John Smith</h4>
+                                <p class="text-muted small mb-0">Stayed in July 2023</p>
+                            </div>
+                        </div>
+                        <p class="mb-0">
+                            Amazing property with breathtaking views! The host was very accommodating and the amenities
+                            were top-notch. Would definitely stay here again.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Card -->
+            <div class="col-lg-4">
+                <div class="booking-card">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3 class="h4 mb-0">$299 <small class="text-muted">/night</small></h3>
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-star-fill text-warning me-1"></i>
+                            <span class="fw-bold">4.9</span>
+                        </div>
+                    </div>
+
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Dates</label>
+                            <div class="input-group">
+                                <input type="date" class="form-control" placeholder="Check-in">
+                                <input type="date" class="form-control" placeholder="Check-out">
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Guests</label>
+                            <select class="form-select">
+                                <option>1 guest</option>
+                                <option>2 guests</option>
+                                <option>3 guests</option>
+                                <option>4 guests</option>
+                            </select>
+                        </div>
+
+                        <a asp-controller="Home" asp-action="Booking" class="btn btn-rose w-100 mb-3">Reserve Now</a>
+                        <p class="text-center text-muted small mb-0">You won't be charged yet</p>
+
+                        <hr>
+
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>$299 × 5 nights</span>
+                            <span>$1,495</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Cleaning fee</span>
+                            <span>$85</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Service fee</span>
+                            <span>$237</span>
+                        </div>
+
+                        <hr>
+
+                        <div class="d-flex justify-content-between fw-bold">
+                            <span>Total</span>
+                            <span>$1,817</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
