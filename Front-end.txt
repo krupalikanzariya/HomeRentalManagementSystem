@@ -3,3 +3,11 @@ Fonts
 	Poppins: ExtraLight 200, Light 300
 
 kahani paradise: https://dynamic-media-cdn.tripadvisor.com/media/photo-o/13/bb/37/1b/getlstd-property-photo.jpg?w=1000&h=-1&s=1
+
+Theme links:
+	Nice design(Mellow): https://themewagon.github.io/mellow/index.html
+	With booking: https://themewagon.github.io/hotelier/
+		      https://themewagon.github.io/luxury-hotel/index.html
+	With elements & icons: https://themewagon.github.io/palatin/index.html
+	With room detail page: https://themewagon.github.io/sona/index.html
+	With elements: https://themewagon.github.io/royal/index.html

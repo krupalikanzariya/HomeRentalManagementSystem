@@ -5,20 +5,384 @@
       "PackagePath": "staticwebassets\\HomeRentalFrontEnd.bundle.scp.css"
     },
     {
-      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\booking.js",
-      "PackagePath": "staticwebassets\\booking.js"
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\Source\\Flaticon.zip",
+      "PackagePath": "staticwebassets\\Source\\Flaticon.zip"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\Source\\Magnific-Popup-master.zip",
+      "PackagePath": "staticwebassets\\Source\\Magnific-Popup-master.zip"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\Source\\OwlCarousel2-2.3.4.zip",
+      "PackagePath": "staticwebassets\\Source\\OwlCarousel2-2.3.4.zip"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\Source\\SlickNav-master.zip",
+      "PackagePath": "staticwebassets\\Source\\SlickNav-master.zip"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\Source\\bootstrap-4.4.1-dist.zip",
+      "PackagePath": "staticwebassets\\Source\\bootstrap-4.4.1-dist.zip"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\Source\\elegant_font.zip",
+      "PackagePath": "staticwebassets\\Source\\elegant_font.zip"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\Source\\font-awesome-4.7.0.zip",
+      "PackagePath": "staticwebassets\\Source\\font-awesome-4.7.0.zip"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\Source\\jquery-nice-select-1.1.0.zip",
+      "PackagePath": "staticwebassets\\Source\\jquery-nice-select-1.1.0.zip"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\Source\\jquery-ui-1.12.1.zip",
+      "PackagePath": "staticwebassets\\Source\\jquery-ui-1.12.1.zip"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\Source\\sass.zip",
+      "PackagePath": "staticwebassets\\Source\\sass.zip"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\css\\elegant-icons.css",
+      "PackagePath": "staticwebassets\\css\\elegant-icons.css"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\css\\flaticon.css",
+      "PackagePath": "staticwebassets\\css\\flaticon.css"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\css\\font-awesome.min.css",
+      "PackagePath": "staticwebassets\\css\\font-awesome.min.css"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\css\\images\\ui-icons_444444_256x240.png",
+      "PackagePath": "staticwebassets\\css\\images\\ui-icons_444444_256x240.png"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\css\\images\\ui-icons_555555_256x240.png",
+      "PackagePath": "staticwebassets\\css\\images\\ui-icons_555555_256x240.png"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\css\\jquery-ui.min.css",
+      "PackagePath": "staticwebassets\\css\\jquery-ui.min.css"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\css\\magnific-popup.css",
+      "PackagePath": "staticwebassets\\css\\magnific-popup.css"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\css\\nice-select.css",
+      "PackagePath": "staticwebassets\\css\\nice-select.css"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\css\\owl.carousel.min.css",
+      "PackagePath": "staticwebassets\\css\\owl.carousel.min.css"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\css\\slicknav.min.css",
+      "PackagePath": "staticwebassets\\css\\slicknav.min.css"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
     },
     {
       "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\main.js",
-      "PackagePath": "staticwebassets\\main.js"
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\fonts\\ElegantIcons.eot",
+      "PackagePath": "staticwebassets\\fonts\\ElegantIcons.eot"
     },
     {
-      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\styles.css",
-      "PackagePath": "staticwebassets\\styles.css"
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\fonts\\ElegantIcons.svg",
+      "PackagePath": "staticwebassets\\fonts\\ElegantIcons.svg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\fonts\\ElegantIcons.ttf",
+      "PackagePath": "staticwebassets\\fonts\\ElegantIcons.ttf"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\fonts\\ElegantIcons.woff",
+      "PackagePath": "staticwebassets\\fonts\\ElegantIcons.woff"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\fonts\\Flaticon.eot",
+      "PackagePath": "staticwebassets\\fonts\\Flaticon.eot"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\fonts\\Flaticon.svg",
+      "PackagePath": "staticwebassets\\fonts\\Flaticon.svg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\fonts\\Flaticon.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Flaticon.ttf"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\fonts\\Flaticon.woff",
+      "PackagePath": "staticwebassets\\fonts\\Flaticon.woff"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\fonts\\FontAwesome.otf",
+      "PackagePath": "staticwebassets\\fonts\\FontAwesome.otf"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\fonts\\fontawesome-webfont.eot",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-webfont.eot"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\fonts\\fontawesome-webfont.svg",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-webfont.svg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\fonts\\fontawesome-webfont.ttf",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-webfont.ttf"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\fonts\\fontawesome-webfont.woff",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-webfont.woff"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\fonts\\fontawesome-webfont.woff2",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-webfont.woff2"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\about\\about-1.jpg",
+      "PackagePath": "staticwebassets\\img\\about\\about-1.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\about\\about-2.jpg",
+      "PackagePath": "staticwebassets\\img\\about\\about-2.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\about\\about-p1.jpg",
+      "PackagePath": "staticwebassets\\img\\about\\about-p1.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\about\\about-p2.jpg",
+      "PackagePath": "staticwebassets\\img\\about\\about-p2.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\about\\about-p3.jpg",
+      "PackagePath": "staticwebassets\\img\\about\\about-p3.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\blog\\blog-1.jpg",
+      "PackagePath": "staticwebassets\\img\\blog\\blog-1.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\blog\\blog-10.jpg",
+      "PackagePath": "staticwebassets\\img\\blog\\blog-10.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\blog\\blog-2.jpg",
+      "PackagePath": "staticwebassets\\img\\blog\\blog-2.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\blog\\blog-3.jpg",
+      "PackagePath": "staticwebassets\\img\\blog\\blog-3.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\blog\\blog-4.jpg",
+      "PackagePath": "staticwebassets\\img\\blog\\blog-4.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\blog\\blog-5.jpg",
+      "PackagePath": "staticwebassets\\img\\blog\\blog-5.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\blog\\blog-6.jpg",
+      "PackagePath": "staticwebassets\\img\\blog\\blog-6.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\blog\\blog-7.jpg",
+      "PackagePath": "staticwebassets\\img\\blog\\blog-7.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\blog\\blog-8.jpg",
+      "PackagePath": "staticwebassets\\img\\blog\\blog-8.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\blog\\blog-9.jpg",
+      "PackagePath": "staticwebassets\\img\\blog\\blog-9.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\blog\\blog-details\\avatar\\avatar-1.jpg",
+      "PackagePath": "staticwebassets\\img\\blog\\blog-details\\avatar\\avatar-1.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\blog\\blog-details\\avatar\\avatar-2.jpg",
+      "PackagePath": "staticwebassets\\img\\blog\\blog-details\\avatar\\avatar-2.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\blog\\blog-details\\avatar\\avatar-3.jpg",
+      "PackagePath": "staticwebassets\\img\\blog\\blog-details\\avatar\\avatar-3.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\blog\\blog-details\\blog-details-1.jpg",
+      "PackagePath": "staticwebassets\\img\\blog\\blog-details\\blog-details-1.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\blog\\blog-details\\blog-details-2.jpg",
+      "PackagePath": "staticwebassets\\img\\blog\\blog-details\\blog-details-2.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\blog\\blog-details\\blog-details-3.jpg",
+      "PackagePath": "staticwebassets\\img\\blog\\blog-details\\blog-details-3.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\blog\\blog-details\\blog-details-hero.jpg",
+      "PackagePath": "staticwebassets\\img\\blog\\blog-details\\blog-details-hero.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\blog\\blog-wide.jpg",
+      "PackagePath": "staticwebassets\\img\\blog\\blog-wide.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\flag.jpg",
+      "PackagePath": "staticwebassets\\img\\flag.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\footer-logo.png",
+      "PackagePath": "staticwebassets\\img\\footer-logo.png"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\gallery\\gallery-1.jpg",
+      "PackagePath": "staticwebassets\\img\\gallery\\gallery-1.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\gallery\\gallery-2.jpg",
+      "PackagePath": "staticwebassets\\img\\gallery\\gallery-2.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\gallery\\gallery-3.jpg",
+      "PackagePath": "staticwebassets\\img\\gallery\\gallery-3.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\gallery\\gallery-4.jpg",
+      "PackagePath": "staticwebassets\\img\\gallery\\gallery-4.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\hero\\hero-1.jpg",
+      "PackagePath": "staticwebassets\\img\\hero\\hero-1.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\hero\\hero-2.jpg",
+      "PackagePath": "staticwebassets\\img\\hero\\hero-2.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\hero\\hero-3.jpg",
+      "PackagePath": "staticwebassets\\img\\hero\\hero-3.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\logo.png",
+      "PackagePath": "staticwebassets\\img\\logo.png"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\play.png",
+      "PackagePath": "staticwebassets\\img\\play.png"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\room\\avatar\\avatar-1.jpg",
+      "PackagePath": "staticwebassets\\img\\room\\avatar\\avatar-1.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\room\\avatar\\avatar-2.jpg",
+      "PackagePath": "staticwebassets\\img\\room\\avatar\\avatar-2.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\room\\room-1.jpg",
+      "PackagePath": "staticwebassets\\img\\room\\room-1.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\room\\room-2.jpg",
+      "PackagePath": "staticwebassets\\img\\room\\room-2.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\room\\room-3.jpg",
+      "PackagePath": "staticwebassets\\img\\room\\room-3.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\room\\room-4.jpg",
+      "PackagePath": "staticwebassets\\img\\room\\room-4.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\room\\room-5.jpg",
+      "PackagePath": "staticwebassets\\img\\room\\room-5.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\room\\room-6.jpg",
+      "PackagePath": "staticwebassets\\img\\room\\room-6.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\room\\room-b1.jpg",
+      "PackagePath": "staticwebassets\\img\\room\\room-b1.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\room\\room-b2.jpg",
+      "PackagePath": "staticwebassets\\img\\room\\room-b2.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\room\\room-b3.jpg",
+      "PackagePath": "staticwebassets\\img\\room\\room-b3.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\room\\room-b4.jpg",
+      "PackagePath": "staticwebassets\\img\\room\\room-b4.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\room\\room-details.jpg",
+      "PackagePath": "staticwebassets\\img\\room\\room-details.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\services\\s-icon-1.png",
+      "PackagePath": "staticwebassets\\img\\services\\s-icon-1.png"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\testimonial-logo.png",
+      "PackagePath": "staticwebassets\\img\\testimonial-logo.png"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\img\\video-bg.jpg",
+      "PackagePath": "staticwebassets\\img\\video-bg.jpg"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\js\\jquery-3.3.1.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery-3.3.1.min.js"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\js\\jquery-ui.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery-ui.min.js"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\js\\jquery.magnific-popup.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery.magnific-popup.min.js"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\js\\jquery.nice-select.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery.nice-select.min.js"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\js\\jquery.slicknav.js",
+      "PackagePath": "staticwebassets\\js\\jquery.slicknav.js"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\js\\main.js",
+      "PackagePath": "staticwebassets\\js\\main.js"
+    },
+    {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\js\\owl.carousel.min.js",
+      "PackagePath": "staticwebassets\\js\\owl.carousel.min.js"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.HomeRentalFrontEnd.Microsoft.AspNetCore.StaticWebAssets.props",

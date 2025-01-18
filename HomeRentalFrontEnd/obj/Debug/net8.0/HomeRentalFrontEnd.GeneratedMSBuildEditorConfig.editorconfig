@@ -18,28 +18,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\College\sem 6\HomeRental\HomeRentalFrontEnd
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/College/sem 6/HomeRental/HomeRentalFrontEnd/Views/Home/Booking.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCb29raW5nLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/College/sem 6/HomeRental/HomeRentalFrontEnd/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/College/sem 6/HomeRental/HomeRentalFrontEnd/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/College/sem 6/HomeRental/HomeRentalFrontEnd/Views/Home/Properties.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcm9wZXJ0aWVzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/College/sem 6/HomeRental/HomeRentalFrontEnd/Views/Home/Signin.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWduaW4uY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/College/sem 6/HomeRental/HomeRentalFrontEnd/Views/Home/Signup.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWdudXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/College/sem 6/HomeRental/HomeRentalFrontEnd/Views/Shared/Error.cshtml]
