@@ -21,7 +21,8 @@
     <link rel="stylesheet" href="~/css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="~/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="~/css/style.css" type="text/css">
-
+    <link rel="stylesheet" href="~/css/SignUpIn.css" type="text/css">
+    
 </head>
 <body>
     <!-- Page Preloder -->
@@ -57,12 +58,12 @@
         <nav class="mainmenu mobile-menu">
             <ul>
                 <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a asp-controller="Room" asp-action="Index">Rooms</a></li>
+                <li><a asp-controller="Properties" asp-action="PropertiesList">Rooms</a></li>
                 <li><a asp-controller="Home" asp-action="AboutUs">About Us</a></li>
                 <li>
                     <a href="#">Pages</a>
                     <ul class="dropdown">
-                        <li><a asp-controller="Home" asp-action="Index">Room Details</a></li>
+                        <li><a asp-controller="Properties" asp-action="PropertiesList">Room Details</a></li>
                         <li><a href="#">Deluxe Room</a></li>
                         <li><a href="#">Family Room</a></li>
                         <li><a href="#">Premium Room</a></li>
@@ -135,7 +136,7 @@
                             <nav class="mainmenu">
                                 <ul>
                                     <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
-                                    <li><a asp-controller="Room" asp-action="Index">Rooms</a></li>
+                                    <li><a asp-controller="Properties" asp-action="PropertiesList">Rooms</a></li>
                                     <li><a asp-controller="Home" asp-action="AbiutUs">About Us</a></li>
                                     <li>
                                         <a href="#">Pages</a>

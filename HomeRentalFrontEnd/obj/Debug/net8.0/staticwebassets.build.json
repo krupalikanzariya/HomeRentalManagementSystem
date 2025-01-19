@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rt8G8oyTLLnA4gR9PMmJFNme++6TTeOGNEph/Odq6n4=",
+  "Hash": "e4db5UcEBtHmkDL/XWyMmK5RfqZGR37biwSWOcS7ZaQ=",
   "Source": "HomeRentalFrontEnd",
   "BasePath": "_content/HomeRentalFrontEnd",
   "Mode": "Default",
@@ -243,6 +243,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\owl.carousel.min.css"
+    },
+    {
+      "Identity": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\css\\SignUpIn.css",
+      "SourceId": "HomeRentalFrontEnd",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\",
+      "BasePath": "_content/HomeRentalFrontEnd",
+      "RelativePath": "css/SignUpIn.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\SignUpIn.css"
     },
     {
       "Identity": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\css\\slicknav.min.css",

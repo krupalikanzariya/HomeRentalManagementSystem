@@ -45,6 +45,10 @@
       "PackagePath": "staticwebassets\\Source\\sass.zip"
     },
     {
+      "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\css\\SignUpIn.css",
+      "PackagePath": "staticwebassets\\css\\SignUpIn.css"
+    },
+    {
       "Id": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
     },
