@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
 using HomeRentalAPI.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HomeRentalAPI.Data
 {
@@ -12,6 +13,65 @@ namespace HomeRentalAPI.Data
         {
             _connectionString = configuration.GetConnectionString("ConnectionString");
         }
+        public bool Signup(UserRegisterModel userRegisterModel)
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("PR_Users_Signup", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                cmd.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = userRegisterModel.FirstName;
+                cmd.Parameters.Add("@LastName", SqlDbType.VarChar).Value = userRegisterModel.LastName;
+                cmd.Parameters.Add("@UserName", SqlDbType.VarChar).Value = userRegisterModel.UserName;
+                cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = userRegisterModel.Email;
+                cmd.Parameters.Add("@Password", SqlDbType.VarChar).Value = userRegisterModel.Password;
+                cmd.Parameters.Add("@ProfilePictureURL", SqlDbType.VarChar).Value = userRegisterModel.ProfilePictureURL;
+
+                conn.Open();
+                int rowsAffected = cmd.ExecuteNonQuery();
+                return rowsAffected > 0;
+            }
+        }
+        public UsersModel Login(UserLoginModel userLoginModel)
+        {
+            UsersModel userResponse = null;
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("PR_Users_Login", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                cmd.Parameters.Add("@UserName", SqlDbType.VarChar).Value = userLoginModel.UserName;
+                cmd.Parameters.Add("@Password", SqlDbType.VarChar).Value = userLoginModel.Password;
+
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        userResponse = new UsersModel
+                        {
+                            UserID = Convert.ToInt32(reader["UserID"]),
+                            FirstName = reader["FirstName"].ToString(),
+                            LastName = reader["LastName"].ToString(),
+                            UserName = reader["UserName"].ToString(),
+                            Email = reader["Email"].ToString(),
+                            Password = reader["Password"].ToString(),
+                            ProfilePictureURL = reader["ProfilePictureURL"].ToString()
+                        };
+                    }
+                }
+            }
+
+            return userResponse;
+        }
+
 
         public IEnumerable<UsersModel> GetAll()
         {

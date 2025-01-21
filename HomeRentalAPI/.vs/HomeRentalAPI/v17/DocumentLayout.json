@@ -3,12 +3,28 @@
   "WorkspaceRootPath": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|d:\\college\\sem 6\\homerental\\homerentalapi\\data\\imagesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:data\\imagesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|d:\\college\\sem 6\\homerental\\homerentalapi\\validatiors\\reviewsvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:validatiors\\reviewsvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|d:\\college\\sem 6\\homerental\\homerentalapi\\controllers\\imagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:controllers\\imagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|d:\\college\\sem 6\\homerental\\homerentalapi\\validatiors\\bookingsvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:validatiors\\bookingsvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|d:\\college\\sem 6\\homerental\\homerentalapi\\validatiors\\amenitiesvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:validatiors\\amenitiesvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|d:\\college\\sem 6\\homerental\\homerentalapi\\validatiors\\propertiesvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:validatiors\\propertiesvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|d:\\college\\sem 6\\homerental\\homerentalapi\\validatiors\\propertyamenitiesvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:validatiors\\propertyamenitiesvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|d:\\college\\sem 6\\homerental\\homerentalapi\\validatiors\\usersvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:validatiors\\usersvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,31 +34,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ImagesController.cs",
-              "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Controllers\\ImagesController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ImagesController.cs",
-              "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Controllers\\ImagesController.cs",
-              "RelativeToolTip": "Controllers\\ImagesController.cs",
-              "ViewState": "AQIAACsAAAAAAAAAAAAkwD8AAABJAAAA",
+              "DocumentIndex": 0,
+              "Title": "ReviewsValidator.cs",
+              "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Validatiors\\ReviewsValidator.cs",
+              "RelativeDocumentMoniker": "Validatiors\\ReviewsValidator.cs",
+              "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Validatiors\\ReviewsValidator.cs",
+              "RelativeToolTip": "Validatiors\\ReviewsValidator.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAxwBYAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-16T14:44:20.621Z"
+              "WhenOpened": "2025-01-21T15:26:55.87Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ImagesRepository.cs",
-              "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Data\\ImagesRepository.cs",
-              "RelativeDocumentMoniker": "Data\\ImagesRepository.cs",
-              "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Data\\ImagesRepository.cs",
-              "RelativeToolTip": "Data\\ImagesRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAE8AAAAYAAAA",
+              "DocumentIndex": 4,
+              "Title": "PropertyAmenitiesValidator.cs",
+              "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Validatiors\\PropertyAmenitiesValidator.cs",
+              "RelativeDocumentMoniker": "Validatiors\\PropertyAmenitiesValidator.cs",
+              "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Validatiors\\PropertyAmenitiesValidator.cs",
+              "RelativeToolTip": "Validatiors\\PropertyAmenitiesValidator.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-16T14:36:08.747Z",
+              "WhenOpened": "2025-01-21T15:23:44.882Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PropertiesValidator.cs",
+              "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Validatiors\\PropertiesValidator.cs",
+              "RelativeDocumentMoniker": "Validatiors\\PropertiesValidator.cs",
+              "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Validatiors\\PropertiesValidator.cs",
+              "RelativeToolTip": "Validatiors\\PropertiesValidator.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAQwCkAAABYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T15:20:38.806Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AmenitiesValidator.cs",
+              "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Validatiors\\AmenitiesValidator.cs",
+              "RelativeDocumentMoniker": "Validatiors\\AmenitiesValidator.cs",
+              "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Validatiors\\AmenitiesValidator.cs",
+              "RelativeToolTip": "Validatiors\\AmenitiesValidator.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T15:15:48.379Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BookingsValidator.cs",
+              "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Validatiors\\BookingsValidator.cs",
+              "RelativeDocumentMoniker": "Validatiors\\BookingsValidator.cs",
+              "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Validatiors\\BookingsValidator.cs",
+              "RelativeToolTip": "Validatiors\\BookingsValidator.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAAB0AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T15:13:46.788Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UsersValidator.cs",
+              "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Validatiors\\UsersValidator.cs",
+              "RelativeDocumentMoniker": "Validatiors\\UsersValidator.cs",
+              "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Validatiors\\UsersValidator.cs",
+              "RelativeToolTip": "Validatiors\\UsersValidator.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T15:08:08.911Z",
               "EditorCaption": ""
             }
           ]

@@ -15,6 +15,49 @@ namespace HomeRentalAPI.Controllers
             _UsersRepository = UsersRepository;
         }
 
+        [HttpPost("Signup")]
+        public IActionResult Signup([FromBody] UsersModel user)
+        {
+            if (user == null)
+            {
+                return BadRequest(new { Message = "Invalid user data provided." });
+            }
+
+            bool isInserted = _UsersRepository.Insert(user);
+            if (isInserted)
+            {
+                return Ok(new { Message = "User registered successfully!" });
+            }
+
+            return StatusCode(500, "An error occurred while registering the user.");
+        }
+        [HttpPost("Login")]
+        public IActionResult Login([FromBody] UserLoginModel userLoginModel)
+        {
+            if (userLoginModel == null || string.IsNullOrEmpty(userLoginModel.UserName) || string.IsNullOrEmpty(userLoginModel.Password))
+            {
+                return BadRequest(new { Message = "Invalid login data provided." });
+            }
+
+            var authenticatedUser = _UsersRepository.Login(userLoginModel);
+            if (authenticatedUser != null)
+            {
+                return Ok(new
+                {
+                    Message = "Login successful!",
+                    UserID = authenticatedUser.UserID,
+                    UserName = authenticatedUser.UserName,
+                    FirstName = authenticatedUser.FirstName,
+                    LastName = authenticatedUser.LastName,
+                    Email = authenticatedUser.Email,
+                    Password = authenticatedUser.Password,
+                    ProfilePictureURL = authenticatedUser.ProfilePictureURL
+                });
+            }
+
+            return Unauthorized(new { Message = "Invalid username or password." });
+        }
+
         [HttpGet]
         public IActionResult GetAllUsers()
         {

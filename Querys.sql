@@ -19,14 +19,14 @@ BEGIN
         [dbo].[Users].[UserName] = @UserName 
         AND [dbo].[Users].[Password] = @Password;
 END
---User Register
-CREATE PROCEDURE [dbo].[PR_Users_Register]
+--User Signup
+CREATE PROCEDURE [dbo].[PR_Users_Signup]
 	@FirstName NVARCHAR(100),
 	@LastName NVARCHAR(100),
     @UserName NVARCHAR(50),
     @Email NVARCHAR(50),
     @Password NVARCHAR(50),
-    @ProfilePictureURL NVARCHAR(MAX)
+    @ProfilePictureURL NVARCHAR(MAX) = ''
 AS
 BEGIN
     INSERT INTO [dbo].[Users]

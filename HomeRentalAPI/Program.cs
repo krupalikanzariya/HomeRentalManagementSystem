@@ -1,10 +1,12 @@
+using FluentValidation.AspNetCore;
 using HomeRentalAPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>());
 builder.Services.AddScoped<UsersRepository>();
 builder.Services.AddScoped<PropertiesRepository>();
 builder.Services.AddScoped<BookingsRepository>();

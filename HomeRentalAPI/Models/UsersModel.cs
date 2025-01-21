@@ -41,4 +41,5 @@ namespace HomeRentalAPI.Models
 
         public string ProfilePictureURL { get; set; }
     }
+
 }

@@ -26,7 +26,7 @@ namespace HomeRentalFrontEnd.Controllers
         {
             return View();
         }
-        public IActionResult Signin()
+        public IActionResult Login()
         {
             return View();
         }
