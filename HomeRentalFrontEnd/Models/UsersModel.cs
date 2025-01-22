@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace HomeRentalAPI.Models
+namespace HomeRentalFrontEnd.Models
 {
     public class UsersModel
     {

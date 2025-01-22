@@ -29,3 +29,9 @@ D:\College\sem 6\HomeRental\HomeRentalFrontEnd\obj\Debug\net8.0\refint\HomeRenta
 D:\College\sem 6\HomeRental\HomeRentalFrontEnd\obj\Debug\net8.0\HomeRentalFrontEnd.pdb
 D:\College\sem 6\HomeRental\HomeRentalFrontEnd\obj\Debug\net8.0\HomeRentalFrontEnd.genruntimeconfig.cache
 D:\College\sem 6\HomeRental\HomeRentalFrontEnd\obj\Debug\net8.0\ref\HomeRentalFrontEnd.dll
+D:\College\sem 6\HomeRental\HomeRentalFrontEnd\bin\Debug\net8.0\Microsoft.Extensions.Configuration.dll
+D:\College\sem 6\HomeRental\HomeRentalFrontEnd\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\College\sem 6\HomeRental\HomeRentalFrontEnd\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+D:\College\sem 6\HomeRental\HomeRentalFrontEnd\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\College\sem 6\HomeRental\HomeRentalFrontEnd\obj\Debug\net8.0\HomeRentalFrontEnd.csproj.AssemblyReference.cache
+D:\College\sem 6\HomeRental\HomeRentalFrontEnd\obj\Debug\net8.0\HomeRent.B84CFA60.Up2Date

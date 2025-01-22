@@ -51,7 +51,8 @@ namespace HomeRentalAPI.Controllers
                     LastName = authenticatedUser.LastName,
                     Email = authenticatedUser.Email,
                     Password = authenticatedUser.Password,
-                    ProfilePictureURL = authenticatedUser.ProfilePictureURL
+                    ProfilePictureURL = authenticatedUser.ProfilePictureURL,
+                    RoleID = authenticatedUser.RoleID
                 });
             }
 

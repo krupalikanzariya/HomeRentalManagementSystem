@@ -12,21 +12,26 @@ BEGIN
         [dbo].[Users].[UserName], 
         [dbo].[Users].[Email], 
         [dbo].[Users].[Password],
-        [dbo].[Users].[ProfilePictureURL]
+        [dbo].[Users].[ProfilePictureURL],
+		[dbo].[Roles].[RoleID],
+		[dbo].[Roles].[RoleName]
     FROM 
         [dbo].[Users] 
+	inner join [dbo].[Roles]
+	on [dbo].[Users].[RoleID] = [dbo].[Roles].[RoleID]
     WHERE 
         [dbo].[Users].[UserName] = @UserName 
         AND [dbo].[Users].[Password] = @Password;
 END
 --User Signup
-CREATE PROCEDURE [dbo].[PR_Users_Signup]
+ALTER PROCEDURE [dbo].[PR_Users_Signup]
 	@FirstName NVARCHAR(100),
 	@LastName NVARCHAR(100),
     @UserName NVARCHAR(50),
     @Email NVARCHAR(50),
     @Password NVARCHAR(50),
-    @ProfilePictureURL NVARCHAR(MAX) = ''
+    @ProfilePictureURL NVARCHAR(MAX) = '',
+	@RoleID int
 AS
 BEGIN
     INSERT INTO [dbo].[Users]
@@ -36,7 +41,8 @@ BEGIN
         [UserName],
 		[Email],
         [Password],
-		[ProfilePictureURL]
+		[ProfilePictureURL],
+		[RoleID]
     )
     VALUES
     (
@@ -45,7 +51,8 @@ BEGIN
         @UserName,
 		@Email,
         @Password,
-		@ProfilePictureURL
+		@ProfilePictureURL,
+		@RoleID
     );
 END
 --Add User
@@ -55,18 +62,19 @@ Alter PROCEDURE PR_Users_Add
 	@UserName NVARCHAR(50),
     @Email NVARCHAR(50),
     @Password NVARCHAR(50),
-    @ProfilePictureURL NVARCHAR(MAX)
+    @ProfilePictureURL NVARCHAR(MAX),
+	@RoleID int
 AS
 BEGIN
-    INSERT INTO Users (FirstName, LastName,UserName, Email, Password, ProfilePictureURL)
-    VALUES (@FirstName, @LastName, @UserName, @Email, @Password, @ProfilePictureURL);
+    INSERT INTO Users (FirstName, LastName,UserName, Email, Password, ProfilePictureURL,RoleID)
+    VALUES (@FirstName, @LastName, @UserName, @Email, @Password, @ProfilePictureURL,@RoleID);
 END;
 
 --Get all
 Alter PROCEDURE PR_Users_GetAll
 AS
 BEGIN
-    SELECT UserID,FirstName,LastName,UserName,Email,Password,ProfilePictureURL 
+    SELECT UserID,FirstName,LastName,UserName,Email,Password,ProfilePictureURL ,RoleID
     FROM Users 
 END;
 
@@ -75,7 +83,7 @@ Alter PROCEDURE PR_Users_GetByID
     @UserID INT
 AS
 BEGIN
-    SELECT UserID,FirstName,LastName,UserName,Email,Password,ProfilePictureURL 
+    SELECT UserID,FirstName,LastName,UserName,Email,Password,ProfilePictureURL ,RoleID
     FROM Users 
     WHERE UserID = @UserID;
 END;
@@ -88,7 +96,8 @@ Alter PROCEDURE PR_Users_UpdateByID
 	@UserName NVARCHAR(50),
     @Email NVARCHAR(50),
     @Password NVARCHAR(50),
-    @ProfilePictureURL NVARCHAR(MAX)
+    @ProfilePictureURL NVARCHAR(MAX),
+	@RoleID int
 AS
 BEGIN
     UPDATE Users
@@ -98,7 +107,8 @@ BEGIN
 		UserName = @UserName,
         Email = @Email,
         Password = @Password,
-        ProfilePictureURL = @ProfilePictureURL
+        ProfilePictureURL = @ProfilePictureURL,
+		RoleID = @RoleID
     WHERE UserID = @UserID;
 END;
 
@@ -109,17 +119,6 @@ AS
 BEGIN
     DELETE FROM Users
     WHERE UserID = @UserID;
-END;
-
---Login user
-CREATE PROCEDURE PR_Users_Login
-    @Email NVARCHAR(50),
-    @Password NVARCHAR(50)
-AS
-BEGIN
-    SELECT UserID, FirstName, LastName, ProfilePictureURL, CreatedAt
-    FROM Users
-    WHERE Email = @Email AND Password = @Password;
 END;
 
 --Properties
@@ -523,7 +522,41 @@ BEGIN
     WHERE ImageID = @ImageID;
 END;
 
+----Role 
+--Get all roles
+CREATE PROCEDURE PR_Roles_Get
+    
+AS
+BEGIN
+    SELECT RoleID,RoleName
+    FROM Roles
+	order by RoleName
+END;
+--Add role
+CREATE PROCEDURE PR_Roles_Add
+    @RoleName NVARCHAR(50)
+AS
+BEGIN
+    INSERT INTO Roles (RoleName)
+    VALUES (@RoleName);
+END;
 
+--Update role
+CREATE PROCEDURE PR_Roles_Update
+	@RoleID int,
+    @RoleName NVARCHAR(50)
+AS
+BEGIN
+    Update Roles
+	set RoleName = @RoleName
+	where RoleID = @RoleID
+END;
 
-
-
+--Delete role
+CREATE PROCEDURE PR_Roles_Delete
+	@RoleID int
+AS
+BEGIN
+    Delete from Roles
+	where RoleID = @RoleID
+END;

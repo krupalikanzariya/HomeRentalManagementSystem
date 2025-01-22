@@ -2,6 +2,7 @@
 using System.Data;
 using HomeRentalAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace HomeRentalAPI.Data
 {
@@ -28,6 +29,8 @@ namespace HomeRentalAPI.Data
                 cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = userRegisterModel.Email;
                 cmd.Parameters.Add("@Password", SqlDbType.VarChar).Value = userRegisterModel.Password;
                 cmd.Parameters.Add("@ProfilePictureURL", SqlDbType.VarChar).Value = userRegisterModel.ProfilePictureURL;
+                cmd.Parameters.Add("@RoleID", SqlDbType.Int).Value = userRegisterModel.RoleID;
+
 
                 conn.Open();
                 int rowsAffected = cmd.ExecuteNonQuery();
@@ -63,7 +66,8 @@ namespace HomeRentalAPI.Data
                             UserName = reader["UserName"].ToString(),
                             Email = reader["Email"].ToString(),
                             Password = reader["Password"].ToString(),
-                            ProfilePictureURL = reader["ProfilePictureURL"].ToString()
+                            ProfilePictureURL = reader["ProfilePictureURL"].ToString(),
+                            RoleID = Convert.ToInt32(reader["RoleID"])
                         };
                     }
                 }
@@ -94,7 +98,8 @@ namespace HomeRentalAPI.Data
                         UserName = reader["UserName"].ToString(),
                         Email = reader["Email"].ToString(),
                         Password = reader["Password"].ToString(),
-                        ProfilePictureURL = reader["ProfilePictureURL"].ToString()
+                        ProfilePictureURL = reader["ProfilePictureURL"].ToString(),
+                        RoleID = Convert.ToInt32(reader["RoleID"])
                     });
                 }
                 return users;
@@ -123,7 +128,8 @@ namespace HomeRentalAPI.Data
                         UserName = reader["UserName"].ToString(),
                         Email = reader["Email"].ToString(),
                         Password = reader["Password"].ToString(),
-                        ProfilePictureURL = reader["ProfilePictureURL"].ToString()
+                        ProfilePictureURL = reader["ProfilePictureURL"].ToString(),
+                        RoleID = Convert.ToInt32(reader["RoleID"])
                     };
                 }
             }
@@ -159,6 +165,8 @@ namespace HomeRentalAPI.Data
                 cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = user.Email;
                 cmd.Parameters.Add("@Password", SqlDbType.VarChar).Value = user.Password;
                 cmd.Parameters.Add("@ProfilePictureURL", SqlDbType.VarChar).Value = user.ProfilePictureURL;
+                cmd.Parameters.Add("@RoleID", SqlDbType.Int).Value = user.RoleID;
+
                 conn.Open();
                 int rowsAffected = cmd.ExecuteNonQuery();
                 return rowsAffected > 0;
@@ -180,6 +188,7 @@ namespace HomeRentalAPI.Data
                 cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = user.Email;
                 cmd.Parameters.Add("@Password", SqlDbType.VarChar).Value = user.Password;
                 cmd.Parameters.Add("@ProfilePictureURL", SqlDbType.VarChar).Value = user.ProfilePictureURL;
+                cmd.Parameters.Add("@RoleID", SqlDbType.Int).Value = user.RoleID;
                 conn.Open();
                 int rowsAffected = cmd.ExecuteNonQuery();
                 return rowsAffected > 0;

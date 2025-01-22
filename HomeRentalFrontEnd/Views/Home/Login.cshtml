@@ -1,16 +1,20 @@
 ﻿<div class="body-signup-in" align="center">
-    <div class="form-container">
+    <div  id="form-container-login">
         <h3>Login</h3>
-        <form>
-            <div class="form-group">
+        <form id="form-login">
+            <div id="form-group-login radio-group-login">
+                <label id="#radio-label"><input type="radio" name="user-role" value="admin"> Admin</label>
+                <label id="#radio-label"><input type="radio" name="user-role" value="user" checked> User</label>
+            </div>
+            <div  id="form-group-login">
                 <label for="email">Email</label>
                 <input type="email" id="email" placeholder="Enter your email" required>
             </div>
-            <div class="form-group">
+            <div  id="form-group-login">
                 <label for="password">Password</label>
                 <input type="password" id="password" placeholder="Enter your password" required>
             </div>
-            <button type="submit">Login</button>
+            <button type="submit" >Login</button>
         </form>
         <div class="switch-link">
             <p>Don't have an account? <a asp-controller="Home" asp-action="Signup">Sign Up</a></p>
