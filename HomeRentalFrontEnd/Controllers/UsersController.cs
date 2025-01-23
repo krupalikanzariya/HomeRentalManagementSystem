@@ -21,19 +21,15 @@ namespace HomeRentalFrontEnd.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> Login(string username, string password, string role)
+        public async Task<IActionResult> UserLogin(UserLoginModel userLoginModel)
         {
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(userLoginModel.UserName) || string.IsNullOrEmpty(userLoginModel.Password))
             {
                 ViewBag.ErrorMessage = "Username and Password are required!";
                 return View();
             }
 
-            var userLoginModel = new
-            {
-                UserName = username,
-                Password = password
-            };
+            
             var json = JsonConvert.SerializeObject(userLoginModel);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response;
@@ -43,7 +39,7 @@ namespace HomeRentalFrontEnd.Controllers
             try
             {
                 // Make HTTP POST request to the API
-                response = await _client.PostAsync($"{_client.BaseAddress}/Login", content);
+                response = await _client.PostAsync($"{_client.BaseAddress}/Users/Login", content);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -52,13 +48,13 @@ namespace HomeRentalFrontEnd.Controllers
                     var user = JsonConvert.DeserializeObject<UsersModel>(data); // Deserialize directly
 
                     // Redirect based on role (Admin or User)
-                    if (role == "Admin")
+                    if (user.RoleID == 1)
                     {
-                        return RedirectToAction("AdminDashboard", "Admin");
+                        return RedirectToAction("Index", "Admin");
                     }
                     else
                     {
-                        return RedirectToAction("UserDashboard", "User");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
@@ -75,6 +71,10 @@ namespace HomeRentalFrontEnd.Controllers
                 ViewBag.ErrorMessage = $"An exception occurred: {ex.Message}";
             }
 
+            return View();
+        }
+        public async Task<IActionResult> Login()
+        {
             return View();
         }
     }

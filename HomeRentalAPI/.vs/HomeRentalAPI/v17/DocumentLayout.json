@@ -36,7 +36,7 @@
               "RelativeDocumentMoniker": "Data\\UsersRepository.cs",
               "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Data\\UsersRepository.cs",
               "RelativeToolTip": "Data\\UsersRepository.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAcwEwAAAAJAAAA",
+              "ViewState": "AQIAACkAAAAAAAAAAAAgwD8AAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-22T14:49:51.54Z",
               "EditorCaption": ""
@@ -49,7 +49,7 @@
               "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
               "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Controllers\\UsersController.cs",
               "RelativeToolTip": "Controllers\\UsersController.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAAACwAAAAdAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-22T14:48:23.382Z",
               "EditorCaption": ""
@@ -64,8 +64,7 @@
               "RelativeToolTip": "Models\\UsersModel.cs",
               "ViewState": "AQIAAB8AAAAAAAAAAAAqwCwAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T14:43:13.356Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-22T14:43:13.356Z"
             },
             {
               "$type": "Document",
@@ -77,8 +76,7 @@
               "RelativeToolTip": "Validatiors\\UsersValidator.cs",
               "ViewState": "AQIAAAUAAAAAAAAAAAAAwB0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T15:08:08.911Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-21T15:08:08.911Z"
             }
           ]
         }

@@ -28,6 +28,7 @@ namespace HomeRentalFrontEnd.Models
 
         [Required(ErrorMessage = "Password is required.")]
         public string Password { get; set; }
+        public int RoleID { get; set; }
     }
     public class UserRegisterModel
     {
