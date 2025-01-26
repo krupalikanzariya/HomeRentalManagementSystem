@@ -2,6 +2,7 @@
 
 namespace HomeRentalFrontEnd.Controllers
 {
+    [CheckAccess]
     public class AdminController : Controller
     {
         public IActionResult Index()

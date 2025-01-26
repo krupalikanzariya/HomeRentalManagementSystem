@@ -22,11 +22,11 @@ public class UsersValidator : AbstractValidator<UsersModel>
             .EmailAddress().WithMessage("Invalid email address.");
 
         RuleFor(x => x.Password)
-            .NotEmpty().WithMessage("Password is required.")
-            .MinimumLength(6).WithMessage("Password must be at least 6 characters long.");
+            .NotEmpty().WithMessage("Password is required.");
+        //.MinimumLength(6).WithMessage("Password must be at least 6 characters long.");
 
-        RuleFor(x => x.ProfilePictureURL)
-            .MaximumLength(200).WithMessage("Profile picture URL must not exceed 200 characters.");
+        RuleFor(x => x.ProfilePictureURL);
+            //.MaximumLength(200).WithMessage("Profile picture URL must not exceed 200 characters.");
 
         RuleFor(x => x.RoleID)
                 .GreaterThan(0).WithMessage("RoleID must be a valid positive number.");

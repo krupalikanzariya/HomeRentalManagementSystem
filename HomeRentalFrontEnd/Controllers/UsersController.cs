@@ -10,16 +10,64 @@ namespace HomeRentalFrontEnd.Controllers
 {
     public class UsersController : Controller
     {
+        private readonly IConfiguration _configuration;
         Uri baseAddress = new Uri("http://localhost:5283/api");
-        private readonly HttpClient _client;
-        public UsersController()
+        private readonly HttpClient _httpClient;
+        public UsersController(IConfiguration configuration)
         {
-            _client = new HttpClient();
-            _client.BaseAddress = baseAddress;
+            _configuration = configuration;
+            _httpClient = new HttpClient();
+            _httpClient.BaseAddress = baseAddress;
         }
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult UsersList()
         {
-            return View();
+            List<UsersModel> users = new List<UsersModel>();
+            HttpResponseMessage response = _httpClient.GetAsync($"{_httpClient.BaseAddress}/Users").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+                users = JsonConvert.DeserializeObject<List<UsersModel>>(data); // Deserialize directly
+            }
+            return View(users);
+        }
+        public async Task<IActionResult> UsersAddEdit(int? UserID)
+        {
+            if (UserID.HasValue)
+            {
+                var response = await _httpClient.GetAsync($"{_httpClient.BaseAddress}/Users/{UserID}");
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = await response.Content.ReadAsStringAsync();
+                    var user = JsonConvert.DeserializeObject<UsersModel>(data);
+                    return View(user);
+                }
+            }
+            return View(new UsersModel());
+        }
+        [HttpPost]
+        public async Task<IActionResult> Save(UsersModel user)
+        {
+            if (ModelState.IsValid)
+            {
+                var json = JsonConvert.SerializeObject(user);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response;
+
+                if (user.UserID == null)
+                {
+                    user.UserID = 0;
+                    json = JsonConvert.SerializeObject(user);
+                    content = new StringContent(json, Encoding.UTF8, "application/json");
+                    response = await _httpClient.PostAsync($"{_httpClient.BaseAddress}/Users", content);
+                }
+                else
+                    response = await _httpClient.PutAsync($"{_httpClient.BaseAddress}/Users/{user.UserID}", content);
+
+                if (response.IsSuccessStatusCode)
+                    return RedirectToAction("UsersList");
+            }
+            return View("UsersAddEdit", user);
         }
         public async Task<IActionResult> UserLogin(UserLoginModel userLoginModel)
         {
@@ -39,13 +87,16 @@ namespace HomeRentalFrontEnd.Controllers
             try
             {
                 // Make HTTP POST request to the API
-                response = await _client.PostAsync($"{_client.BaseAddress}/Users/Login", content);
+                response = await _httpClient.PostAsync($"{_httpClient.BaseAddress}/Users/Login", content);
 
                 if (response.IsSuccessStatusCode)
                 {
                     // Deserialize the response
                     string data = response.Content.ReadAsStringAsync().Result;
                     var user = JsonConvert.DeserializeObject<UsersModel>(data); // Deserialize directly
+
+                    HttpContext.Session.SetString("UserID", user.UserID.ToString());
+                    HttpContext.Session.SetString("UserName", user.UserName);
 
                     // Redirect based on role (Admin or User)
                     if (user.RoleID == 1)
@@ -77,5 +128,11 @@ namespace HomeRentalFrontEnd.Controllers
         {
             return View();
         }
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "Users");
+        }
+
     }
 }
