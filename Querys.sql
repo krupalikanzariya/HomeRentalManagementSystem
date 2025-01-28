@@ -1,4 +1,16 @@
 -- User
+
+--User dropdown
+CREATE PROCEDURE [dbo].[PR_Users_DropDown]
+AS
+BEGIN
+    SELECT
+		[dbo].[Users].[UserID],
+        [dbo].[Users].[UserName]
+    FROM
+        [dbo].[Users]
+	ORDER BY [dbo].[Users].[UserName]
+END
 --User Login
 ALTER PROCEDURE [dbo].[PR_Users_Login]
     @UserName VARCHAR(50),
@@ -122,6 +134,17 @@ BEGIN
 END;
 
 --Properties
+--Properties dropdown
+CREATE PROCEDURE [dbo].[PR_Properties_DropDown]
+AS
+BEGIN
+    SELECT
+		[dbo].[Properties].[PropertyID],
+        [dbo].[Properties].[Title]
+    FROM
+        [dbo].[Properties]
+	ORDER BY [dbo].[Properties].[Title]
+END
 --Add property
 CREATE PROCEDURE PR_Properties_Add
     @HostID INT,

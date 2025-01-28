@@ -103,5 +103,13 @@ namespace HomeRentalAPI.Controllers
             }
             return Ok(properties);
         }
+        [HttpGet("GetUsers")]
+        public IActionResult GetUsers()
+        {
+            var users = _PropertiesRepository.GetUsers();
+            if (!users.Any())
+                return NotFound("No users found.");
+            return Ok(users);
+        }
     }
 }

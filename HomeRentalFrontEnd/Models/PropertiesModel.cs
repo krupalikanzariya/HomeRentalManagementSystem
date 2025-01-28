@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Hosting;
 
-namespace HomeRentalAPI.Models
+namespace HomeRentalFrontEnd.Models
 {
     public class PropertiesModel
     {

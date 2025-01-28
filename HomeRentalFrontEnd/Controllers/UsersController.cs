@@ -69,6 +69,11 @@ namespace HomeRentalFrontEnd.Controllers
             }
             return View("UsersAddEdit", user);
         }
+        public async Task<IActionResult> UserDelete(int UserID)
+        {
+            var response = await _httpClient.DeleteAsync($"{_httpClient.BaseAddress}/Users/{UserID}");
+            return RedirectToAction("UsersList");
+        }
         public async Task<IActionResult> UserLogin(UserLoginModel userLoginModel)
         {
             if (string.IsNullOrEmpty(userLoginModel.UserName) || string.IsNullOrEmpty(userLoginModel.Password))
@@ -122,7 +127,7 @@ namespace HomeRentalFrontEnd.Controllers
                 ViewBag.ErrorMessage = $"An exception occurred: {ex.Message}";
             }
 
-            return View();
+            return View("Login");
         }
         public async Task<IActionResult> Login()
         {

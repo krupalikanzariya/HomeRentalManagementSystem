@@ -22,6 +22,14 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/College/sem 6/HomeRental/HomeRentalFrontEnd/Views/Bookings/BookingsAddEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ3NcQm9va2luZ3NBZGRFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/College/sem 6/HomeRental/HomeRentalFrontEnd/Views/Bookings/BookingsList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ3NcQm9va2luZ3NMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/College/sem 6/HomeRental/HomeRentalFrontEnd/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -32,6 +40,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/College/sem 6/HomeRental/HomeRentalFrontEnd/Views/Home/Signup.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWdudXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/College/sem 6/HomeRental/HomeRentalFrontEnd/Views/Properties/AdminPropertiesList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGVydGllc1xBZG1pblByb3BlcnRpZXNMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/College/sem 6/HomeRental/HomeRentalFrontEnd/Views/Properties/PropertiesAddEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvcGVydGllc1xQcm9wZXJ0aWVzQWRkRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/College/sem 6/HomeRental/HomeRentalFrontEnd/Views/Properties/PropertiesList.cshtml]

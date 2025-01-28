@@ -209,5 +209,28 @@ namespace HomeRentalAPI.Data
             }
             return properties;
         }
+        public IEnumerable<UserDropDownModel> GetUsers()
+        {
+            var users = new List<UserDropDownModel>();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("PR_Users_DropDown", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    users.Add(new UserDropDownModel
+                    {
+                        UserID = Convert.ToInt32(reader["UserID"]),
+                        UserName = reader["UserName"].ToString()
+                    });
+                }
+            }
+            return users;
+        }
+        
     }
 }

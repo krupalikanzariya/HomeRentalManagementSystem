@@ -87,5 +87,22 @@ namespace HomeRentalAPI.Controllers
             }
             return Ok(booking);
         }
+        [HttpGet("GetUsers")]
+        public IActionResult GetUsers()
+        {
+            var users = _BookingsRepository.GetUsers();
+            if (!users.Any())
+                return NotFound("No users found.");
+            return Ok(users);
+        }
+
+        [HttpGet("GetProperties")]
+        public IActionResult GetProperties()
+        {
+            var properties = _BookingsRepository.GetProperties();
+            if (!properties.Any())
+                return NotFound("No properties found.");
+            return Ok(properties);
+        }
     }
 }

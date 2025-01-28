@@ -158,5 +158,49 @@ namespace HomeRentalAPI.Data
 
             return booking;
         }
+        public IEnumerable<UserDropDownModel> GetUsers()
+        {
+            var users = new List<UserDropDownModel>();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("PR_Users_DropDown", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    users.Add(new UserDropDownModel
+                    {
+                        UserID = Convert.ToInt32(reader["UserID"]),
+                        UserName = reader["UserName"].ToString()
+                    });
+                }
+            }
+            return users;
+        }
+        public IEnumerable<PropertiesDropDownModel> GetProperties()
+        {
+            var properties = new List<PropertiesDropDownModel>();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("PR_Properties_DropDown", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    properties.Add(new PropertiesDropDownModel
+                    {
+                        PropertyID = Convert.ToInt32(reader["PropertyID"]),
+                        Title = reader["Title"].ToString()
+                    });
+                }
+            }
+            return properties;
+        }
     }
 }

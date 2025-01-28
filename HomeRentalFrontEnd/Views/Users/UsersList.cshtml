@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
-} 
+}
  @model IEnumerable<HomeRentalFrontEnd.Models.UsersModel>
 
 <div class="content-body">
@@ -52,7 +52,23 @@
                                     <td>@user.Email</td>
                                     <td>@user.Password</td>
                                     <td>
-                                        <span><a asp-controller="Users" asp-action="UsersAddEdit" asp-route-UserID="@user.UserID" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                                        <span>
+                                            <a asp-controller="Users" asp-action="UsersAddEdit" asp-route-UserID="@user.UserID" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <button class="btn">
+                                                <i class="fa fa-pencil color-muted m-r-5"></i>
+                                                </button>
+                                            </a>
+                                            <form method="post" asp-controller="Users" asp-action="UserDelete" onsubmit="return confirm('Are you sure you want to delete this user?');" style="display:inline;">
+                                                <input type="hidden" name="userID" value="@user.UserID" />
+                                                <button type="submit" class="btn" data-toggle="tooltip" data-placement="top" title="Close">
+                                                    <i class="fa fa-close color-danger m-r-5"></i>
+                                                </button>
+                                                </form>
+                                                @* <a asp-controller="Users" asp-action="UserDelete" asp-route-UserID="@user.UserID"
+                                                   data-toggle="tooltip" data-placement="top" title="Close">
+                                                    <i class="fa fa-close color-danger"></i>
+                                                </a> *@
+                                        </span>
                                     </td>
                                     @* <td class="text-center">
                                 <a class="btn btn-primary btn-xs m-1" asp-controller="user" asp-action="userAddEdit" asp-route-userID="@user.userID">
