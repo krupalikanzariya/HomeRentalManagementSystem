@@ -25,7 +25,7 @@
 
                                 <div class="form-group row">
                                     <label class="col-lg-4 col-form-label" asp-for="HostID">
-                                        Host <span class="text-danger">*</span>
+                                        Host Name<span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-6">
                                         <select class="form-control" id="sel1" asp-for="HostID" asp-items="@(new SelectList(ViewBag.UserList, "UserID", "UserName"))">

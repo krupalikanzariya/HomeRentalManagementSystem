@@ -267,16 +267,21 @@
                     
                     <li class="nav-label">Table</li>
                     <li>
-                        <a  aria-expanded="true">
+                        <a  aria-expanded="false">
                             <i class="icon-menu menu-icon"></i><span class="nav-text">Table</span>
                         </a>
                         <ul >
                             <li><a asp-controller="Users" asp-action="UsersList" aria-expanded="false">Users</a></li>
                             <li><a asp-controller="Properties" asp-action="AdminPropertiesList" aria-expanded="false">Properties</a></li>
                             <li><a asp-controller="Bookings" asp-action="BookingsList" aria-expanded="false">Bookings</a></li>
+                            <li><a asp-controller="Reviews" asp-action="ReviewsList" aria-expanded="false">Reviews</a></li>
+                            <li><a asp-controller="Amenities" asp-action="AmenitiesList" aria-expanded="false">Amenities</a></li>
+                            <li><a asp-controller="PropertyAmenities" asp-action="PropertyAmenitiesList" aria-expanded="false">Property-Amenities</a></li>
+                            <li><a asp-controller="Images" asp-action="ImagesList" aria-expanded="false">Images</a></li>
+
                         </ul>
                     </li>
-                   
+                    
                 </ul>
             </div>
         </div>

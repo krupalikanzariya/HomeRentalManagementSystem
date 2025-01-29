@@ -61,7 +61,7 @@ namespace HomeRentalAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateReview(int id, [FromBody] ReviewsModel review)
         {
-            if (review == null || id != review.PropertyID)
+            if (review == null || id != review.ReviewID)
             {
                 return BadRequest();
             }
@@ -86,6 +86,23 @@ namespace HomeRentalAPI.Controllers
                 return NotFound(new { Message = "Reviews not found." });
             }
             return Ok(review);
+        }
+        [HttpGet("GetUsers")]
+        public IActionResult GetUsers()
+        {
+            var users = _ReviewsRepository.GetUsers();
+            if (!users.Any())
+                return NotFound("No users found.");
+            return Ok(users);
+        }
+
+        [HttpGet("GetProperties")]
+        public IActionResult GetProperties()
+        {
+            var properties = _ReviewsRepository.GetProperties();
+            if (!properties.Any())
+                return NotFound("No properties found.");
+            return Ok(properties);
         }
     }
 }

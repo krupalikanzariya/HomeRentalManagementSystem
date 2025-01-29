@@ -36,27 +36,31 @@ namespace HomeRentalAPI.Data
             }
         }
 
-        //public PropertyAmenitiesModel GetByPK(int AmenityID)
-        //{
-        //    PropertyAmenitiesModel propertyAmenity = null;
-        //    using (SqlConnection conn = new SqlConnection(_connectionString))
-        //    {
-        //        SqlCommand cmd = new SqlCommand("PR_Amenities_GetByID", conn)
-        //        {
-        //            CommandType = CommandType.StoredProcedure
-        //        };
-        //        cmd.Parameters.AddWithValue("@AmenityID ", AmenityID);
-        //        conn.Open();
-        //        SqlDataReader reader = cmd.ExecuteReader();
-        //        if (reader.Read())
-        //        {
-        //            propertyAmenity = new PropertyAmenitiesModel
-        //            {
-        //                AmenityID = Convert.ToInt32(reader["AmenityID"])                    };
-        //        }
-        //    }
-        //    return propertyAmenity;
-        //}
+        public PropertyAmenitiesModel GetByPK(int PropertyAmenityID)
+        {
+            PropertyAmenitiesModel propertyAmenity = null;
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("PR_PropertyAmenities_GetByID", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@PropertyAmenityID ", PropertyAmenityID);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    propertyAmenity = new PropertyAmenitiesModel
+                    {
+
+                        PropertyAmenityID = Convert.ToInt32(reader["PropertyAmenityID"]),
+                        PropertyID = Convert.ToInt32(reader["PropertyID"]),
+                        AmenityID = Convert.ToInt32(reader["AmenityID"])
+                    };
+                }
+            }
+            return propertyAmenity;
+        }
 
         public bool Delete(int PropertyAmenityID)
         {
@@ -130,6 +134,50 @@ namespace HomeRentalAPI.Data
                 }
             }
             return propertyAmenities;
+        }
+        public IEnumerable<PropertiesDropDownModel> GetProperties()
+        {
+            var properties = new List<PropertiesDropDownModel>();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("PR_Properties_DropDown", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    properties.Add(new PropertiesDropDownModel
+                    {
+                        PropertyID = Convert.ToInt32(reader["PropertyID"]),
+                        Title = reader["Title"].ToString()
+                    });
+                }
+            }
+            return properties;
+        }
+        public IEnumerable<AmenitiesModel> GetAmenities()
+        {
+            var amenities = new List<AmenitiesModel>();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("[PR_Amenities_DropDown]", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    amenities.Add(new AmenitiesModel
+                    {
+                        AmenityID = Convert.ToInt32(reader["AmenityID"]),
+                        Name = reader["Name"].ToString()
+                    });
+                }
+            }
+            return amenities;
         }
     }
 }

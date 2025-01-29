@@ -20,8 +20,18 @@ namespace HomeRentalAPI.Controllers
             var propertyAmenity = _PropertyAmenitiesRepository.GetAll();
             return Ok(propertyAmenity);
         }
+        [HttpGet("{id}")]
+        public IActionResult GetPropertyAmenityById(int id)
+        {
+            var propertyAmenity = _PropertyAmenitiesRepository.GetByPK(id);
+            if (propertyAmenity == null)
+            {
+                return NotFound();
+            }
+            return Ok(propertyAmenity);
+        }
         [HttpDelete("{id}")]
-        public IActionResult DeleteProperty(int id)
+        public IActionResult DeletePropertyAmenity(int id)
         {
             var isDeleted = _PropertyAmenitiesRepository.Delete(id);
             if (!isDeleted)
@@ -47,7 +57,7 @@ namespace HomeRentalAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateProperty(int id, [FromBody] PropertyAmenitiesModel propertyAmenity)
         {
-            if (propertyAmenity == null || id != propertyAmenity.PropertyID)
+            if (propertyAmenity == null || id != propertyAmenity.PropertyAmenityID)
             {
                 return BadRequest();
             }
@@ -72,6 +82,22 @@ namespace HomeRentalAPI.Controllers
                 return NotFound(new { Message = "No amenity found for the given property." });
             }
             return Ok(propertyAmenity);
+        }
+        [HttpGet("GetProperties")]
+        public IActionResult GetProperties()
+        {
+            var properties = _PropertyAmenitiesRepository.GetProperties();
+            if (!properties.Any())
+                return NotFound("No properties found.");
+            return Ok(properties);
+        }
+        [HttpGet("GetAmenities")]
+        public IActionResult GetAmenities()
+        {
+            var amenities = _PropertyAmenitiesRepository.GetAmenities();
+            if (!amenities.Any())
+                return NotFound("No amenities found.");
+            return Ok(amenities);
         }
     }
 }

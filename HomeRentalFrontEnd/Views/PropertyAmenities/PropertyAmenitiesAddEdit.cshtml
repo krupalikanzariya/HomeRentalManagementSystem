@@ -1,0 +1,63 @@
+﻿ @model HomeRentalFrontEnd.Models.PropertyAmenitiesModel;
+
+@{
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+<div class="content-body">
+
+    <div class="row page-titles mx-0">
+        <div class="col p-md-0">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
+                <li class="breadcrumb-item active"><a asp-controller="PropertyAmenities" asp-action="PropertyAmenitiesList">Property-Amenities</a></li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-validation">
+                            <form class="form-valide" asp-action="Save">
+                                <input type="hidden" asp-for="PropertyAmenityID" />
+
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" asp-for="PropertyID">
+                                        Property Name<span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <select class="form-control" id="sel1" asp-for="PropertyID" asp-items="@(new SelectList(ViewBag.PropertyList, "PropertyID", "Title"))">
+                                            <option value="">Select Property</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" asp-for="AmenityID">
+                                        Amenity Name <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <select class="form-control" id="sel1" asp-for="AmenityID" asp-items="@(new SelectList(ViewBag.AmenityList, "AmenityID", "Name"))">
+                                            <option value="">Select Amenity</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <div class="col-lg-8 ml-auto">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <a asp-controller="PropertyAmenities" asp-action="PropertyAmenitiesList" class="btn btn-secondary">Cancel</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  

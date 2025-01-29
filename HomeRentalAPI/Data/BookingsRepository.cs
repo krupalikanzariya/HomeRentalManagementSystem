@@ -115,6 +115,8 @@ namespace HomeRentalAPI.Data
                     CommandType = CommandType.StoredProcedure
                 };
                 cmd.Parameters.Add("@BookingID", SqlDbType.Int).Value = booking.BookingID;
+                cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = booking.UserID;
+                cmd.Parameters.Add("@PropertyID", SqlDbType.Int).Value = booking.PropertyID;
                 cmd.Parameters.Add("@CheckInDate", SqlDbType.DateTime).Value = booking.CheckInDate;
                 cmd.Parameters.Add("@CheckOutDate", SqlDbType.DateTime).Value = booking.CheckOutDate;
                 cmd.Parameters.Add("@Guests", SqlDbType.Int).Value = booking.Guests;

@@ -137,7 +137,7 @@
                                 <ul>
                                     <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
                                     <li><a asp-controller="Properties" asp-action="PropertiesList">Rooms</a></li>
-                                    <li><a asp-controller="Home" asp-action="AbiutUs">About Us</a></li>
+                                    <li><a asp-controller="Home" asp-action="AboutUs">About Us</a></li>
                                     <li>
                                         <a href="#">Pages</a>
                                         <ul class="dropdown">
@@ -148,7 +148,8 @@
                                         </ul>
                                     </li>
 @*                                     <li><a href="./blog.html">News</a></li>
- *@                                    <li><a href="./contact.html">Contact</a></li>
+                                    *@
+                                    <li>@CommonVariable.UserName()</li>
                                     <li><a asp-controller="Users" asp-action="Login">Login</a></li>
                                 </ul>
                             </nav>

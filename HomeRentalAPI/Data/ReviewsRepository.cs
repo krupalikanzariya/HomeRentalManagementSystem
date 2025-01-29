@@ -109,6 +109,8 @@ namespace HomeRentalAPI.Data
                     CommandType = CommandType.StoredProcedure
                 };
                 cmd.Parameters.Add("@ReviewID", SqlDbType.Int).Value = review.ReviewID;
+                cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = review.UserID;
+                cmd.Parameters.Add("@PropertyID", SqlDbType.Int).Value = review.PropertyID;
                 cmd.Parameters.Add("@Rating", SqlDbType.Int).Value = review.Rating;
                 cmd.Parameters.Add("@Comment", SqlDbType.VarChar).Value = review.Comment;
                 conn.Open();
@@ -145,6 +147,50 @@ namespace HomeRentalAPI.Data
             }
 
             return review;
+        }
+        public IEnumerable<UserDropDownModel> GetUsers()
+        {
+            var users = new List<UserDropDownModel>();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("PR_Users_DropDown", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    users.Add(new UserDropDownModel
+                    {
+                        UserID = Convert.ToInt32(reader["UserID"]),
+                        UserName = reader["UserName"].ToString()
+                    });
+                }
+            }
+            return users;
+        }
+        public IEnumerable<PropertiesDropDownModel> GetProperties()
+        {
+            var properties = new List<PropertiesDropDownModel>();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("PR_Properties_DropDown", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    properties.Add(new PropertiesDropDownModel
+                    {
+                        PropertyID = Convert.ToInt32(reader["PropertyID"]),
+                        Title = reader["Title"].ToString()
+                    });
+                }
+            }
+            return properties;
         }
     }
 }

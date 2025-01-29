@@ -61,7 +61,7 @@ namespace HomeRentalAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateBooking(int id, [FromBody] BookingsModel booking)
         {
-            if (booking == null || id != booking.PropertyID)
+            if (booking == null || id != booking.BookingID)
             {
                 return BadRequest();
             }

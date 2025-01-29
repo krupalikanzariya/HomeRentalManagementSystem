@@ -15,6 +15,26 @@ namespace HomeRentalAPI.Controllers
         {
             _ImagesRepository = ImagesRepository;
         }
+        [HttpGet]
+        public IActionResult GetImages()
+        {
+            var images = _ImagesRepository.GetImages();
+            if (images == null || !images.Any())
+            {
+                return NotFound(new { Message = "No images found." });
+            }
+            return Ok(images);
+        }
+        [HttpGet("{ImageID}")]
+        public IActionResult GetImagesByID(int ImageID)
+        {
+            var images = _ImagesRepository.GetImagesByID(ImageID);
+            if (images == null || !images.Any())
+            {
+                return NotFound(new { Message = "No images found for the given id." });
+            }
+            return Ok(images);
+        }
         [HttpDelete("{id}")]
         public IActionResult DeleteImage(int id)
         {
@@ -42,7 +62,7 @@ namespace HomeRentalAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateImage(int id, [FromBody] ImagesModel image)
         {
-            if (image == null || id != image.PropertyID)
+            if (image == null || id != image.ImageID)
             {
                 return BadRequest();
             }
@@ -68,6 +88,13 @@ namespace HomeRentalAPI.Controllers
             }
             return Ok(images);
         }
-
+        [HttpGet("GetProperties")]
+        public IActionResult GetProperties()
+        {
+            var properties = _ImagesRepository.GetProperties();
+            if (!properties.Any())
+                return NotFound("No properties found.");
+            return Ok(properties);
+        }
     }
 }

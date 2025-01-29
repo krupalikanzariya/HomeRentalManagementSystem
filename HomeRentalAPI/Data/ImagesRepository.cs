@@ -12,7 +12,53 @@ namespace HomeRentalAPI.Data
         {
             _connectionString = configuration.GetConnectionString("ConnectionString");
         }
-
+        public IEnumerable<ImagesModel> GetImages()
+        {
+            var images = new List<ImagesModel>();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("PR_Images_Get", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    images.Add(new ImagesModel
+                    {
+                        ImageID = Convert.ToInt32(reader["ImageID"]),
+                        PropertyID = Convert.ToInt32(reader["PropertyID"]),
+                        ImageURL = reader["ImageURL"].ToString()
+                    });
+                }
+            }
+            return images;
+        }
+        public IEnumerable<ImagesModel> GetImagesByID(int ImageID)
+        {
+            var images = new List<ImagesModel>();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("PR_Images_GetByID", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@ImageID", ImageID);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    images.Add(new ImagesModel
+                    {
+                        ImageID = Convert.ToInt32(reader["ImageID"]),
+                        PropertyID = Convert.ToInt32(reader["PropertyID"]),
+                        ImageURL = reader["ImageURL"].ToString()
+                    });
+                }
+            }
+            return images;
+        }
         public bool Delete(int ImageID)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -83,6 +129,28 @@ namespace HomeRentalAPI.Data
                 }
             }
             return images;
+        }
+        public IEnumerable<PropertiesDropDownModel> GetProperties()
+        {
+            var properties = new List<PropertiesDropDownModel>();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("PR_Properties_DropDown", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    properties.Add(new PropertiesDropDownModel
+                    {
+                        PropertyID = Convert.ToInt32(reader["PropertyID"]),
+                        Title = reader["Title"].ToString()
+                    });
+                }
+            }
+            return properties;
         }
     }
 }

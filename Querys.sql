@@ -302,8 +302,10 @@ BEGIN
 END;
 
 --Update bookings
-CREATE PROCEDURE PR_Bookings_Update
+ALTER PROCEDURE PR_Bookings_Update
     @BookingID INT,
+	@UserID INT,
+	@PropertyID INT,
     @CheckInDate DATETIME,
     @CheckOutDate DATETIME,
     @Guests INT,
@@ -312,6 +314,8 @@ AS
 BEGIN
     UPDATE Bookings
     SET 
+		UserID = @UserID,
+		PropertyID = @PropertyID,
         CheckInDate = @CheckInDate,
         CheckOutDate = @CheckOutDate,
         Guests = @Guests,
@@ -382,14 +386,18 @@ BEGIN
 END;
 
 --Update review
-CREATE PROCEDURE PR_Reviews_Update
+ALTER PROCEDURE PR_Reviews_Update
     @ReviewID INT,
+	@UserID INT,
+	@PropertyID INT,
     @Rating INT,
     @Comment NVARCHAR(MAX)
 AS
 BEGIN
     UPDATE Reviews
     SET 
+		UserID = @UserID,
+		PropertyID = @PropertyID,
         Rating = @Rating,
         Comment = @Comment
     WHERE ReviewID = @ReviewID;
@@ -405,6 +413,18 @@ BEGIN
 END;
 
 --Amenity
+
+--Amenity Dropdown
+CREATE PROCEDURE [dbo].[PR_Amenities_DropDown]
+AS
+BEGIN
+    SELECT
+		[dbo].[Amenities].[AmenityID],
+        [dbo].[Amenities].[Name]
+    FROM
+        [dbo].[Amenities]
+	ORDER BY [dbo].[Amenities].[Name]
+END
 --Add amenity
 CREATE PROCEDURE PR_Amenities_Add
     @Name NVARCHAR(100)
@@ -460,6 +480,17 @@ BEGIN
     INNER JOIN Amenities A ON PA.AmenityID = A.AmenityID
 	INNER JOIN Properties P ON PA.PropertyID = P.PropertyID;
 END;
+--Get by PK
+ALTER PROCEDURE PR_PropertyAmenities_GetByID
+@PropertyAmenityID INT
+AS
+BEGIN
+    SELECT PA.PropertyAmenityID,A.AmenityID,A.Name,P.PropertyID,P.Title
+    FROM PropertyAmenities PA
+    INNER JOIN Amenities A ON PA.AmenityID = A.AmenityID
+	INNER JOIN Properties P ON PA.PropertyID = P.PropertyID
+	where PA.PropertyAmenityID=@PropertyAmenityID ;
+END;
 --Add PropertyAmenity
 CREATE PROCEDURE PR_PropertyAmenities_Add
     @PropertyID INT,
@@ -504,6 +535,22 @@ BEGIN
 END;
 
 --Image
+--Get all
+CREATE PROCEDURE PR_Images_Get
+AS
+BEGIN
+    SELECT ImageID,ImageURL,PropertyID
+    FROM Images
+END;
+--Get image by id
+CREATE PROCEDURE PR_Images_GetByID
+    @ImageID INT
+AS
+BEGIN
+    SELECT ImageID,ImageURL,PropertyID
+    FROM Images
+    WHERE ImageID = @ImageID;
+END;
 --Add image
 CREATE PROCEDURE PR_Images_add
     @PropertyID INT,
