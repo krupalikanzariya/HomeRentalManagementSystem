@@ -1,4 +1,6 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using FluentValidation.AspNetCore;
+
+var builder = WebApplication.CreateBuilder(args);
 
 //Login
 builder.Services.AddDistributedMemoryCache();
@@ -7,6 +9,9 @@ builder.Services.AddSession();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddControllers()
+    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>());
 
 var app = builder.Build();
 

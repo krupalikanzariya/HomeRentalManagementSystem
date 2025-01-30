@@ -66,6 +66,7 @@ namespace HomeRentalFrontEnd.Controllers
 
                 if (response.IsSuccessStatusCode)
                     return RedirectToAction("BookingsList");
+
             }
             await LoadUserList();
             await LoadPropertyList();

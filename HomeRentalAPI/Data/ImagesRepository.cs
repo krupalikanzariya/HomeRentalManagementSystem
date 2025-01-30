@@ -1,5 +1,6 @@
 ﻿using HomeRentalAPI.Models;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Data;
 
 namespace HomeRentalAPI.Data
@@ -35,31 +36,31 @@ namespace HomeRentalAPI.Data
             }
             return images;
         }
-        public IEnumerable<ImagesModel> GetImagesByID(int ImageID)
+        public ImagesModel GetImagesByID(int ImageID)
         {
-            var images = new List<ImagesModel>();
+            ImagesModel image = null;
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 SqlCommand cmd = new SqlCommand("PR_Images_GetByID", conn)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                cmd.Parameters.AddWithValue("@ImageID", ImageID);
+                cmd.Parameters.AddWithValue("@ImageID ", ImageID);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                if (reader.Read())
                 {
-                    images.Add(new ImagesModel
+                    image = new ImagesModel
                     {
                         ImageID = Convert.ToInt32(reader["ImageID"]),
                         PropertyID = Convert.ToInt32(reader["PropertyID"]),
                         ImageURL = reader["ImageURL"].ToString()
-                    });
+                    };
                 }
             }
-            return images;
+            return image;
         }
-        public bool Delete(int ImageID)
+            public bool Delete(int ImageID)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {

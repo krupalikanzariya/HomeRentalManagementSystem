@@ -28,6 +28,7 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control"  asp-for="FirstName" placeholder="Enter a first name..">
+                                        <span class="text-danger" asp-validation-for="FirstName"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -36,6 +37,7 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control"  asp-for="LastName" placeholder="Enter a last name..">
+                                        <span class="text-danger" asp-validation-for="LastName"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -44,6 +46,7 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control"  asp-for="UserName" placeholder="Enter a user name..">
+                                        <span class="text-danger" asp-validation-for="UserName"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -52,6 +55,7 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control"  asp-for="Email" placeholder="Your valid email..">
+                                        <span class="text-danger" asp-validation-for="Email"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -60,6 +64,7 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="password" class="form-control"  asp-for="Password" placeholder="Choose a safe one..">
+                                        <span class="text-danger" asp-validation-for="Password"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -68,6 +73,7 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control"  asp-for="ProfilePictureURL" placeholder="Enter profile picture URL..">
+                                        <span class="text-danger" asp-validation-for="ProfilePictureURL"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -81,7 +87,7 @@
                                         <label class="radio-inline mr-3">
                                             <input type="radio" asp-for="RoleID" value="2" checked> User
                                         </label>
-
+                                        <span class="text-danger" asp-validation-for="RoleID"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">

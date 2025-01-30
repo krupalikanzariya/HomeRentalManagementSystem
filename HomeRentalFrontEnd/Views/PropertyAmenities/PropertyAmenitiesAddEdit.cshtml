@@ -30,8 +30,8 @@
                                     <div class="col-lg-6">
                                         <select class="form-control" id="sel1" asp-for="PropertyID" asp-items="@(new SelectList(ViewBag.PropertyList, "PropertyID", "Title"))">
                                             <option value="">Select Property</option>
-
                                         </select>
+                                        <span class="text-danger" asp-validation-for="PropertyID"></span>
                                     </div>
                                 </div>
 
@@ -42,8 +42,8 @@
                                     <div class="col-lg-6">
                                         <select class="form-control" id="sel1" asp-for="AmenityID" asp-items="@(new SelectList(ViewBag.AmenityList, "AmenityID", "Name"))">
                                             <option value="">Select Amenity</option>
-
                                         </select>
+                                        <span class="text-danger" asp-validation-for="AmenityID"></span>
                                     </div>
                                 </div>
                                 

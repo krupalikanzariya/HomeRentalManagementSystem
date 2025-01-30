@@ -29,9 +29,9 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <select class="form-control" id="sel1" asp-for="HostID" asp-items="@(new SelectList(ViewBag.UserList, "UserID", "UserName"))">
-                                            <option value="">Select User</option>
-
+                                            <option value="">Select Host</option>
                                         </select>
+                                        <span class="text-danger" asp-validation-for="HostID"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -40,6 +40,7 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control" asp-for="Title" placeholder="Enter title of property..">
+                                        <span class="text-danger" asp-validation-for="Title"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -48,6 +49,7 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control" asp-for="Description" placeholder="Enter Description..">
+                                        <span class="text-danger" asp-validation-for="Description"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -56,6 +58,7 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control" asp-for="Address" placeholder="Enter Address..">
+                                        <span class="text-danger" asp-validation-for="Address"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -64,6 +67,7 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control" asp-for="City" placeholder="Enter City..">
+                                        <span class="text-danger" asp-validation-for="City"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -72,6 +76,7 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control" asp-for="State" placeholder="Enter State..">
+                                        <span class="text-danger" asp-validation-for="State"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -80,6 +85,7 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control" asp-for="Country" placeholder="Enter Country..">
+                                        <span class="text-danger" asp-validation-for="Country"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -88,6 +94,7 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control" asp-for="PricePerNight" placeholder="Enter Price Per Night..">
+                                        <span class="text-danger" asp-validation-for="PricePerNight"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -96,6 +103,7 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control" asp-for="MaxGuests" placeholder="Enter Maximum Guests..">
+                                        <span class="text-danger" asp-validation-for="MaxGuests"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -104,6 +112,7 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control" asp-for="Bedrooms" placeholder="Enter Bedrooms..">
+                                        <span class="text-danger" asp-validation-for="Bedrooms"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">

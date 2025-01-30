@@ -30,8 +30,8 @@
                                     <div class="col-lg-6">
                                         <select class="form-control" id="sel1" asp-for="UserID" asp-items="@(new SelectList(ViewBag.UserList, "UserID", "UserName"))">
                                             <option value="">Select User</option>
-
                                         </select>
+                                                <span class="text-danger" asp-validation-for="UserID"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -41,8 +41,9 @@
                                     <div class="col-lg-6">
                                         <select class="form-control" id="sel1" asp-for="PropertyID" asp-items="@(new SelectList(ViewBag.PropertyList, "PropertyID", "Title"))">
                                             <option value="">Select Property</option>
-
                                         </select>
+                                        <span class="text-danger" asp-validation-for="PropertyID"></span>
+
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -51,6 +52,8 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="date" class="form-control" asp-for="CheckInDate" placeholder="Enter CheckInDate..">
+                                        <span class="text-danger" asp-validation-for="CheckInDate"></span>
+
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -59,6 +62,8 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="date" class="form-control" asp-for="CheckOutDate" placeholder="Enter CheckOutDate..">
+                                        <span class="text-danger" asp-validation-for="CheckOutDate"></span>
+
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -67,6 +72,8 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control" asp-for="Guests" placeholder="Enter Guests..">
+                                        <span class="text-danger" asp-validation-for="Guests"></span>
+
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -75,6 +82,8 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control" asp-for="TotalPrice" placeholder="Enter TotalPrice..">
+                                        <span class="text-danger" asp-validation-for="TotalPrice"></span>
+
                                     </div>
                                 </div>
                                 <div class="form-group row">

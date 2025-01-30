@@ -29,7 +29,7 @@ namespace HomeRentalAPI.Controllers
         public IActionResult GetImagesByID(int ImageID)
         {
             var images = _ImagesRepository.GetImagesByID(ImageID);
-            if (images == null || !images.Any())
+            if (images == null )
             {
                 return NotFound(new { Message = "No images found for the given id." });
             }

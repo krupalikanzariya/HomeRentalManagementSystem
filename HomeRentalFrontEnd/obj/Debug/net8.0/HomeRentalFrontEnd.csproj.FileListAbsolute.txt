@@ -35,3 +35,7 @@ D:\College\sem 6\HomeRental\HomeRentalFrontEnd\bin\Debug\net8.0\Microsoft.Extens
 D:\College\sem 6\HomeRental\HomeRentalFrontEnd\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\College\sem 6\HomeRental\HomeRentalFrontEnd\obj\Debug\net8.0\HomeRentalFrontEnd.csproj.AssemblyReference.cache
 D:\College\sem 6\HomeRental\HomeRentalFrontEnd\obj\Debug\net8.0\HomeRent.B84CFA60.Up2Date
+D:\College\sem 6\HomeRental\HomeRentalFrontEnd\bin\Debug\net8.0\FluentValidation.dll
+D:\College\sem 6\HomeRental\HomeRentalFrontEnd\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+D:\College\sem 6\HomeRental\HomeRentalFrontEnd\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+D:\College\sem 6\HomeRental\HomeRentalFrontEnd\obj\Debug\net8.0\HomeRentalFrontEnd.MvcApplicationPartsAssemblyInfo.cs
