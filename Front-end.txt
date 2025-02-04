@@ -3,6 +3,7 @@ Fonts
 	Poppins: ExtraLight 200, Light 300
 
 kahani paradise: https://dynamic-media-cdn.tripadvisor.com/media/photo-o/13/bb/37/1b/getlstd-property-photo.jpg?w=1000&h=-1&s=1
+Banyan tree: https://www.airbnb.mx/rooms/1014966509615937413?source_impression_id=p3_1738397980_P343rwpI2SYCgEnF
 
 Theme links:
 	Nice design(Mellow): https://themewagon.github.io/mellow/index.html

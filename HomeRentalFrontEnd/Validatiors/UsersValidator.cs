@@ -69,8 +69,6 @@ namespace HomeRentalFrontEnd.Validatiors
                 .NotEmpty().WithMessage("Password is required.")
                 .MinimumLength(6).WithMessage("Password must be at least 6 characters long.");
 
-            RuleFor(x => x.ProfilePictureURL)
-                .MaximumLength(200).WithMessage("Profile picture URL must not exceed 200 characters.");
         }
     }
 }

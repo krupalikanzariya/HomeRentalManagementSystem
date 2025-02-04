@@ -1,0 +1,53 @@
+﻿@model HomeRentalFrontEnd.Models.BookingsModel
+
+<div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1" align="center">
+    <div class="booking-form">
+        <h3>Book Your Stay</h3>
+        <form asp-action="UserBookings" method="post">
+            <input type="hidden" asp-for="BookingID" />
+
+            <!-- Check-in Date -->
+            <div class="check-date">
+                <label for="CheckInDate">Check In:</label>
+                <input type="date" class="date-input" asp-for="CheckInDate" id="CheckInDate" required>
+                <i class="icon_calendar"></i>
+            </div>
+
+            <!-- Check-out Date -->
+            <div class="check-date">
+                <label for="CheckOutDate">Check Out:</label>
+                <input type="date" class="date-input" asp-for="CheckOutDate" id="CheckOutDate" required>
+                <i class="icon_calendar"></i>
+            </div>
+
+            <!-- Guests Dropdown -->
+            <div class="select-option">
+                <label for="Guests">Guests:</label>
+                <select asp-for="Guests" id="Guests" class="form-control">
+                    <option value="1">1 Guest</option>
+                    <option value="2">2 Guests</option>
+                    <option value="3">3 Guests</option>
+                    <option value="4">4 Guests</option>
+                    <option value="5">5 Guests</option>
+                </select>
+            </div>
+
+            <!-- Room Selection (Derived from PropertyID) -->
+            <div class="select-option">
+                <label for="PropertyID">Room:</label>
+                <select asp-for="PropertyID" id="PropertyID" class="form-control" asp-items="@(new SelectList(ViewBag.PropertyList, "PropertyID", "Title"))">
+                    <option value="">Select a property</option>
+                </select>
+            </div>
+
+            <!-- Total Price (Auto-calculated, but displayed for reference) -->
+            <div class="check-date">
+                <label for="TotalPrice">Total Price:</label>
+                <input type="text" class="form-control" asp-for="TotalPrice" id="TotalPrice" readonly>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary w-100 mt-3">Check Availability</button>
+        </form>
+    </div>
+</div>

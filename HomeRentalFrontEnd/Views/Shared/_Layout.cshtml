@@ -58,7 +58,7 @@
         <nav class="mainmenu mobile-menu">
             <ul>
                 <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a asp-controller="Properties" asp-action="PropertiesList">Rooms</a></li>
+                <li><a asp-controller="Properties" asp-action="PropertiesList">Properties</a></li>
                 <li><a asp-controller="Home" asp-action="AboutUs">About Us</a></li>
                 <li>
                     <a href="#">Pages</a>
@@ -105,7 +105,7 @@
                                 <a href="#"><i class="fa fa-tripadvisor"></i></a>
                                 <a href="#"><i class="fa fa-instagram"></i></a>
                             </div>
-                            <a href="#" class="bk-btn">Booking Now</a>
+                            <a asp-controller="Bookings" asp-action="UserBookings" class="bk-btn">Booking Now</a>
                             @* <div class="language-option">
                                 <img src="~/img/flag.jpg" alt="">
                                 <span>EN <i class="fa fa-angle-down"></i></span>
@@ -137,8 +137,8 @@
                                 <ul>
                                     <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
                                     <li><a asp-controller="Properties" asp-action="PropertiesList">Rooms</a></li>
-                                    <li><a asp-controller="Home" asp-action="AboutUs">About Us</a></li>
-                                    <li>
+                                    @* <li><a asp-controller="Home" asp-action="AboutUs">About Us</a></li> *@
+                                    @* <li>
                                         <a href="#">Pages</a>
                                         <ul class="dropdown">
                                             <li><a href="./room-details.html">Room Details</a></li>
@@ -146,16 +146,16 @@
                                             <li><a href="#">Family Room</a></li>
                                             <li><a href="#">Premium Room</a></li>
                                         </ul>
-                                    </li>
+                                    </li> *@
 @*                                     <li><a href="./blog.html">News</a></li>
                                     *@
                                     <li>@CommonVariable.UserName()</li>
                                     <li><a asp-controller="Users" asp-action="Login">Login</a></li>
                                 </ul>
                             </nav>
-                            <div class="nav-right search-switch">
+                            @* <div class="nav-right search-switch">
                                 <i class="icon_search"></i>
-                            </div>
+                            </div> *@
                         </div>
                     </div>
                 </div>

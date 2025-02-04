@@ -83,10 +83,71 @@ namespace HomeRentalFrontEnd.Controllers
             var response = await _httpClient.DeleteAsync($"{_httpClient.BaseAddress}/Properties/{PropertyID}");
             return RedirectToAction("AdminPropertiesList");
         }
-        public IActionResult PropertiesList()
+        public async Task<IActionResult> PropertiesList()
         {
-            return View();
+            List<PropertiesModel> properties = new List<PropertiesModel>();
+            HttpResponseMessage response = await _httpClient.GetAsync($"{_httpClient.BaseAddress}/Properties");
+            if (response.IsSuccessStatusCode)
+            {
+                string data = await response.Content.ReadAsStringAsync();
+                properties = JsonConvert.DeserializeObject<List<PropertiesModel>>(data);
+            }
+            return View(properties);
         }
-        
+
+
     }
 }
+//public async Task<IActionResult> PropertyDetails(int propertyId)
+//{
+//    // Fetch property details
+//    var response = await _httpClient.GetAsync($"{_httpClient.BaseAddress}/Properties/{propertyId}");
+//    var property = new PropertiesModel();
+//    if (response.IsSuccessStatusCode)
+//    {
+//        var data = await response.Content.ReadAsStringAsync();
+//        property = JsonConvert.DeserializeObject<PropertiesModel>(data);
+//    }
+
+//    // Fetch images for this property
+//    var imagesResponse = await _httpClient.GetAsync($"{_httpClient.BaseAddress}/Images/GetImagesByProperty/{propertyId}");
+//    var images = new List<ImagesModel>();
+//    if (imagesResponse.IsSuccessStatusCode)
+//    {
+//        var imagesData = await imagesResponse.Content.ReadAsStringAsync();
+//        images = JsonConvert.DeserializeObject<List<ImagesModel>>(imagesData);
+//    }
+
+//    ViewBag.Images = images; // Pass images to the view
+//    return View(property);
+//}
+//@model HomeRentalFrontEnd.Models.PropertiesModel
+//@{
+//    var images = ViewBag.Images as List<HomeRentalFrontEnd.Models.ImagesModel>;
+//}
+
+//< div class= "container" >
+//    < h2 > @Model.Title </ h2 >
+//    < p > @Model.Description </ p >
+//    < p >< strong > Location:</ strong > @Model.City, @Model.State, @Model.Country </ p >
+//    < p >< strong > Price per Night:</ strong > $@Model.PricePerNight </ p >
+
+//    < h3 > Property Images </ h3 >
+//    < div class= "row" >
+//        @if(images != null && images.Any())
+//        {
+//    @foreach(var image in images)
+//            {
+//                < div class= "col-md-4" >
+//                    < img src = "@image.ImageURL" class= "img-fluid img-thumbnail" alt = "Property Image" >
+//                </ div >
+//            }
+//        }
+//        else
+//{
+//            < p > No images available for this property.</ p >
+//        }
+//    </ div >
+//</ div >
+
+

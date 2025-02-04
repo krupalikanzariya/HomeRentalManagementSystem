@@ -40,8 +40,32 @@ namespace HomeRentalAPI.Data
                         PricePerNight = Convert.ToDecimal(reader["PricePerNight"]),
                         MaxGuests = Convert.ToInt32(reader["MaxGuests"]),
                         Bedrooms = Convert.ToInt32(reader["Bedrooms"]),
+                        Images = new List<ImagesModel>()
                     });
                 }
+                reader.Close();
+
+                // Fetch Images for each Property
+                foreach (var property in properties)
+                {
+                    cmd = new SqlCommand("PR_Images_GetImagesByProperty", conn)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+                    cmd.Parameters.AddWithValue("@PropertyID", property.PropertyID);
+                    reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        property.Images.Add(new ImagesModel
+                        {
+                            ImageID = Convert.ToInt32(reader["ImageID"]),
+                            PropertyID = Convert.ToInt32(reader["PropertyID"]),
+                            ImageURL = reader["ImageURL"].ToString()
+                        });
+                    }
+                    reader.Close();
+                }
+
                 return properties;
             }
         }
@@ -73,8 +97,31 @@ namespace HomeRentalAPI.Data
                         PricePerNight = Convert.ToDecimal(reader["PricePerNight"]),
                         MaxGuests = Convert.ToInt32(reader["MaxGuests"]),
                         Bedrooms = Convert.ToInt32(reader["Bedrooms"]),
+                        Images = new List<ImagesModel>()
+
                     };
                 }
+
+                reader.Close();
+
+                
+                    cmd = new SqlCommand("PR_Images_GetImagesByProperty", conn)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+                    cmd.Parameters.AddWithValue("@PropertyID", property.PropertyID);
+                    reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        property.Images.Add(new ImagesModel
+                        {
+                            ImageID = Convert.ToInt32(reader["ImageID"]),
+                            PropertyID = Convert.ToInt32(reader["PropertyID"]),
+                            ImageURL = reader["ImageURL"].ToString()
+                        });
+                    }
+                    reader.Close();
+                
             }
             return property;
         }

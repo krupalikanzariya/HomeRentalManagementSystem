@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|d:\\college\\sem 6\\homerental\\homerentalapi\\data\\propertiesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:data\\propertiesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|d:\\college\\sem 6\\homerental\\homerentalapi\\models\\propertiesmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:models\\propertiesmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|d:\\college\\sem 6\\homerental\\homerentalapi\\data\\imagesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:data\\imagesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|d:\\college\\sem 6\\homerental\\homerentalapi\\data\\usersrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:data\\usersrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|d:\\college\\sem 6\\homerental\\homerentalapi\\controllers\\imagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:controllers\\imagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,24 +31,12 @@
       "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:controllers\\propertyamenitiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|d:\\college\\sem 6\\homerental\\homerentalapi\\data\\imagesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:data\\imagesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|d:\\college\\sem 6\\homerental\\homerentalapi\\data\\propertiesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:data\\propertiesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|d:\\college\\sem 6\\homerental\\homerentalapi\\data\\propertyamenities.repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:data\\propertyamenities.repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|d:\\college\\sem 6\\homerental\\homerentalapi\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|d:\\college\\sem 6\\homerental\\homerentalapi\\data\\usersrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{03F9DF04-CF17-4964-B944-B215B22AC57A}|HomeRentalAPI.csproj|solutionrelative:data\\usersrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,33 +50,20 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ImagesRepository.cs",
-              "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Data\\ImagesRepository.cs",
-              "RelativeDocumentMoniker": "Data\\ImagesRepository.cs",
-              "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Data\\ImagesRepository.cs",
-              "RelativeToolTip": "Data\\ImagesRepository.cs",
-              "ViewState": "AQIAACIAAAAAAAAAAAAuwCYAAAAaAAAA",
+              "DocumentIndex": 1,
+              "Title": "PropertiesModel.cs",
+              "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Models\\PropertiesModel.cs",
+              "RelativeDocumentMoniker": "Models\\PropertiesModel.cs",
+              "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Models\\PropertiesModel.cs",
+              "RelativeToolTip": "Models\\PropertiesModel.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAABUAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-29T15:38:57.909Z",
+              "WhenOpened": "2025-02-04T14:43:23.58Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "PropertyAmenities.Repository.cs",
-              "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Data\\PropertyAmenities.Repository.cs",
-              "RelativeDocumentMoniker": "Data\\PropertyAmenities.Repository.cs",
-              "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Data\\PropertyAmenities.Repository.cs",
-              "RelativeToolTip": "Data\\PropertyAmenities.Repository.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAlwDkAAABIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-29T14:19:14.532Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "ReviewsController.cs",
               "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Controllers\\ReviewsController.cs",
               "RelativeDocumentMoniker": "Controllers\\ReviewsController.cs",
@@ -80,12 +71,11 @@
               "RelativeToolTip": "Controllers\\ReviewsController.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAABoAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-29T02:41:01.448Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-29T02:41:01.448Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "PropertyAmenitiesController.cs",
               "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Controllers\\PropertyAmenitiesController.cs",
               "RelativeDocumentMoniker": "Controllers\\PropertyAmenitiesController.cs",
@@ -93,38 +83,37 @@
               "RelativeToolTip": "Controllers\\PropertyAmenitiesController.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAhwDUAAABSAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-29T03:06:42.818Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-29T03:06:42.818Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "ImagesController.cs",
               "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Controllers\\ImagesController.cs",
               "RelativeDocumentMoniker": "Controllers\\ImagesController.cs",
               "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Controllers\\ImagesController.cs",
               "RelativeToolTip": "Controllers\\ImagesController.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAYwB8AAAAfAAAA",
+              "ViewState": "AQIAABUAAAAAAAAAAAAYwCgAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-29T03:06:24.625Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "PropertiesRepository.cs",
               "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Data\\PropertiesRepository.cs",
               "RelativeDocumentMoniker": "Data\\PropertiesRepository.cs",
               "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Data\\PropertiesRepository.cs",
               "RelativeToolTip": "Data\\PropertiesRepository.cs",
-              "ViewState": "AQIAADAAAAAAAAAAAAAYwE4AAAAcAAAA",
+              "ViewState": "AQIAAEUAAAAAAAAAAAAYwGQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-28T11:43:58.008Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "BookingsController.cs",
               "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Controllers\\BookingsController.cs",
               "RelativeDocumentMoniker": "Controllers\\BookingsController.cs",
@@ -136,15 +125,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "UsersRepository.cs",
               "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Data\\UsersRepository.cs",
               "RelativeDocumentMoniker": "Data\\UsersRepository.cs",
               "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Data\\UsersRepository.cs",
               "RelativeToolTip": "Data\\UsersRepository.cs",
-              "ViewState": "AQIAALoAAAAAAAAAAADwv8QAAAAIAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAMQAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-22T14:49:51.54Z"
+              "WhenOpened": "2025-01-22T14:49:51.54Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ImagesRepository.cs",
+              "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Data\\ImagesRepository.cs",
+              "RelativeDocumentMoniker": "Data\\ImagesRepository.cs",
+              "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Data\\ImagesRepository.cs",
+              "RelativeToolTip": "Data\\ImagesRepository.cs",
+              "ViewState": "AQIAAGYAAAAAAAAAAAAswH4AAABLAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T15:38:57.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PropertyAmenities.Repository.cs",
+              "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Data\\PropertyAmenities.Repository.cs",
+              "RelativeDocumentMoniker": "Data\\PropertyAmenities.Repository.cs",
+              "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalAPI\\Data\\PropertyAmenities.Repository.cs",
+              "RelativeToolTip": "Data\\PropertyAmenities.Repository.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAlwDkAAABIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-29T14:19:14.532Z"
             }
           ]
         }

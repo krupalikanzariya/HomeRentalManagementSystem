@@ -1,0 +1,66 @@
+﻿@model HomeRentalFrontEnd.Models.UserRegisterModel;
+
+<div class="body-signup-in" align="center">
+    <div class="form-container">
+        <h3>Sign Up</h3>
+        <form>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input type="text" id="firstname" asp-for="FirstName" placeholder="Enter firstname">
+                        <span class="text-danger" asp-validation-for="FirstName"></span>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" id="lastname" asp-for="LastName" placeholder="Enter lastname">
+                        <span class="text-danger" asp-validation-for="LastName"></span>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="username">User Name</label>
+                        <input type="text" id="username" asp-for="UserName" placeholder="Enter username">
+                        <span class="text-danger" asp-validation-for="UserName"></span>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" asp-for="Email" placeholder="Enter your email">
+                        <span class="text-danger" asp-validation-for="Email"></span>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" asp-for="Password" placeholder="Enter your password">
+                        <span class="text-danger" asp-validation-for="Password"></span>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label for="profilepic">Profile Picture URL</label>
+                        <input type="url" id="profilepic" asp-for="ProfilePictureURL" placeholder="Enter Profile picture URL">
+                    </div>
+                </td>
+            </tr>
+
+        <button type="submit">Sign Up</button>
+    </form>
+    <div class="switch-link">
+            <p>Already have an account? <a asp-controller="Users" asp-action="Login">Login</a></p>
+    </div>
+</div>
+</div>

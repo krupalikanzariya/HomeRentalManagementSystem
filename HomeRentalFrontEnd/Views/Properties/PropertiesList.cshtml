@@ -1,13 +1,15 @@
-﻿<!-- Breadcrumb Section Begin -->
+﻿@model IEnumerable<HomeRentalFrontEnd.Models.PropertiesModel>
+
+<!-- Breadcrumb Section Begin -->
 <div class="breadcrumb-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-text">
-                    <h2>Our Rooms</h2>
+                    <h2>Our Properties</h2>
                     <div class="bt-option">
                         <a asp-controller="Home" asp-action="Index">Home</a>
-                        <span>Rooms</span>
+                        <span>Properties</span>
                     </div>
                 </div>
             </div>
@@ -19,192 +21,56 @@
 <section class="rooms-section spad">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="room-item">
-                    <img src="~/img/room/room-1.jpg" alt="">
-                    <div class="ri-text">
-                        <h4>Premium King Room</h4>
-                        <h3>159$<span>/Pernight</span></h3>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td class="r-o">Size:</td>
-                                    <td>30 ft</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Capacity:</td>
-                                    <td>Max persion 3</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Bed:</td>
-                                    <td>King Beds</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Services:</td>
-                                    <td>Wifi, Television, Bathroom,...</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <a href="#" class="primary-btn">More Details</a>
+            @foreach (var property in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <!-- Display the First Image or Placeholder -->
+                        @if (property.Images != null && property.Images.Any())
+                        {
+                            <img src="@property.Images.First().ImageURL" alt="Property Image" class="img-fluid" style="height: 250px; width: 100%; object-fit: cover;">
+                        }
+                        else
+                        {
+                            <img src="https://via.placeholder.com/300" alt="No Image Available" class="img-fluid" style="height: 250px; width: 100%; object-fit: cover;">
+                        }
+
+                        <div class="ri-text">
+                            <h4>@property.Title</h4>
+                            <h3>RS.@property.PricePerNight<span>/ per night</span></h3>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="r-o">Location:</td>
+                                        <td>@property.City, @property.State, @property.Country</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Guests:</td>
+                                        <td>Max @property.MaxGuests guests</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Bedrooms:</td>
+                                        <td>@property.Bedrooms</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Description:</td>
+                                        <td>@property.Description.Substring(0, Math.Min(100, property.Description.Length))...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a asp-controller="Properties" asp-action="PropertyDetails" asp-route-id="@property.PropertyID" class="primary-btn">More Details</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="room-item">
-                    <img src="~/img/room/room-2.jpg" alt="">
-                    <div class="ri-text">
-                        <h4>Deluxe Room</h4>
-                        <h3>159$<span>/Pernight</span></h3>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td class="r-o">Size:</td>
-                                    <td>30 ft</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Capacity:</td>
-                                    <td>Max persion 5</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Bed:</td>
-                                    <td>King Beds</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Services:</td>
-                                    <td>Wifi, Television, Bathroom,...</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <a href="#" class="primary-btn">More Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="room-item">
-                    <img src="~/img/room/room-3.jpg" alt="">
-                    <div class="ri-text">
-                        <h4>Double Room</h4>
-                        <h3>159$<span>/Pernight</span></h3>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td class="r-o">Size:</td>
-                                    <td>30 ft</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Capacity:</td>
-                                    <td>Max persion 2</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Bed:</td>
-                                    <td>King Beds</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Services:</td>
-                                    <td>Wifi, Television, Bathroom,...</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <a href="#" class="primary-btn">More Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="room-item">
-                    <img src="~/img/room/room-4.jpg" alt="">
-                    <div class="ri-text">
-                        <h4>Luxury Room</h4>
-                        <h3>159$<span>/Pernight</span></h3>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td class="r-o">Size:</td>
-                                    <td>30 ft</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Capacity:</td>
-                                    <td>Max persion 1</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Bed:</td>
-                                    <td>King Beds</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Services:</td>
-                                    <td>Wifi, Television, Bathroom,...</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <a href="#" class="primary-btn">More Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="room-item">
-                    <img src="~/img/room/room-5.jpg" alt="">
-                    <div class="ri-text">
-                        <h4>Room With View</h4>
-                        <h3>159$<span>/Pernight</span></h3>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td class="r-o">Size:</td>
-                                    <td>30 ft</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Capacity:</td>
-                                    <td>Max persion 1</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Bed:</td>
-                                    <td>King Beds</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Services:</td>
-                                    <td>Wifi, Television, Bathroom,...</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <a href="#" class="primary-btn">More Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="room-item">
-                    <img src="~/img/room/room-6.jpg" alt="">
-                    <div class="ri-text">
-                        <h4>Small View</h4>
-                        <h3>159$<span>/Pernight</span></h3>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td class="r-o">Size:</td>
-                                    <td>30 ft</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Capacity:</td>
-                                    <td>Max persion 2</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Bed:</td>
-                                    <td>King Beds</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Services:</td>
-                                    <td>Wifi, Television, Bathroom,...</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <a href="#" class="primary-btn">More Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="room-pagination">
-                    <a href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
-                </div>
+            }
+        </div>
+
+        <!-- Pagination Section (Static for Now) -->
+        <div class="col-lg-12">
+            <div class="room-pagination">
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
             </div>
         </div>
     </div>

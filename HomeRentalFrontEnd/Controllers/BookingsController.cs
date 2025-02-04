@@ -28,6 +28,33 @@ namespace HomeRentalFrontEnd.Controllers
             }
             return View(bookings);
         }
+        public async Task<IActionResult> UserBookings()
+        {
+            await LoadUserList();
+            await LoadPropertyList();
+            return View(new BookingsModel());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UserBookings(BookingsModel booking)
+        {
+            if (ModelState.IsValid)
+            {
+                var json = JsonConvert.SerializeObject(booking);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await _httpClient.PostAsync($"{_httpClient.BaseAddress}/Bookings", content);
+
+                if (response.IsSuccessStatusCode)
+                    return RedirectToAction("BookingsList");
+            }
+
+            await LoadUserList();
+            await LoadPropertyList();
+
+            return View(booking);
+        }
+
         public async Task<IActionResult> BookingsAddEdit(int? BookingID)
         {
             await LoadUserList();
