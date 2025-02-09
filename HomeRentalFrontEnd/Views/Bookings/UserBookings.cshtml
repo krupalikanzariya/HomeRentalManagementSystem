@@ -5,19 +5,30 @@
         <h3>Book Your Stay</h3>
         <form asp-action="UserBookings" method="post">
             <input type="hidden" asp-for="BookingID" />
+            <div class="select-option">
+                <label for="UserID">Room:</label>
+                <select asp-for="UserID" id="UserID" class="form-control" asp-items="@(new SelectList(ViewBag.UserList, "UserID", "UserName"))">
+                    <option value="">Select a user</option>
+                </select>
+                <span class="text-danger" asp-validation-for="UserID"></span>
 
+            </div>
             <!-- Check-in Date -->
             <div class="check-date">
                 <label for="CheckInDate">Check In:</label>
                 <input type="date" class="date-input" asp-for="CheckInDate" id="CheckInDate" required>
-                <i class="icon_calendar"></i>
+                @* <i class="icon_calendar"></i> *@
+                <span class="text-danger" asp-validation-for="CheckInDate"></span>
+
             </div>
 
             <!-- Check-out Date -->
             <div class="check-date">
                 <label for="CheckOutDate">Check Out:</label>
                 <input type="date" class="date-input" asp-for="CheckOutDate" id="CheckOutDate" required>
-                <i class="icon_calendar"></i>
+                @* <i class="icon_calendar"></i> *@
+                <span class="text-danger" asp-validation-for="CheckOutDate"></span>
+
             </div>
 
             <!-- Guests Dropdown -->
@@ -30,6 +41,8 @@
                     <option value="4">4 Guests</option>
                     <option value="5">5 Guests</option>
                 </select>
+                <span class="text-danger" asp-validation-for="Guests"></span>
+
             </div>
 
             <!-- Room Selection (Derived from PropertyID) -->
@@ -38,12 +51,16 @@
                 <select asp-for="PropertyID" id="PropertyID" class="form-control" asp-items="@(new SelectList(ViewBag.PropertyList, "PropertyID", "Title"))">
                     <option value="">Select a property</option>
                 </select>
+                <span class="text-danger" asp-validation-for="PropertyID"></span>
+
             </div>
 
             <!-- Total Price (Auto-calculated, but displayed for reference) -->
             <div class="check-date">
                 <label for="TotalPrice">Total Price:</label>
                 <input type="text" class="form-control" asp-for="TotalPrice" id="TotalPrice" readonly>
+                <span class="text-danger" asp-validation-for="TotalPrice"></span>
+
             </div>
 
             <!-- Submit Button -->

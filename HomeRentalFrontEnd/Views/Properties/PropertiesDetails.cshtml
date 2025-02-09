@@ -1,0 +1,104 @@
+﻿@model HomeRentalFrontEnd.Models.PropertiesModel
+
+<!-- Breadcrumb Section Begin -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>@Model.Title</h2>
+                    <div class="bt-option">
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                        <span>Property Details</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section End -->
+
+<!-- Property Details Section Begin -->
+<section class="property-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Property Images -->
+                <div class="property-images">
+                    @if (Model.Images != null && Model.Images.Any())
+                    {
+                        <div class="row">
+                            @foreach (var image in Model.Images)
+                            {
+                                <div class="col-lg-4 col-md-6">
+                                    <img src="@image.ImageURL" alt="Property Image" class="img-fluid" />
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <p>No images available.</p>
+                    }
+                </div>
+                <div class="property-details-content">
+                    <h2>@Model.Title</h2>
+                    <p>@Model.Description</p>
+                    <ul>
+                        <li><b>Location:</b> @Model.Address, @Model.City, @Model.State, @Model.Country</li>
+                        <li><b>Price Per Night:</b> $@Model.PricePerNight</li>
+                        <li><b>Max Guests:</b> @Model.MaxGuests</li>
+                        <li><b>Bedrooms:</b> @Model.Bedrooms</li>
+                    </ul>
+
+                    <!-- Property Images -->
+                    <div class="property-images">
+                        @if (Model.Images != null && Model.Images.Any())
+                        {
+                            <div class="row">
+                                @foreach (var image in Model.Images)
+                                {
+                                    <div class="col-lg-4 col-md-6">
+                                        <img src="@image.ImageURL" alt="Property Image" class="img-fluid" />
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <p>No images available.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            @* <!-- Booking Form -->
+            <div class="col-lg-4">
+                <div class="booking-form">
+                    <h3>Book This Property</h3>
+                    <form asp-controller="Bookings" asp-action="AddBooking" method="post">
+                        <input type="hidden" name="PropertyID" value="@Model.PropertyID" />
+                        
+                        <div class="check-date">
+                            <label for="CheckInDate">Check In:</label>
+                            <input type="date" name="CheckInDate" required />
+                        </div>
+
+                        <div class="check-date">
+                            <label for="CheckOutDate">Check Out:</label>
+                            <input type="date" name="CheckOutDate" required />
+                        </div>
+
+                        <div class="select-option">
+                            <label for="Guests">Guests:</label>
+                            <input type="number" name="Guests" min="1" required />
+                        </div>
+
+                        <button type="submit">Check Availability</button>
+                    </form>
+                </div>
+            </div> *@
+        </div>
+    </div>
+</section>
+<!-- Property Details Section End -->

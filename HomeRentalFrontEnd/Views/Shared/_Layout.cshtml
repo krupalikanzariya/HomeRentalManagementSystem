@@ -149,8 +149,17 @@
                                     </li> *@
 @*                                     <li><a href="./blog.html">News</a></li>
                                     *@
-                                    <li>@CommonVariable.UserName()</li>
-                                    <li><a asp-controller="Users" asp-action="Login">Login</a></li>
+                                    <li class="pe-2">@CommonVariable.UserName()</li>
+                                    <li>
+                                        @if (CommonVariable.UserID() != null)
+                                        {
+                                            <a href="@Url.Action("Logout", "Users")">Logout</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("Login", "Users")">Login</a>
+                                        }
+                                    </li>
                                 </ul>
                             </nav>
                             @* <div class="nav-right search-switch">

@@ -28,6 +28,18 @@ namespace HomeRentalFrontEnd.Controllers
             }
             return View(properties);
         }
+        [HttpGet]
+        public IActionResult PropertiesDetails(int PropertyID)
+        {
+            PropertiesModel properties = new PropertiesModel();
+            HttpResponseMessage response = _httpClient.GetAsync($"{_httpClient.BaseAddress}/Properties/{PropertyID}").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+                properties = JsonConvert.DeserializeObject<PropertiesModel>(data); // Deserialize directly
+            }
+            return View(properties);
+        }
         public async Task<IActionResult> PropertiesAddEdit(int? PropertyID)
         {
             await LoadUserList();
