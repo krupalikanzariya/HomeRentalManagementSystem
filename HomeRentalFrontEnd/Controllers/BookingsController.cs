@@ -28,12 +28,30 @@ namespace HomeRentalFrontEnd.Controllers
             }
             return View(bookings);
         }
-        public async Task<IActionResult> UserBookings()
+        public async Task<IActionResult> UserBookings(int PropertyID)
         {
             await LoadUserList();
             await LoadPropertyList();
-            return View(new BookingsModel());
+
+            // Retrieve UserID from session
+            int? userId = CommonVariable.UserID();
+
+            // If UserID is null, redirect to login
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Users");
+            }
+
+            // Prepopulate the booking model with UserID and PropertyID
+            var model = new BookingsModel
+            {
+                UserID = userId.Value,  // Set the logged-in user
+                PropertyID = PropertyID // Set the selected property
+            };
+
+            return View(model);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> UserBookings(BookingsModel booking)

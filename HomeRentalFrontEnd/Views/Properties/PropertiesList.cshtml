@@ -25,19 +25,45 @@
             {
                 <div class="col-lg-4 col-md-6">
                     <div class="room-item">
-                        <!-- Display the First Image or Placeholder -->
-                        @if (property.Images != null && property.Images.Any())
-                        {
-                            <img src="@property.Images.First().ImageURL" alt="Property Image" class="img-fluid" style="height: 250px; width: 100%; object-fit: cover;">
-                        }
-                        else
-                        {
-                            <img src="https://via.placeholder.com/300" alt="No Image Available" class="img-fluid" style="height: 250px; width: 100%; object-fit: cover;">
-                        }
+                        <!-- Bootstrap Carousel for Property Images -->
+                        <div id="carousel-@property.PropertyID" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                @if (property.Images != null && property.Images.Any())
+                                {
+                                    var firstImage = true;
+                                    @foreach (var image in property.Images)
+                                    {
+                                        <div class="carousel-item @(firstImage ? "active" : "")">
+                                            <img src="@image.ImageURL" class="d-block w-100" style="height: 250px; object-fit: cover;" alt="Property Image">
+                                        </div>
+                                        firstImage = false;
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="carousel-item active">
+                                        <img src="https://via.placeholder.com/300" class="d-block w-100" style="height: 250px; object-fit: cover;" alt="No Image Available">
+                                    </div>
+                                }
+                            </div>
+
+                            <!-- Carousel Controls -->
+                            @if (property.Images != null && property.Images.Count() > 1)
+                            {
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-@property.PropertyID" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carousel-@property.PropertyID" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            }
+                        </div>
 
                         <div class="ri-text">
                             <h4>@property.Title</h4>
-                            <h3>RS.@property.PricePerNight<span>/ per night</span></h3>
+                            <h3>₹ @property.PricePerNight.ToString("N2")<span>/ per night</span></h3>
                             <table>
                                 <tbody>
                                     <tr>
@@ -58,7 +84,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <a asp-controller="Properties" asp-action="PropertyDetails" asp-route-id="@property.PropertyID" class="primary-btn">More Details</a>
+                            <a asp-controller="Properties" asp-action="PropertiesDetails" asp-route-PropertyID="@property.PropertyID" class="primary-btn">More Details.</a>
                         </div>
                     </div>
                 </div>

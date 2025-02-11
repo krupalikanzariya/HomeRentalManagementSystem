@@ -9,7 +9,7 @@
                     <h2>@Model.Title</h2>
                     <div class="bt-option">
                         <a asp-controller="Home" asp-action="Index">Home</a>
-                        <span>Property Details</span>
+                        <span>Room Details</span>
                     </div>
                 </div>
             </div>
@@ -17,88 +17,140 @@
     </div>
 </div>
 <!-- Breadcrumb Section End -->
-
-<!-- Property Details Section Begin -->
-<section class="property-details spad">
+<!-- Room Details Section Begin -->
+<section class="room-details-section spad">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8">
-                <!-- Property Images -->
-                <div class="property-images">
-                    @if (Model.Images != null && Model.Images.Any())
-                    {
-                        <div class="row">
-                            @foreach (var image in Model.Images)
+                <div class="room-details-item">
+                    <!-- Bootstrap Carousel for Multiple Images -->
+                    <div id="propertyCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @if (Model.Images != null && Model.Images.Any())
                             {
-                                <div class="col-lg-4 col-md-6">
-                                    <img src="@image.ImageURL" alt="Property Image" class="img-fluid" />
+                                var firstImage = true;
+                                @foreach (var image in Model.Images)
+                                {
+                                    <div class="carousel-item @(firstImage ? "active" : "")">
+                                        <img src="@image.ImageURL" class="d-block w-100" style="height: 700px; object-fit: cover;" alt="Property Image">
+                                    </div>
+                                    firstImage = false;
+                                }
+                            }
+                            else
+                            {
+                                <div class="carousel-item active">
+                                    <img src="https://via.placeholder.com/800x400" class="d-block w-100" alt="No Image Available">
                                 </div>
                             }
                         </div>
-                    }
-                    else
-                    {
-                        <p>No images available.</p>
-                    }
-                </div>
-                <div class="property-details-content">
-                    <h2>@Model.Title</h2>
-                    <p>@Model.Description</p>
-                    <ul>
-                        <li><b>Location:</b> @Model.Address, @Model.City, @Model.State, @Model.Country</li>
-                        <li><b>Price Per Night:</b> $@Model.PricePerNight</li>
-                        <li><b>Max Guests:</b> @Model.MaxGuests</li>
-                        <li><b>Bedrooms:</b> @Model.Bedrooms</li>
-                    </ul>
-
-                    <!-- Property Images -->
-                    <div class="property-images">
-                        @if (Model.Images != null && Model.Images.Any())
+                        <!-- Carousel Controls -->
+                        @if (Model.Images != null && Model.Images.Count() > 1)
                         {
-                            <div class="row">
-                                @foreach (var image in Model.Images)
-                                {
-                                    <div class="col-lg-4 col-md-6">
-                                        <img src="@image.ImageURL" alt="Property Image" class="img-fluid" />
-                                    </div>
-                                }
-                            </div>
-                        }
-                        else
-                        {
-                            <p>No images available.</p>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#propertyCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#propertyCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         }
                     </div>
+
+                    <div class="rd-text">
+                        <div class="rd-title">
+                            <h3>@Model.Title</h3>
+                            <div class="rdt-right">
+                                <div class="rating">
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star"></i>
+                                    <i class="icon_star-half_alt"></i>
+                                </div>
+                            <a asp-controller="Bookings" asp-action="UserBookings" asp-route-PropertyID="@Model.PropertyID">Book Now</a>
+                            </div>
+                        </div>
+                        <h2>₹ @Model.PricePerNight.ToString("N0")<span>/ Per Night</span></h2>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="r-o">Location:</td>
+                                    <td>@Model.City, @Model.State, @Model.Country</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Guests:</td>
+                                    <td>Max @Model.MaxGuests guests</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Bedrooms:</td>
+                                    <td>@Model.Bedrooms</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Address:</td>
+                                    <td>@Model.Address</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>@Model.Description</p>
+                    </div>
                 </div>
-            </div>
 
-            @* <!-- Booking Form -->
-            <div class="col-lg-4">
-                <div class="booking-form">
-                    <h3>Book This Property</h3>
-                    <form asp-controller="Bookings" asp-action="AddBooking" method="post">
-                        <input type="hidden" name="PropertyID" value="@Model.PropertyID" />
-                        
-                        <div class="check-date">
-                            <label for="CheckInDate">Check In:</label>
-                            <input type="date" name="CheckInDate" required />
+                <!-- Reviews Section -->
+                <div class="rd-reviews">
+                    <h4>Reviews</h4>
+                    <div class="review-item">
+                        <div class="ri-pic">
+                            <img src="https://via.placeholder.com/80" alt="">
                         </div>
-
-                        <div class="check-date">
-                            <label for="CheckOutDate">Check Out:</label>
-                            <input type="date" name="CheckOutDate" required />
+                        <div class="ri-text">
+                            <span>27 Aug 2023</span>
+                            <div class="rating">
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <i class="icon_star-half_alt"></i>
+                            </div>
+                            <h5>John Doe</h5>
+                            <p>Amazing place! Had a great time here.</p>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="select-option">
-                            <label for="Guests">Guests:</label>
-                            <input type="number" name="Guests" min="1" required />
+                <!-- Add Review Section -->
+                <div class="review-add">
+                    <h4>Add Review</h4>
+                    <form action="#" class="ra-form">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="text" placeholder="Name*">
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" placeholder="Email*">
+                            </div>
+                            <div class="col-lg-12">
+                                <div>
+                                    <h5>Your Rating:</h5>
+                                    <div class="rating">
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star"></i>
+                                        <i class="icon_star-half_alt"></i>
+                                    </div>
+                                </div>
+                                <textarea placeholder="Your Review"></textarea>
+                                <button type="submit">Submit Now</button>
+                            </div>
                         </div>
-
-                        <button type="submit">Check Availability</button>
                     </form>
                 </div>
-            </div> *@
+            </div>
         </div>
-    </div>
+    
 </section>
-<!-- Property Details Section End -->
+<!-- Room Details Section End -->
+<!-- Bootstrap CSS and JS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
