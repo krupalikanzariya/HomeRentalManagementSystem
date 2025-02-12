@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using HomeRentalAPI.Data;
 using HomeRentalAPI.Models;
+using HomeRentalAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HomeRentalAPI.Controllers
 {
@@ -9,10 +11,12 @@ namespace HomeRentalAPI.Controllers
     public class UsersController : Controller
     {
         private readonly UsersRepository _UsersRepository;
+        private readonly JwtService _jwtService;
 
-        public UsersController(UsersRepository UsersRepository)
+        public UsersController(UsersRepository UsersRepository, JwtService jwtService)
         {
             _UsersRepository = UsersRepository;
+            _jwtService = jwtService;
         }
 
         [HttpPost("Signup")]
@@ -42,30 +46,34 @@ namespace HomeRentalAPI.Controllers
             var authenticatedUser = _UsersRepository.Login(userLoginModel);
             if (authenticatedUser != null)
             {
+                var token = _jwtService.GenerateToken(authenticatedUser);
                 return Ok(new
                 {
                     Message = "Login successful!",
-                    UserID = authenticatedUser.UserID,
-                    UserName = authenticatedUser.UserName,
-                    FirstName = authenticatedUser.FirstName,
-                    LastName = authenticatedUser.LastName,
-                    Email = authenticatedUser.Email,
-                    Password = authenticatedUser.Password,
-                    ProfilePictureURL = authenticatedUser.ProfilePictureURL,
-                    RoleID = authenticatedUser.RoleID
+                    Token = token,
+                    User = new
+                    {
+                        authenticatedUser.UserID,
+                        authenticatedUser.UserName,
+                        authenticatedUser.FirstName,
+                        authenticatedUser.LastName,
+                        authenticatedUser.Email,
+                        authenticatedUser.ProfilePictureURL,
+                        authenticatedUser.RoleID
+                    }
                 });
             }
 
             return Unauthorized(new { Message = "Invalid username or password." });
         }
-
+        [Authorize]
         [HttpGet]
         public IActionResult GetAllUsers()
         {
             var users = _UsersRepository.GetAll();
             return Ok(users);
         }
-
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult GetUserById(int id)
         {
@@ -76,7 +84,7 @@ namespace HomeRentalAPI.Controllers
             }
             return Ok(user);
         }
-
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
@@ -87,7 +95,7 @@ namespace HomeRentalAPI.Controllers
             }
             return NoContent();
         }
-
+        [Authorize]
         [HttpPost]
         public IActionResult InsertUser([FromBody] UsersModel user)
         {
@@ -100,7 +108,7 @@ namespace HomeRentalAPI.Controllers
 
             return StatusCode(500, "An error occurred while inserting the user.");
         }
-
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult UpdateUser(int id, [FromBody] UsersModel user)
         {
@@ -121,6 +129,6 @@ namespace HomeRentalAPI.Controllers
             return NoContent();
         }
 
-        
+
     }
 }

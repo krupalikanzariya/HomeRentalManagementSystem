@@ -175,3 +175,5 @@ D:\College\sem 6\HomeRental\HomeRentalAPI\obj\Debug\net8.0\ref\HomeRentalAPI.dll
 D:\College\sem 6\HomeRental\HomeRentalAPI\bin\Debug\net8.0\FluentValidation.dll
 D:\College\sem 6\HomeRental\HomeRentalAPI\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 D:\College\sem 6\HomeRental\HomeRentalAPI\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+D:\College\sem 6\HomeRental\HomeRentalAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\College\sem 6\HomeRental\HomeRentalAPI\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll
