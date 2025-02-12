@@ -63,10 +63,8 @@
                 <li>
                     <a href="#">Pages</a>
                     <ul class="dropdown">
-                        <li><a asp-controller="Properties" asp-action="PropertiesList">Room Details</a></li>
-                        <li><a href="#">Deluxe Room</a></li>
-                        <li><a href="#">Family Room</a></li>
-                        <li><a href="#">Premium Room</a></li>
+                        <li><a asp-controller="Properties" asp-action="PropertiesList">Property Details</a></li>
+                        
                     </ul>
                 </li>
                 @* <li><a href="./blog.html">News</a></li> *@
@@ -88,39 +86,7 @@
     <!-- Offcanvas Menu Section End -->
     <!-- Header Section Begin -->
     <header class="header-section">
-        <div class="top-nav">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <ul class="tn-left">
-                            <li><i class="fa fa-phone"></i> (12) 345 67890</li>
-                            <li><i class="fa fa-envelope"></i> info.colorlib@gmail.com</li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="tn-right">
-                            <div class="top-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-tripadvisor"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                            </div>
-                            <a asp-controller="Bookings" asp-action="UserBookings" class="bk-btn">Booking Now</a>
-                            @* <div class="language-option">
-                                <img src="~/img/flag.jpg" alt="">
-                                <span>EN <i class="fa fa-angle-down"></i></span>
-                                <div class="flag-dropdown">
-                                    <ul>
-                                        <li><a href="#">Zi</a></li>
-                                        <li><a href="#">Fr</a></li>
-                                    </ul>
-                                </div>
-                            </div> *@
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <div class="menu-item">
             <div class="container">
                 <div class="row">
@@ -136,7 +102,7 @@
                             <nav class="mainmenu">
                                 <ul>
                                     <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
-                                    <li><a asp-controller="Properties" asp-action="PropertiesList">Rooms</a></li>
+                                    <li><a asp-controller="Properties" asp-action="PropertiesList">Properties</a></li>
                                     @* <li><a asp-controller="Home" asp-action="AboutUs">About Us</a></li> *@
                                     @* <li>
                                         <a href="#">Pages</a>
