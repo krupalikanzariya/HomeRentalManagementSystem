@@ -1,5 +1,6 @@
 ﻿using HomeRentalAPI.Data;
 using HomeRentalAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,14 +16,14 @@ namespace HomeRentalAPI.Controllers
         {
             _PropertiesRepository = PropertiesRepository;
         }
-
+        [Authorize]
         [HttpGet]
         public IActionResult GetAllProperties()
         {
             var properties = _PropertiesRepository.GetAll();
             return Ok(properties);
         }
-
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult GetPropertyById(int id)
         {
@@ -33,7 +34,7 @@ namespace HomeRentalAPI.Controllers
             }
             return Ok(property);
         }
-
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult DeleteProperty(int id)
         {
@@ -44,7 +45,7 @@ namespace HomeRentalAPI.Controllers
             }
             return NoContent();
         }
-
+        [Authorize]
         [HttpPost]
         public IActionResult InsertProperty([FromBody] PropertiesModel property)
         {
@@ -57,7 +58,7 @@ namespace HomeRentalAPI.Controllers
 
             return StatusCode(500, "An error occurred while inserting the property.");
         }
-
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult UpdateProperty(int id, [FromBody] PropertiesModel property)
         {
@@ -77,6 +78,7 @@ namespace HomeRentalAPI.Controllers
 
             return NoContent();
         }
+        [Authorize]
         [HttpGet("ByHost/{hostID}")]
         public IActionResult GetPropertiesByHost(int hostID)
         {
@@ -87,7 +89,7 @@ namespace HomeRentalAPI.Controllers
             }
             return Ok(properties);
         }
-
+        [Authorize]
         [HttpGet("Search")]
         public IActionResult SearchProperties([FromQuery] string city, [FromQuery] decimal minPrice, [FromQuery] decimal maxPrice, [FromQuery] int guests)
         {
@@ -103,6 +105,7 @@ namespace HomeRentalAPI.Controllers
             }
             return Ok(properties);
         }
+        [Authorize]
         [HttpGet("GetUsers")]
         public IActionResult GetUsers()
         {

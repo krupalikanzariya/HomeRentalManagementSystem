@@ -1,5 +1,6 @@
 ﻿using HomeRentalAPI.Data;
 using HomeRentalAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,14 +16,14 @@ namespace HomeRentalAPI.Controllers
         {
             _BookingsRepository = BookingsRepository;
         }
-
+        [Authorize]
         [HttpGet]
         public IActionResult GetAllBookings()
         {
             var bookings = _BookingsRepository.GetAll();
             return Ok(bookings);
         }
-
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult GetBookingById(int id)
         {
@@ -33,7 +34,7 @@ namespace HomeRentalAPI.Controllers
             }
             return Ok(booking);
         }
-
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult DeleteBooking(int id)
         {
@@ -44,7 +45,7 @@ namespace HomeRentalAPI.Controllers
             }
             return NoContent();
         }
-
+        [Authorize]
         [HttpPost]
         public IActionResult InsertBooking([FromBody] BookingsModel booking)
         {
@@ -57,7 +58,7 @@ namespace HomeRentalAPI.Controllers
 
             return StatusCode(500, "An error occurred while inserting the booking.");
         }
-
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult UpdateBooking(int id, [FromBody] BookingsModel booking)
         {
@@ -77,6 +78,7 @@ namespace HomeRentalAPI.Controllers
 
             return NoContent();
         }
+        [Authorize]
         [HttpGet("user/{id}")]
         public IActionResult GetBookingsByUser(int id)
         {
@@ -87,6 +89,7 @@ namespace HomeRentalAPI.Controllers
             }
             return Ok(booking);
         }
+        [Authorize]
         [HttpGet("GetUsers")]
         public IActionResult GetUsers()
         {
@@ -95,7 +98,7 @@ namespace HomeRentalAPI.Controllers
                 return NotFound("No users found.");
             return Ok(users);
         }
-
+        [Authorize]
         [HttpGet("GetProperties")]
         public IActionResult GetProperties()
         {

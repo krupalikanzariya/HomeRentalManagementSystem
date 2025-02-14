@@ -1,5 +1,6 @@
 ﻿using HomeRentalAPI.Data;
 using HomeRentalAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,12 +15,14 @@ namespace HomeRentalAPI.Controllers
         {
             _PropertyAmenitiesRepository = PropertyAmenitiesRepository;
         }
+        [Authorize]
         [HttpGet]
         public IActionResult GetAllPropertyAmenities()
         {
             var propertyAmenity = _PropertyAmenitiesRepository.GetAll();
             return Ok(propertyAmenity);
         }
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult GetPropertyAmenityById(int id)
         {
@@ -30,6 +33,7 @@ namespace HomeRentalAPI.Controllers
             }
             return Ok(propertyAmenity);
         }
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult DeletePropertyAmenity(int id)
         {
@@ -40,7 +44,7 @@ namespace HomeRentalAPI.Controllers
             }
             return NoContent();
         }
-
+        [Authorize]
         [HttpPost]
         public IActionResult InsertProperty([FromBody] PropertyAmenitiesModel propertyAmenity)
         {
@@ -53,7 +57,7 @@ namespace HomeRentalAPI.Controllers
 
             return StatusCode(500, "An error occurred while inserting the property.");
         }
-
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult UpdateProperty(int id, [FromBody] PropertyAmenitiesModel propertyAmenity)
         {
@@ -73,6 +77,7 @@ namespace HomeRentalAPI.Controllers
 
             return NoContent();
         }
+        [Authorize]
         [HttpGet("ByProperty/{PropertyID}")]
         public IActionResult GetAmenitiesByProperty(int PropertyID)
         {
@@ -83,6 +88,7 @@ namespace HomeRentalAPI.Controllers
             }
             return Ok(propertyAmenity);
         }
+        [Authorize]
         [HttpGet("GetProperties")]
         public IActionResult GetProperties()
         {
@@ -91,6 +97,7 @@ namespace HomeRentalAPI.Controllers
                 return NotFound("No properties found.");
             return Ok(properties);
         }
+        [Authorize]
         [HttpGet("GetAmenities")]
         public IActionResult GetAmenities()
         {

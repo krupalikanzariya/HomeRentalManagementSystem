@@ -1,5 +1,6 @@
 ﻿using HomeRentalAPI.Data;
 using HomeRentalAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +16,7 @@ namespace HomeRentalAPI.Controllers
         {
             _ImagesRepository = ImagesRepository;
         }
+        [Authorize]
         [HttpGet]
         public IActionResult GetImages()
         {
@@ -25,6 +27,7 @@ namespace HomeRentalAPI.Controllers
             }
             return Ok(images);
         }
+        [Authorize]
         [HttpGet("{ImageID}")]
         public IActionResult GetImagesByID(int ImageID)
         {
@@ -35,6 +38,7 @@ namespace HomeRentalAPI.Controllers
             }
             return Ok(images);
         }
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult DeleteImage(int id)
         {
@@ -45,7 +49,7 @@ namespace HomeRentalAPI.Controllers
             }
             return NoContent();
         }
-
+        [Authorize]
         [HttpPost]
         public IActionResult InsertImage([FromBody] ImagesModel image)
         {
@@ -58,7 +62,7 @@ namespace HomeRentalAPI.Controllers
 
             return StatusCode(500, "An error occurred while inserting the image.");
         }
-
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult UpdateImage(int id, [FromBody] ImagesModel image)
         {
@@ -78,6 +82,7 @@ namespace HomeRentalAPI.Controllers
 
             return NoContent();
         }
+        [Authorize]
         [HttpGet("ByProperty/{propertyID}")]
         public IActionResult GetImagesByProperty(int propertyID)
         {
@@ -88,6 +93,7 @@ namespace HomeRentalAPI.Controllers
             }
             return Ok(images);
         }
+        [Authorize]
         [HttpGet("GetProperties")]
         public IActionResult GetProperties()
         {

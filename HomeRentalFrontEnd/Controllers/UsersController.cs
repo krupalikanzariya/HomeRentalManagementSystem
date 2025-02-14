@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System.Data;
 using System.Diagnostics.Metrics;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace HomeRentalFrontEnd.Controllers
@@ -23,19 +24,42 @@ namespace HomeRentalFrontEnd.Controllers
         public IActionResult UsersList()
         {
             List<UsersModel> users = new List<UsersModel>();
-            HttpResponseMessage response = _httpClient.GetAsync($"{_httpClient.BaseAddress}/Users").Result;
+
+            // Retrieve JWT token from session
+            var token = HttpContext.Session.GetString("Token");
+
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "Users"); // Redirect if no token found
+            }
+
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{_httpClient.BaseAddress}/Users");
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token); // Add token to header
+
+            HttpResponseMessage response = _httpClient.SendAsync(request).Result;
+
             if (response.IsSuccessStatusCode)
             {
                 string data = response.Content.ReadAsStringAsync().Result;
-                users = JsonConvert.DeserializeObject<List<UsersModel>>(data); // Deserialize directly
+                users = JsonConvert.DeserializeObject<List<UsersModel>>(data);
             }
             return View(users);
         }
+
         public async Task<IActionResult> UsersAddEdit(int? UserID)
         {
+            var token = HttpContext.Session.GetString("Token");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "Users"); // Redirect if no token found
+            }
+
             if (UserID.HasValue)
             {
-                var response = await _httpClient.GetAsync($"{_httpClient.BaseAddress}/Users/{UserID}");
+                var request = new HttpRequestMessage(HttpMethod.Get, $"{_httpClient.BaseAddress}/Users/{UserID}");
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.SendAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
                     var data = await response.Content.ReadAsStringAsync();
@@ -45,35 +69,63 @@ namespace HomeRentalFrontEnd.Controllers
             }
             return View(new UsersModel());
         }
+
         [HttpPost]
         public async Task<IActionResult> Save(UsersModel user)
         {
+            var token = HttpContext.Session.GetString("Token");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "Users");
+            }
+
             if (ModelState.IsValid)
             {
                 var json = JsonConvert.SerializeObject(user);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response;
+                var request = new HttpRequestMessage();
 
                 if (user.UserID == null)
                 {
                     user.UserID = 0;
                     json = JsonConvert.SerializeObject(user);
                     content = new StringContent(json, Encoding.UTF8, "application/json");
-                    response = await _httpClient.PostAsync($"{_httpClient.BaseAddress}/Users", content);
+                    request.Method = HttpMethod.Post;
+                    request.RequestUri = new Uri($"{_httpClient.BaseAddress}/Users");
                 }
                 else
-                    response = await _httpClient.PutAsync($"{_httpClient.BaseAddress}/Users/{user.UserID}", content);
+                {
+                    request.Method = HttpMethod.Put;
+                    request.RequestUri = new Uri($"{_httpClient.BaseAddress}/Users/{user.UserID}");
+                }
+
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                request.Content = content;
+                var response = await _httpClient.SendAsync(request);
 
                 if (response.IsSuccessStatusCode)
+                {
                     return RedirectToAction("UsersList");
+                }
             }
             return View("UsersAddEdit", user);
         }
+
         public async Task<IActionResult> UserDelete(int UserID)
         {
-            var response = await _httpClient.DeleteAsync($"{_httpClient.BaseAddress}/Users/{UserID}");
+            var token = HttpContext.Session.GetString("Token");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "Users");
+            }
+
+            var request = new HttpRequestMessage(HttpMethod.Delete, $"{_httpClient.BaseAddress}/Users/{UserID}");
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            await _httpClient.SendAsync(request);
             return RedirectToAction("UsersList");
         }
+
         public async Task<IActionResult> UserLogin(UserLoginModel userLoginModel)
         {
             if (string.IsNullOrEmpty(userLoginModel.UserName) || string.IsNullOrEmpty(userLoginModel.Password))
@@ -82,35 +134,48 @@ namespace HomeRentalFrontEnd.Controllers
                 return View();
             }
 
-            
             var json = JsonConvert.SerializeObject(userLoginModel);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response;
-            
-            
 
             try
             {
-                // Make HTTP POST request to the API
                 response = await _httpClient.PostAsync($"{_httpClient.BaseAddress}/Users/Login", content);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    // Deserialize the response
-                    string data = response.Content.ReadAsStringAsync().Result;
-                    var user = JsonConvert.DeserializeObject<UsersModel>(data); // Deserialize directly
+                    string data = await response.Content.ReadAsStringAsync();
 
-                    HttpContext.Session.SetString("UserID", user.UserID.ToString());
-                    HttpContext.Session.SetString("UserName", user.UserName);
+                    // Deserialize correctly
+                    var responseObject = JsonConvert.DeserializeObject<dynamic>(data);
 
-                    // Redirect based on role (Admin or User)
-                    if (user.RoleID == 1)
+                    if (responseObject != null && responseObject.user != null)
                     {
-                        return RedirectToAction("Index", "Admin");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
+                        var user = responseObject.user;
+
+                        // Store UserID and UserName safely
+                        // Cast dynamic object to correct types
+                        int userID = (int)responseObject.user.userID;
+                        string userName = (string)responseObject.user.userName;
+
+                        var token = (string)responseObject.token; // Extract JWT token
+
+                        HttpContext.Session.SetString("Token", token);
+
+                        // Now safely store values in session
+                        HttpContext.Session.SetString("UserID", userID.ToString());
+                        HttpContext.Session.SetString("UserName", userName);
+
+
+                        // Redirect based on role
+                        if (user.roleID == 1)
+                        {
+                            return RedirectToAction("Index", "Admin");
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
@@ -129,6 +194,7 @@ namespace HomeRentalFrontEnd.Controllers
 
             return View("Login");
         }
+
         ////public async Task<IActionResult> UserSignup(UserRegisterModel userSignupModel)
         ////{
         ////    if (string.IsNullOrEmpty(userSignupModel.UserName) || string.IsNullOrEmpty(userSignupModel.Password))

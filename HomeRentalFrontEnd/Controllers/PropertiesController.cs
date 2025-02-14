@@ -1,6 +1,7 @@
 ﻿using HomeRentalFrontEnd.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace HomeRentalFrontEnd.Controllers
@@ -8,44 +9,55 @@ namespace HomeRentalFrontEnd.Controllers
     public class PropertiesController : Controller
     {
         private readonly IConfiguration _configuration;
-        Uri baseAddress = new Uri("http://localhost:5283/api");
         private readonly HttpClient _httpClient;
+
         public PropertiesController(IConfiguration configuration)
         {
             _configuration = configuration;
-            _httpClient = new HttpClient();
-            _httpClient.BaseAddress = baseAddress;
+            _httpClient = new HttpClient
+            {
+                BaseAddress = new Uri("http://localhost:5283/api")
+            };
         }
+
         [HttpGet]
         public IActionResult AdminPropertiesList()
         {
+            var token = HttpContext.Session.GetString("Token");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "Users");
+            }
+
             List<PropertiesModel> properties = new List<PropertiesModel>();
-            HttpResponseMessage response = _httpClient.GetAsync($"{_httpClient.BaseAddress}/Properties").Result;
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{_httpClient.BaseAddress}/Properties");
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = _httpClient.SendAsync(request).Result;
             if (response.IsSuccessStatusCode)
             {
                 string data = response.Content.ReadAsStringAsync().Result;
-                properties = JsonConvert.DeserializeObject<List<PropertiesModel>>(data); // Deserialize directly
+                properties = JsonConvert.DeserializeObject<List<PropertiesModel>>(data);
             }
             return View(properties);
         }
-        [HttpGet]
-        public IActionResult PropertiesDetails(int PropertyID)
-        {
-            PropertiesModel properties = new PropertiesModel();
-            HttpResponseMessage response = _httpClient.GetAsync($"{_httpClient.BaseAddress}/Properties/{PropertyID}").Result;
-            if (response.IsSuccessStatusCode)
-            {
-                string data = response.Content.ReadAsStringAsync().Result;
-                properties = JsonConvert.DeserializeObject<PropertiesModel>(data); // Deserialize directly
-            }
-            return View(properties);
-        }
+
         public async Task<IActionResult> PropertiesAddEdit(int? PropertyID)
         {
             await LoadUserList();
+
+            var token = HttpContext.Session.GetString("Token");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "Users");
+            }
+
             if (PropertyID.HasValue)
             {
-                var response = await _httpClient.GetAsync($"{_httpClient.BaseAddress}/Properties/{PropertyID}");
+                var request = new HttpRequestMessage(HttpMethod.Get, $"{_httpClient.BaseAddress}/Properties/{PropertyID}");
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.SendAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
                     var data = await response.Content.ReadAsStringAsync();
@@ -55,34 +67,65 @@ namespace HomeRentalFrontEnd.Controllers
             }
             return View(new PropertiesModel());
         }
+
         [HttpPost]
         public async Task<IActionResult> Save(PropertiesModel property)
         {
+            var token = HttpContext.Session.GetString("Token");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "Users");
+            }
+
             if (ModelState.IsValid)
             {
                 var json = JsonConvert.SerializeObject(property);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response;
 
-                if (property.PropertyID == null)
+                var request = new HttpRequestMessage(property.PropertyID == null ? HttpMethod.Post : HttpMethod.Put,
+                    $"{_httpClient.BaseAddress}/Properties" + (property.PropertyID != null ? $"/{property.PropertyID}" : ""))
                 {
-                    property.PropertyID = 0;
-                    json = JsonConvert.SerializeObject(property);
-                    content = new StringContent(json, Encoding.UTF8, "application/json");
-                    response = await _httpClient.PostAsync($"{_httpClient.BaseAddress}/Properties", content);
-                }
-                else
-                    response = await _httpClient.PutAsync($"{_httpClient.BaseAddress}/Properties/{property.PropertyID}", content);
+                    Content = content
+                };
+
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var response = await _httpClient.SendAsync(request);
 
                 if (response.IsSuccessStatusCode)
                     return RedirectToAction("AdminPropertiesList");
             }
+
             await LoadUserList();
             return View("PropertiesAddEdit", property);
         }
+
+        public async Task<IActionResult> PropertyDelete(int PropertyID)
+        {
+            var token = HttpContext.Session.GetString("Token");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "Users");
+            }
+
+            var request = new HttpRequestMessage(HttpMethod.Delete, $"{_httpClient.BaseAddress}/Properties/{PropertyID}");
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            await _httpClient.SendAsync(request);
+            return RedirectToAction("AdminPropertiesList");
+        }
+
         private async Task LoadUserList()
         {
-            var response = await _httpClient.GetAsync($"{_httpClient.BaseAddress}/Properties/GetUsers");
+            var token = HttpContext.Session.GetString("Token");
+            if (string.IsNullOrEmpty(token))
+            {
+                return;
+            }
+
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{_httpClient.BaseAddress}/Properties/GetUsers");
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _httpClient.SendAsync(request);
             if (response.IsSuccessStatusCode)
             {
                 var data = await response.Content.ReadAsStringAsync();
@@ -90,76 +133,5 @@ namespace HomeRentalFrontEnd.Controllers
                 ViewBag.UserList = users;
             }
         }
-        public async Task<IActionResult> PropertyDelete(int PropertyID)
-        {
-            var response = await _httpClient.DeleteAsync($"{_httpClient.BaseAddress}/Properties/{PropertyID}");
-            return RedirectToAction("AdminPropertiesList");
-        }
-        public async Task<IActionResult> PropertiesList()
-        {
-            List<PropertiesModel> properties = new List<PropertiesModel>();
-            HttpResponseMessage response = await _httpClient.GetAsync($"{_httpClient.BaseAddress}/Properties");
-            if (response.IsSuccessStatusCode)
-            {
-                string data = await response.Content.ReadAsStringAsync();
-                properties = JsonConvert.DeserializeObject<List<PropertiesModel>>(data);
-            }
-            return View(properties);
-        }
-
-
     }
 }
-//public async Task<IActionResult> PropertyDetails(int propertyId)
-//{
-//    // Fetch property details
-//    var response = await _httpClient.GetAsync($"{_httpClient.BaseAddress}/Properties/{propertyId}");
-//    var property = new PropertiesModel();
-//    if (response.IsSuccessStatusCode)
-//    {
-//        var data = await response.Content.ReadAsStringAsync();
-//        property = JsonConvert.DeserializeObject<PropertiesModel>(data);
-//    }
-
-//    // Fetch images for this property
-//    var imagesResponse = await _httpClient.GetAsync($"{_httpClient.BaseAddress}/Images/GetImagesByProperty/{propertyId}");
-//    var images = new List<ImagesModel>();
-//    if (imagesResponse.IsSuccessStatusCode)
-//    {
-//        var imagesData = await imagesResponse.Content.ReadAsStringAsync();
-//        images = JsonConvert.DeserializeObject<List<ImagesModel>>(imagesData);
-//    }
-
-//    ViewBag.Images = images; // Pass images to the view
-//    return View(property);
-//}
-//@model HomeRentalFrontEnd.Models.PropertiesModel
-//@{
-//    var images = ViewBag.Images as List<HomeRentalFrontEnd.Models.ImagesModel>;
-//}
-
-//< div class= "container" >
-//    < h2 > @Model.Title </ h2 >
-//    < p > @Model.Description </ p >
-//    < p >< strong > Location:</ strong > @Model.City, @Model.State, @Model.Country </ p >
-//    < p >< strong > Price per Night:</ strong > $@Model.PricePerNight </ p >
-
-//    < h3 > Property Images </ h3 >
-//    < div class= "row" >
-//        @if(images != null && images.Any())
-//        {
-//    @foreach(var image in images)
-//            {
-//                < div class= "col-md-4" >
-//                    < img src = "@image.ImageURL" class= "img-fluid img-thumbnail" alt = "Property Image" >
-//                </ div >
-//            }
-//        }
-//        else
-//{
-//            < p > No images available for this property.</ p >
-//        }
-//    </ div >
-//</ div >
-
-

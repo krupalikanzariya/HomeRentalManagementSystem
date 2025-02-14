@@ -1,5 +1,6 @@
 ﻿using HomeRentalAPI.Data;
 using HomeRentalAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,14 +16,14 @@ namespace HomeRentalAPI.Controllers
         {
             _AmenitiesRepository = AmenitiesRepository;
         }
-
+        [Authorize]
         [HttpGet]
         public IActionResult GetAllAmenities()
         {
             var amenities = _AmenitiesRepository.GetAll();
             return Ok(amenities);
         }
-
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult GetAmenityById(int id)
         {
@@ -33,7 +34,7 @@ namespace HomeRentalAPI.Controllers
             }
             return Ok(amenity);
         }
-
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult DeleteAmenity(int id)
         {
@@ -44,7 +45,7 @@ namespace HomeRentalAPI.Controllers
             }
             return NoContent();
         }
-
+        [Authorize]
         [HttpPost]
         public IActionResult InsertAmenity([FromBody] AmenitiesModel amenity)
         {
@@ -57,7 +58,7 @@ namespace HomeRentalAPI.Controllers
 
             return StatusCode(500, "An error occurred while inserting the amenity.");
         }
-
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult UpdateAmenity(int id, [FromBody] AmenitiesModel amenity)
         {
