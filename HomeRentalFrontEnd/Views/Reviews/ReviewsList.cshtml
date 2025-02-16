@@ -29,8 +29,8 @@
                     <table class="table table-bordered verticle-middle">
                         <thead>
                             <tr>
-                                <th scope="col">User ID</th>
-                                <th scope="col">Property ID</th>
+                                <th scope="col">User Name</th>
+                                <th scope="col">Property Name</th>
                                 <th scope="col">Rating</th>
                                 <th scope="col">Comment</th>
                                 <th scope="col">Actions</th>
@@ -40,8 +40,8 @@
                             @foreach (var review in Model)
                             {
                                 <tr>
-                                    <td>@review.UserID</td>
-                                    <td>@review.PropertyID</td>
+                                    <td>@review.UserName</td>
+                                    <td>@review.Title</td>
                                     <td>@review.Rating</td>
                                     <td>@review.Comment</td>
                                     <td>

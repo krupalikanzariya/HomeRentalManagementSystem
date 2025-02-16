@@ -29,9 +29,8 @@
                     <table class="table table-bordered verticle-middle">
                         <thead>
                             <tr>
-                                <th scope="col">Property-Amenity ID</th>
-                                <th scope="col">Property ID</th>
-                                <th scope="col">Amenity ID</th>
+                                <th scope="col">Property Name</th>
+                                <th scope="col">Amenity Name</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
@@ -39,9 +38,8 @@
                             @foreach (var propertyAmenity in Model)
                             {
                                 <tr>
-                                    <td>@propertyAmenity.PropertyAmenityID</td>
-                                    <td>@propertyAmenity.PropertyID</td>
-                                    <td>@propertyAmenity.AmenityID</td>
+                                    <td>@propertyAmenity.Title</td>
+                                    <td>@propertyAmenity.Name</td>
                                     <td>
                                         <span>
                                             <a asp-controller="PropertyAmenities" asp-action="PropertyAmenitiesAddEdit" asp-route-PropertyAmenityID="@propertyAmenity.PropertyAmenityID" data-toggle="tooltip" data-placement="top" title="Edit">

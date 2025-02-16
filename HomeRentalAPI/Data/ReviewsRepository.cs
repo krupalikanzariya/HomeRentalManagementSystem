@@ -31,6 +31,8 @@ namespace HomeRentalAPI.Data
                         ReviewID = Convert.ToInt32(reader["ReviewID"]),
                         UserID = Convert.ToInt32(reader["UserID"]),
                         PropertyID = Convert.ToInt32(reader["PropertyID"]),
+                        UserName = reader["UserName"].ToString(),
+                        Title = reader["Title"].ToString(),
                         Rating = Convert.ToInt32(reader["Rating"]),
                         Comment = reader["Comment"].ToString()
                     });
@@ -58,6 +60,8 @@ namespace HomeRentalAPI.Data
                         ReviewID = Convert.ToInt32(reader["ReviewID"]),
                         UserID = Convert.ToInt32(reader["UserID"]),
                         PropertyID = Convert.ToInt32(reader["PropertyID"]),
+                        UserName = reader["UserName"].ToString(),
+                        Title = reader["Title"].ToString(),
                         Rating = Convert.ToInt32(reader["Rating"]),
                         Comment = reader["Comment"].ToString()
                     };
@@ -140,6 +144,8 @@ namespace HomeRentalAPI.Data
                         ReviewID = Convert.ToInt32(reader["ReviewID"]),
                         UserID = Convert.ToInt32(reader["UserID"]),
                         PropertyID = Convert.ToInt32(reader["PropertyID"]),
+                        UserName = reader["UserName"].ToString(),
+                        Title = reader["Title"].ToString(),
                         Rating = Convert.ToInt32(reader["Rating"]),
                         Comment = reader["Comment"].ToString()
                     };

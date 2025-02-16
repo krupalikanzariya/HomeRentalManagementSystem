@@ -30,6 +30,7 @@ namespace HomeRentalAPI.Data
                     {
                         ImageID = Convert.ToInt32(reader["ImageID"]),
                         PropertyID = Convert.ToInt32(reader["PropertyID"]),
+                        Title = reader["Title"].ToString(),
                         ImageURL = reader["ImageURL"].ToString()
                     });
                 }
@@ -54,6 +55,7 @@ namespace HomeRentalAPI.Data
                     {
                         ImageID = Convert.ToInt32(reader["ImageID"]),
                         PropertyID = Convert.ToInt32(reader["PropertyID"]),
+                        Title = reader["Title"].ToString(),
                         ImageURL = reader["ImageURL"].ToString()
                     };
                 }
@@ -125,6 +127,7 @@ namespace HomeRentalAPI.Data
                     {
                         ImageID = Convert.ToInt32(reader["ImageID"]),
                         PropertyID = Convert.ToInt32(reader["PropertyID"]),
+                        Title = reader["Title"].ToString(),
                         ImageURL = reader["ImageURL"].ToString()
                     });
                 }

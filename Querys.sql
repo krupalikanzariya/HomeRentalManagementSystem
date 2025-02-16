@@ -164,21 +164,26 @@ BEGIN
 END;
 
 --Get all
-CREATE PROCEDURE PR_Properties_GetAll
+ALTER PROCEDURE PR_Properties_GetAll
 AS
 BEGIN
-    SELECT PropertyID,HostID,Title,Description,Address,City,State,Country,PricePerNight,MaxGuests,Bedrooms
+    SELECT PropertyID,Properties.HostID,Users.UserName,Title,Description,Address,City,State,Country,PricePerNight,MaxGuests,Bedrooms
     FROM Properties
+	INNER JOIN Users
+	ON Properties.HostID = Users.UserID
 END;
 
 --Get by ID
-CREATE PROCEDURE PR_Properties_GetByID
+ALTER PROCEDURE PR_Properties_GetByID
     @PropertyID INT
 AS
 BEGIN
-    SELECT PropertyID,HostID,Title,Description,Address,City,State,Country,PricePerNight,MaxGuests,Bedrooms
+    SELECT PropertyID,Properties.HostID,Users.UserName,Title,Description,Address,City,State,Country,PricePerNight,MaxGuests,Bedrooms
     FROM Properties
+	INNER JOIN Users
+	ON Properties.HostID = Users.UserID
 	WHERE PropertyID = @PropertyID
+
 END;
 
 --Update by ID
@@ -262,11 +267,11 @@ BEGIN
 END;
 
 --Get by ID
-CREATE PROCEDURE PR_Bookings_GetByID
+ALTER PROCEDURE PR_Bookings_GetByID
     @BookingID INT
 AS
 BEGIN
-    SELECT Bookings.BookingID,Users.UserID,Users.FirstName,Properties.PropertyID,Properties.Title,Bookings.CheckInDate,Bookings.CheckOutDate,Bookings.Guests,Bookings.TotalPrice
+    SELECT Bookings.BookingID,Users.UserID,Users.UserName,Properties.PropertyID,Properties.Title,Bookings.CheckInDate,Bookings.CheckOutDate,Bookings.Guests,Bookings.TotalPrice
     FROM Bookings 
 	INNER JOIN Users
 	on Bookings.UserID = Users.UserID
@@ -276,10 +281,10 @@ BEGIN
 END;
 
 --Get all
-CREATE PROCEDURE PR_Bookings_GetAll
+ALTER PROCEDURE PR_Bookings_GetAll
 AS
 BEGIN
-    SELECT Bookings.BookingID,Users.UserID,Users.FirstName,Properties.PropertyID,Properties.Title,Bookings.CheckInDate,Bookings.CheckOutDate,Bookings.Guests,Bookings.TotalPrice
+    SELECT Bookings.BookingID,Users.UserID,Users.UserName,Properties.PropertyID,Properties.Title,Bookings.CheckInDate,Bookings.CheckOutDate,Bookings.Guests,Bookings.TotalPrice
     FROM Bookings 
 	INNER JOIN Users
 	on Bookings.UserID = Users.UserID
@@ -288,11 +293,11 @@ BEGIN
 END;
 
 --Get Bookings By User
-CREATE PROCEDURE PR_Bookings_GetBookingsByUser
+ALTER PROCEDURE PR_Bookings_GetBookingsByUser
     @UserID INT
 AS
 BEGIN
-    SELECT Bookings.BookingID,Users.UserID,Users.FirstName,Properties.PropertyID,Properties.Title,Bookings.CheckInDate,Bookings.CheckOutDate,Bookings.Guests,Bookings.TotalPrice
+    SELECT Bookings.BookingID,Users.UserID,Users.UserName,Properties.PropertyID,Properties.Title,Bookings.CheckInDate,Bookings.CheckOutDate,Bookings.Guests,Bookings.TotalPrice
     FROM Bookings 
 	INNER JOIN Users
 	on Bookings.UserID = Users.UserID
@@ -346,11 +351,11 @@ BEGIN
 END;
 
 --Get by ID
-CREATE PROCEDURE PR_Reviews_GetByID
+ALTER PROCEDURE PR_Reviews_GetByID
     @ReviewID INT
 AS
 BEGIN
-    SELECT Reviews.ReviewID,Users.UserID,Users.FirstName,Properties.PropertyID,Reviews.Rating,Reviews.Comment
+    SELECT Reviews.ReviewID,Users.UserID,Users.UserName,Properties.PropertyID,Properties.Title,Reviews.Rating,Reviews.Comment
     FROM Reviews 
 	INNER JOIN Users
 	on Reviews.UserID = Users.UserID
@@ -360,11 +365,11 @@ BEGIN
 END;
 
 --Get all
-CREATE PROCEDURE PR_Reviews_GetAll
+ALTER PROCEDURE PR_Reviews_GetAll
 AS
 BEGIN
-    SELECT Reviews.ReviewID,Users.UserID,Users.FirstName,Properties.PropertyID,Reviews.Rating,Reviews.Comment
-    FROM Reviews 
+    SELECT Reviews.ReviewID,Users.UserID,Users.UserName,Properties.PropertyID,Properties.Title,Reviews.Rating,Reviews.Comment
+    FROM Reviews
 	INNER JOIN Users
 	on Reviews.UserID = Users.UserID
 	INNER JOIN Properties
@@ -372,11 +377,11 @@ BEGIN
 END;
 
 --Get Reviews By Property
-CREATE PROCEDURE PR_Reviews_GetReviewsByProperty
+ALTER PROCEDURE PR_Reviews_GetReviewsByProperty
     @PropertyID INT
 AS
 BEGIN
-    SELECT Reviews.ReviewID,Users.UserID,Users.FirstName,Properties.PropertyID,Reviews.Rating,Reviews.Comment
+    SELECT Reviews.ReviewID,Users.UserID,Users.UserName,Properties.PropertyID,Properties.Title,Reviews.Rating,Reviews.Comment
     FROM Reviews 
 	INNER JOIN Users
 	on Reviews.UserID = Users.UserID
@@ -472,10 +477,10 @@ END;
 
 --PropertyAmenities
 --Get PropertyAmenity
-CREATE PROCEDURE PR_PropertyAmenities_Get
+CREATE PROCEDURE PR_PropertyAmenities_GetAll
 AS
 BEGIN
-    SELECT PA.PropertyAmenityID,A.Name,P.PropertyID,P.Title
+    SELECT PA.PropertyAmenityID,A.AmenityID,A.Name,P.PropertyID,P.Title
     FROM PropertyAmenities PA
     INNER JOIN Amenities A ON PA.AmenityID = A.AmenityID
 	INNER JOIN Properties P ON PA.PropertyID = P.PropertyID;
@@ -502,13 +507,14 @@ BEGIN
 END;
 
 --GetAmenitiesByProperty
-CREATE PROCEDURE PR_PropertyAmenities_GetAmenitiesByProperty
+ALTER PROCEDURE PR_PropertyAmenities_GetAmenitiesByProperty
     @PropertyID INT
 AS
 BEGIN
-    SELECT A.Name
-    FROM PropertyAmenities PA
+    SELECT PA.PropertyAmenityID,A.AmenityID,A.Name,P.PropertyID,P.Title
+	FROM PropertyAmenities PA
     INNER JOIN Amenities A ON PA.AmenityID = A.AmenityID
+	INNER JOIN Properties P ON PA.PropertyID = P.PropertyID
     WHERE PA.PropertyID = @PropertyID;
 END;
 
@@ -536,20 +542,23 @@ END;
 
 --Image
 --Get all
-CREATE PROCEDURE PR_Images_Get
+ALTER PROCEDURE PR_Images_Get
 AS
 BEGIN
-    SELECT ImageID,ImageURL,PropertyID
+    SELECT ImageID,ImageURL,Properties.PropertyID,Properties.Title
     FROM Images
+	inner join Properties
+	on Images.PropertyID = Properties.PropertyID
 END;
 --Get image by id
-CREATE PROCEDURE PR_Images_GetByID
+ALTER PROCEDURE PR_Images_GetByID
     @ImageID INT
 AS
 BEGIN
-    SELECT ImageID,ImageURL,PropertyID
+    SELECT ImageID,ImageURL,Properties.PropertyID,Properties.Title
     FROM Images
-    WHERE ImageID = @ImageID;
+	inner join Properties
+	on Images.PropertyID = Properties.PropertyID
 END;
 --Add image
 CREATE PROCEDURE PR_Images_add
@@ -566,9 +575,11 @@ ALTER PROCEDURE PR_Images_GetImagesByProperty
     @PropertyID INT
 AS
 BEGIN
-    SELECT ImageID,ImageURL,PropertyID
+    SELECT ImageID,ImageURL,Properties.PropertyID,Properties.Title
     FROM Images
-    WHERE PropertyID = @PropertyID;
+	inner join Properties
+	on Images.PropertyID = Properties.PropertyID
+    WHERE Images.PropertyID = @PropertyID;
 END;
 
 --Update image

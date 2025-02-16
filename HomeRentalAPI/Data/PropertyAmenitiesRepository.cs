@@ -18,7 +18,7 @@ namespace HomeRentalAPI.Data
             var propertyAmenities = new List<PropertyAmenitiesModel>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                SqlCommand cmd = new SqlCommand("PR_PropertyAmenities_Get", conn)
+                SqlCommand cmd = new SqlCommand("PR_PropertyAmenities_GetAll", conn)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -30,7 +30,10 @@ namespace HomeRentalAPI.Data
                     {
                         PropertyAmenityID = Convert.ToInt32(reader["PropertyAmenityID"]),
                         PropertyID = Convert.ToInt32(reader["PropertyID"]),
-                        AmenityID = Convert.ToInt32(reader["AmenityID"])                    });
+                        AmenityID = Convert.ToInt32(reader["AmenityID"]),
+                        Name = reader["Name"].ToString(),
+                        Title = reader["Title"].ToString()
+                    });
                 }
                 return propertyAmenities;
             }
@@ -55,7 +58,9 @@ namespace HomeRentalAPI.Data
 
                         PropertyAmenityID = Convert.ToInt32(reader["PropertyAmenityID"]),
                         PropertyID = Convert.ToInt32(reader["PropertyID"]),
-                        AmenityID = Convert.ToInt32(reader["AmenityID"])
+                        AmenityID = Convert.ToInt32(reader["AmenityID"]),
+                        Name = reader["Name"].ToString(),
+                        Title = reader["Title"].ToString()
                     };
                 }
             }
@@ -130,6 +135,8 @@ namespace HomeRentalAPI.Data
                         PropertyAmenityID = Convert.ToInt32(reader["PropertyAmenityID"]),
                         PropertyID = Convert.ToInt32(reader["PropertyID"]),
                         AmenityID = Convert.ToInt32(reader["AmenityID"]),
+                        Name = reader["Name"].ToString(),
+                        Title = reader["Title"].ToString()
                     });
                 }
             }

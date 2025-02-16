@@ -31,6 +31,7 @@ namespace HomeRentalAPI.Data
                     {
                         PropertyID = Convert.ToInt32(reader["PropertyID"]),
                         HostID = Convert.ToInt32(reader["HostID"]),
+                        UserName = reader["UserName"].ToString(),
                         Title = reader["Title"].ToString(),
                         Description = reader["Description"].ToString(),
                         Address = reader["Address"].ToString(),
@@ -88,6 +89,7 @@ namespace HomeRentalAPI.Data
                     {
                         PropertyID = Convert.ToInt32(reader["PropertyID"]),
                         HostID = Convert.ToInt32(reader["HostID"]),
+                        UserName = reader["UserName"].ToString(),
                         Title = reader["Title"].ToString(),
                         Description = reader["Description"].ToString(),
                         Address = reader["Address"].ToString(),
@@ -207,6 +209,7 @@ namespace HomeRentalAPI.Data
                     {
                         PropertyID = Convert.ToInt32(reader["PropertyID"]),
                         HostID = Convert.ToInt32(reader["HostID"]),
+                        UserName = reader["UserName"].ToString(),
                         Title = reader["Title"].ToString(),
                         Description = reader["Description"].ToString(),
                         Address = reader["Address"].ToString(),
@@ -242,6 +245,7 @@ namespace HomeRentalAPI.Data
                     {
                         PropertyID = Convert.ToInt32(reader["PropertyID"]),
                         HostID = Convert.ToInt32(reader["HostID"]),
+                        UserName = reader["UserName"].ToString(),
                         Title = reader["Title"].ToString(),
                         Description = reader["Description"].ToString(),
                         Address = reader["Address"].ToString(),

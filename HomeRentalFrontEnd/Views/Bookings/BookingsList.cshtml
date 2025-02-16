@@ -29,8 +29,8 @@
                     <table class="table table-bordered verticle-middle">
                         <thead>
                             <tr>
-                                <th scope="col">User ID</th>
-                                <th scope="col">Property ID</th>
+                                <th scope="col">User Name</th>
+                                <th scope="col">Property Name</th>
                                 <th scope="col">Check In Date</th>
                                 <th scope="col">Check Out Date</th>
                                 <th scope="col">Guests</th>
@@ -42,8 +42,8 @@
                             @foreach (var booking in Model)
                             {
                                 <tr>
-                                    <td>@booking.UserID</td>
-                                    <td>@booking.PropertyID</td>
+                                    <td>@booking.UserName</td>
+                                    <td>@booking.Title</td>
                                     <td>@booking.CheckInDate</td>
                                     <td>@booking.CheckOutDate</td>
                                     <td>@booking.Guests</td>
