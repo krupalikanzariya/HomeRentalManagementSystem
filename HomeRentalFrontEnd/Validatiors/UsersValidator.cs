@@ -45,7 +45,7 @@ namespace HomeRentalFrontEnd.Validatiors
                 .NotEmpty().WithMessage("Password is required.");
         }
     }
-    public class UserRegisterValidator : AbstractValidator<UserRegisterModel>
+    public class UserRegisterValidator : AbstractValidator<UserSignupModel>
     {
         public UserRegisterValidator()
         {

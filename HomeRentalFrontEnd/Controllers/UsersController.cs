@@ -170,7 +170,7 @@ namespace HomeRentalFrontEnd.Controllers
                         // Redirect based on role
                         if (user.roleID == 1)
                         {
-                            return RedirectToAction("Index", "Admin");
+                            return RedirectToAction("Index", "Dashboard");
                         }
                         else
                         {
@@ -195,61 +195,39 @@ namespace HomeRentalFrontEnd.Controllers
             return View("Login");
         }
 
-        ////public async Task<IActionResult> UserSignup(UserRegisterModel userSignupModel)
-        ////{
-        ////    if (string.IsNullOrEmpty(userSignupModel.UserName) || string.IsNullOrEmpty(userSignupModel.Password))
-        ////    {
-        ////        ViewBag.ErrorMessage = "Username and Password are required!";
-        ////        return View();
-        ////    }
+        public async Task<IActionResult> UserSignup(UserSignupModel userSignupModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Signup", userSignupModel);
+            }
 
+            var json = JsonConvert.SerializeObject(userSignupModel);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response;
 
-        ////    var json = JsonConvert.SerializeObject(userLoginModel);
-        ////    var content = new StringContent(json, Encoding.UTF8, "application/json");
-        ////    HttpResponseMessage response;
+            try
+            {
+                response = await _httpClient.PostAsync($"{_httpClient.BaseAddress}/Users/Signup", content);
 
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Login", "Users");
+                }
+                else
+                {
+                    string errorMessage = await response.Content.ReadAsStringAsync();
+                    ViewBag.ErrorMessage = $"Registration failed: {errorMessage}";
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = $"An exception occurred: {ex.Message}";
+            }
 
+            return View("Signup", userSignupModel);
+        }
 
-        ////    try
-        ////    {
-        ////        // Make HTTP POST request to the API
-        ////        response = await _httpClient.PostAsync($"{_httpClient.BaseAddress}/Users/Login", content);
-
-        ////        if (response.IsSuccessStatusCode)
-        ////        {
-        ////            // Deserialize the response
-        ////            string data = response.Content.ReadAsStringAsync().Result;
-        ////            var user = JsonConvert.DeserializeObject<UsersModel>(data); // Deserialize directly
-
-        ////            HttpContext.Session.SetString("UserID", user.UserID.ToString());
-        ////            HttpContext.Session.SetString("UserName", user.UserName);
-
-        ////            // Redirect based on role (Admin or User)
-        ////            if (user.RoleID == 1)
-        ////            {
-        ////                return RedirectToAction("Index", "Admin");
-        ////            }
-        ////            else
-        ////            {
-        ////                return RedirectToAction("Index", "Home");
-        ////            }
-        ////        }
-        ////        else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-        ////        {
-        ////            ViewBag.ErrorMessage = "Invalid username or password!";
-        ////        }
-        ////        else
-        ////        {
-        ////            ViewBag.ErrorMessage = "An error occurred during login. Please try again.";
-        ////        }
-        ////    }
-        ////    catch (Exception ex)
-        ////    {
-        ////        ViewBag.ErrorMessage = $"An exception occurred: {ex.Message}";
-        ////    }
-
-        ////    return View("Login");
-        ////}
         public async Task<IActionResult> Login()
         {
             return View();

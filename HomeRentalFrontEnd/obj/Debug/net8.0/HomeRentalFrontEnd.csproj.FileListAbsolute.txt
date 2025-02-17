@@ -39,3 +39,9 @@ D:\College\sem 6\HomeRental\HomeRentalFrontEnd\bin\Debug\net8.0\FluentValidation
 D:\College\sem 6\HomeRental\HomeRentalFrontEnd\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 D:\College\sem 6\HomeRental\HomeRentalFrontEnd\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
 D:\College\sem 6\HomeRental\HomeRentalFrontEnd\obj\Debug\net8.0\HomeRentalFrontEnd.MvcApplicationPartsAssemblyInfo.cs
+D:\College\sem 6\HomeRental\HomeRentalFrontEnd\bin\Debug\net8.0\System.Data.SqlClient.dll
+D:\College\sem 6\HomeRental\HomeRentalFrontEnd\bin\Debug\net8.0\runtimes\win-arm64\native\sni.dll
+D:\College\sem 6\HomeRental\HomeRentalFrontEnd\bin\Debug\net8.0\runtimes\win-x64\native\sni.dll
+D:\College\sem 6\HomeRental\HomeRentalFrontEnd\bin\Debug\net8.0\runtimes\win-x86\native\sni.dll
+D:\College\sem 6\HomeRental\HomeRentalFrontEnd\bin\Debug\net8.0\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
+D:\College\sem 6\HomeRental\HomeRentalFrontEnd\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Data.SqlClient.dll

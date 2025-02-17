@@ -1,3 +1,103 @@
+--Dashboard 
+CREATE PROCEDURE usp_GetDashboardData
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Temporary tables
+    CREATE TABLE #Counts (
+        Metric NVARCHAR(255),
+        Value INT
+    );
+
+    CREATE TABLE #RecentBookings (
+        BookingID INT,
+        UserName NVARCHAR(255),
+        PropertyTitle NVARCHAR(250),
+        CheckInDate DATETIME,
+        CheckOutDate DATETIME,
+        TotalPrice DECIMAL(10,2)
+    );
+
+    CREATE TABLE #TopRatedProperties (
+        PropertyID INT,
+        Title NVARCHAR(250),
+        AvgRating DECIMAL(3,2),
+        City NVARCHAR(100),
+        Country NVARCHAR(100)
+    );
+
+    CREATE TABLE #TopHosts (
+        HostID INT,
+        HostName NVARCHAR(255),
+        TotalProperties INT
+    );
+
+    -- Populate #Counts
+    INSERT INTO #Counts
+    SELECT 'TotalUsers', COUNT(*) FROM Users;
+    
+    INSERT INTO #Counts
+    SELECT 'TotalProperties', COUNT(*) FROM Properties;
+    
+    INSERT INTO #Counts
+    SELECT 'TotalBookings', COUNT(*) FROM Bookings;
+    
+    INSERT INTO #Counts
+    SELECT 'TotalReviews', COUNT(*) FROM Reviews;
+
+    -- Populate #RecentBookings
+    INSERT INTO #RecentBookings
+    SELECT TOP 10
+        B.BookingID,
+        U.UserName,
+        P.Title AS PropertyTitle,
+        B.CheckInDate,
+        B.CheckOutDate,
+        B.TotalPrice
+    FROM Bookings B
+    INNER JOIN Users U ON B.UserID = U.UserID
+    INNER JOIN Properties P ON B.PropertyID = P.PropertyID
+    ORDER BY B.CreatedAt DESC;
+
+    -- Populate #TopRatedProperties
+    INSERT INTO #TopRatedProperties
+    SELECT TOP 10
+        P.PropertyID,
+        P.Title,
+        AVG(R.Rating) AS AvgRating,
+        P.City,
+        P.Country
+    FROM Reviews R
+    INNER JOIN Properties P ON R.PropertyID = P.PropertyID
+    GROUP BY P.PropertyID, P.Title, P.City, P.Country
+    ORDER BY AVG(R.Rating) DESC;
+
+    -- Populate #TopHosts
+    INSERT INTO #TopHosts
+    SELECT TOP 10
+        H.UserID AS HostID,
+        CONCAT(H.FirstName, ' ', H.LastName) AS HostName,
+        COUNT(P.PropertyID) AS TotalProperties
+    FROM Users H
+    INNER JOIN Properties P ON H.UserID = P.HostID
+    GROUP BY H.UserID, H.FirstName, H.LastName
+    ORDER BY COUNT(P.PropertyID) DESC;
+
+    -- Output results
+    SELECT * FROM #Counts;
+    SELECT * FROM #RecentBookings;
+    SELECT * FROM #TopRatedProperties;
+    SELECT * FROM #TopHosts;
+
+    -- Cleanup
+    DROP TABLE #Counts;
+    DROP TABLE #RecentBookings;
+    DROP TABLE #TopRatedProperties;
+    DROP TABLE #TopHosts;
+END;
+
+
 -- User
 
 --User dropdown
@@ -42,8 +142,7 @@ ALTER PROCEDURE [dbo].[PR_Users_Signup]
     @UserName NVARCHAR(50),
     @Email NVARCHAR(50),
     @Password NVARCHAR(50),
-    @ProfilePictureURL NVARCHAR(MAX) = '',
-	@RoleID int
+    @ProfilePictureURL NVARCHAR(MAX) = ''
 AS
 BEGIN
     INSERT INTO [dbo].[Users]
@@ -53,8 +152,7 @@ BEGIN
         [UserName],
 		[Email],
         [Password],
-		[ProfilePictureURL],
-		[RoleID]
+		[ProfilePictureURL]
     )
     VALUES
     (
@@ -63,8 +161,7 @@ BEGIN
         @UserName,
 		@Email,
         @Password,
-		@ProfilePictureURL,
-		@RoleID
+		@ProfilePictureURL
     );
 END
 --Add User

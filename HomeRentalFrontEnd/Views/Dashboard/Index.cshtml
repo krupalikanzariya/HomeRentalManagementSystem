@@ -1,0 +1,175 @@
+﻿@model HomeRentalFrontEnd.Models.Dashboard
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Dashboard</h1>
+
+    <!-- Counts Section -->
+    <div class="row mb-4">
+        <!-- Quick Links -->
+        <div class="col-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4>Quick Links</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Navigate to</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var link in Model.NavigationLinks)
+                            {
+                                <tr>
+                                    <td>
+                                        <a asp-action="@link.ActionMethodName" asp-controller="@link.ControllerName">
+                                            @link.LinkName
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Count Cards -->
+        <div class="col-6">
+            <div class="row">
+                <div class="card col-5 m-2">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Users</h5><hr />
+                        <p class="card-text">@Model.Counts.FirstOrDefault(c => c.Metric == "TotalUsers")?.Value</p>
+                    </div>
+                </div>
+
+                <div class="card col-5 m-2">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Properties</h5><hr />
+                        <p class="card-text">@Model.Counts.FirstOrDefault(c => c.Metric == "TotalProperties")?.Value</p>
+                    </div>
+                </div>
+
+                <div class="card col-5 m-2">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Bookings</h5><hr />
+                        <p class="card-text">@Model.Counts.FirstOrDefault(c => c.Metric == "TotalBookings")?.Value</p>
+                    </div>
+                </div>
+
+                <div class="card col-5 m-2">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Reviews</h5><hr />
+                        <p class="card-text">@Model.Counts.FirstOrDefault(c => c.Metric == "TotalReviews")?.Value</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Bookings -->
+    <div class="row mb-4">
+        <div class="container col-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4>Recent 10 Bookings</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>User</th>
+                                <th>Property</th>
+                                <th>Check-In</th>
+                                <th>Check-Out</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var booking in Model.RecentBookings)
+                            {
+                                <tr>
+                                    <td>@booking.BookingID</td>
+                                    <td>@booking.UserName</td>
+                                    <td>@booking.PropertyTitle</td>
+                                    <td>@booking.CheckInDate.ToString("yyyy-MM-dd")</td>
+                                    <td>@booking.CheckOutDate.ToString("yyyy-MM-dd")</td>
+                                    <td>$@booking.TotalPrice</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Rated Properties -->
+        <div class="container col-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4>Top 10 Rated Properties</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Rating</th>
+                                <th>City</th>
+                                <th>Country</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var property in Model.TopRatedProperties)
+                            {
+                                <tr>
+                                    <td>@property.Title</td>
+                                    <td>@property.AvgRating</td>
+                                    <td>@property.City</td>
+                                    <td>@property.Country</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Hosts -->
+        <div class="container col-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4>Top 10 Hosts</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Host Name</th>
+                                <th>Properties Listed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var host in Model.TopHosts)
+                            {
+                                <tr>
+                                    <td>@host.HostName</td>
+                                    <td>@host.TotalProperties</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS (optional) -->

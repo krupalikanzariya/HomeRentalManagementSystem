@@ -30,7 +30,7 @@ namespace HomeRentalFrontEnd.Models
         public string Password { get; set; }
         public int RoleID { get; set; }
     }
-    public class UserRegisterModel
+    public class UserSignupModel
     {
         public int? UserID { get; set; }
 
@@ -42,8 +42,8 @@ namespace HomeRentalFrontEnd.Models
 
         public string Password { get; set; }
 
-        public string ProfilePictureURL { get; set; }
-        public int RoleID { get; set; }
+        public string? ProfilePictureURL { get; set; } = null;
+        public int? RoleID { get; set; } = 2;
 
     }
 

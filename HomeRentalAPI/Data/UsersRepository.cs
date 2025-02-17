@@ -29,7 +29,7 @@ namespace HomeRentalAPI.Data
                 cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = userRegisterModel.Email;
                 cmd.Parameters.Add("@Password", SqlDbType.VarChar).Value = userRegisterModel.Password;
                 cmd.Parameters.Add("@ProfilePictureURL", SqlDbType.VarChar).Value = userRegisterModel.ProfilePictureURL;
-                cmd.Parameters.Add("@RoleID", SqlDbType.Int).Value = userRegisterModel.RoleID;
+                //cmd.Parameters.Add("@RoleID", SqlDbType.Int).Value = userRegisterModel.RoleID;
 
 
                 conn.Open();

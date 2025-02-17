@@ -20,14 +20,14 @@ namespace HomeRentalAPI.Controllers
         }
 
         [HttpPost("Signup")]
-        public IActionResult Signup([FromBody] UsersModel user)
+        public IActionResult Signup([FromBody] UserRegisterModel user)
         {
             if (user == null)
             {
                 return BadRequest(new { Message = "Invalid user data provided." });
             }
 
-            bool isInserted = _UsersRepository.Insert(user);
+            bool isInserted = _UsersRepository.Signup(user);
             if (isInserted)
             {
                 return Ok(new { Message = "User registered successfully!" });
