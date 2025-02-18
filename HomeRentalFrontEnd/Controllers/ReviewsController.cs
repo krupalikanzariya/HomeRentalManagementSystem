@@ -115,6 +115,56 @@ namespace HomeRentalFrontEnd.Controllers
             await _httpClient.SendAsync(request);
             return RedirectToAction("ReviewsList");
         }
+        public async Task<IActionResult> UserAddReviews(int PropertyID)
+        {
+            await LoadUserList();
+            await LoadPropertyList();
+
+            int? userId = CommonVariable.UserID();
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Users");
+            }
+
+            var model = new ReviewsModel
+            {
+                UserID = userId.Value,
+                PropertyID = PropertyID
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UserAddReviews(ReviewsModel review)
+        {
+            var token = HttpContext.Session.GetString("Token");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "Users");
+            }
+
+            if (ModelState.IsValid)
+            {
+                var json = JsonConvert.SerializeObject(review);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var request = new HttpRequestMessage(HttpMethod.Post, $"{_httpClient.BaseAddress}/Reviews")
+                {
+                    Content = content
+                };
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.SendAsync(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("PropertiesDetails", "Properties", new { PropertyID = review.PropertyID });
+                }
+            }
+
+            return RedirectToAction("PropertiesDetails", "Properties", new { PropertyID = review.PropertyID });
+        }
+
 
         private async Task LoadUserList()
         {

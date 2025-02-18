@@ -42,6 +42,7 @@ namespace HomeRentalAPI.Models
         public string Password { get; set; }
 
         public string? ProfilePictureURL { get; set; } = null;
+        public int? RoleID { get; set; } = 2;
 
     }
 

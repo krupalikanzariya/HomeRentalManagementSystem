@@ -142,7 +142,8 @@ ALTER PROCEDURE [dbo].[PR_Users_Signup]
     @UserName NVARCHAR(50),
     @Email NVARCHAR(50),
     @Password NVARCHAR(50),
-    @ProfilePictureURL NVARCHAR(MAX) = ''
+    @ProfilePictureURL NVARCHAR(MAX) = '',
+	@RoleID int
 AS
 BEGIN
     INSERT INTO [dbo].[Users]
@@ -152,7 +153,8 @@ BEGIN
         [UserName],
 		[Email],
         [Password],
-		[ProfilePictureURL]
+		[ProfilePictureURL],
+		[RoleID]
     )
     VALUES
     (
@@ -161,7 +163,8 @@ BEGIN
         @UserName,
 		@Email,
         @Password,
-		@ProfilePictureURL
+		@ProfilePictureURL,
+		@RoleID
     );
 END
 --Add User

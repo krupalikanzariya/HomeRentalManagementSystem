@@ -1,12 +1,12 @@
-﻿@model HomeRentalFrontEnd.Models.PropertiesModel
+﻿@model HomeRentalFrontEnd.Models.PropertyDetailsViewModel
 
-<!-- Breadcrumb Section Begin -->
+<!-- Property Details Section -->
 <div class="breadcrumb-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-text">
-                    <h2>@Model.Title</h2>
+                    <h2>@Model.Property.Title</h2>
                     <div class="bt-option">
                         <a asp-controller="Home" asp-action="Index">Home</a>
                         <span>Property Details</span>
@@ -16,141 +16,153 @@
         </div>
     </div>
 </div>
-<!-- Breadcrumb Section End -->
-<!-- Room Details Section Begin -->
+
+<!-- Room Details Section -->
 <section class="room-details-section spad">
     <div class="container">
         <div class="row">
-                <div class="room-details-item">
-                    <!-- Bootstrap Carousel for Multiple Images -->
-                    <div id="propertyCarousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            @if (Model.Images != null && Model.Images.Any())
-                            {
-                                var firstImage = true;
-                                @foreach (var image in Model.Images)
-                                {
-                                    <div class="carousel-item @(firstImage ? "active" : "")">
-                                        <img src="@image.ImageURL" class="d-block w-100" style="height: 700px; object-fit: cover;" alt="Property Image">
-                                    </div>
-                                    firstImage = false;
-                                }
-                            }
-                            else
-                            {
-                                <div class="carousel-item active">
-                                    <img src="https://via.placeholder.com/800x400" class="d-block w-100" alt="No Image Available">
-                                </div>
-                            }
-                        </div>
-                        <!-- Carousel Controls -->
-                        @if (Model.Images != null && Model.Images.Count() > 1)
+            <div class="room-details-item">
+                <!-- Property Images Carousel -->
+                <div id="propertyCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        @if (Model.Property.Images != null && Model.Property.Images.Any())
                         {
-                            <button class="carousel-control-prev" type="button" data-bs-target="#propertyCarousel" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#propertyCarousel" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
+                            var firstImage = true;
+                            @foreach (var image in Model.Property.Images)
+                            {
+                                <div class="carousel-item @(firstImage ? "active" : "")">
+                                    <img src="@image.ImageURL" class="d-block w-100" style="height: 700px; object-fit: cover;" alt="Property Image">
+                                </div>
+                                firstImage = false;
+                            }
+                        }
+                        else
+                        {
+                            <div class="carousel-item active">
+                                <img src="https://via.placeholder.com/800x400" class="d-block w-100" alt="No Image Available">
+                            </div>
                         }
                     </div>
-
-                    <div class="rd-text">
-                        <div class="rd-title">
-                            <h3>@Model.Title</h3>
-                            <div class="rdt-right">
-                                <div class="rating">
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star-half_alt"></i>
-                                </div>
-                            <a asp-controller="Bookings" asp-action="UserBookings" asp-route-PropertyID="@Model.PropertyID">Book Now</a>
-                            </div>
-                        </div>
-                        <h2>₹ @Model.PricePerNight.ToString("N0")<span>/ Per Night</span></h2>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td class="r-o">Location:</td>
-                                    <td>@Model.City, @Model.State, @Model.Country</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Guests:</td>
-                                    <td>Max @Model.MaxGuests guests</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Bedrooms:</td>
-                                    <td>@Model.Bedrooms</td>
-                                </tr>
-                                <tr>
-                                    <td class="r-o">Address:</td>
-                                    <td>@Model.Address</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p>@Model.Description</p>
-                    </div>
+                    @if (Model.Property.Images != null && Model.Property.Images.Count() > 1)
+                    {
+                        <button class="carousel-control-prev" type="button" data-bs-target="#propertyCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#propertyCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    }
                 </div>
 
-                <!-- Reviews Section -->
-                <div class="rd-reviews">
-                    <h4>Reviews</h4>
-                    <div class="review-item">
-                        <div class="ri-pic">
-                            <img src="https://via.placeholder.com/80" alt="">
-                        </div>
-                        <div class="ri-text">
-                            <span>27 Aug 2023</span>
+                <!-- Property Details -->
+                <div class="rd-text">
+                    <div class="rd-title">
+                        <h3>@Model.Property.Title</h3>
+                        <div class="rdt-right">
                             <div class="rating">
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star-half_alt"></i>
+                                @* @foreach (var review in Model.Reviews)
+                                {
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <i class="@(i <= review.Rating ? "icon_star" : "icon_star_alt")"></i>
+                                    }
+                                } *@
                             </div>
-                            <h5>John Doe</h5>
-                            <p>Amazing place! Had a great time here.</p>
+                            <a asp-controller="Bookings" asp-action="UserBookings" asp-route-PropertyID="@Model.Property.PropertyID">Book Now</a>
                         </div>
                     </div>
-                </div>
-
-                <!-- Add Review Section -->
-                <div class="review-add">
-                    <h4>Add Review</h4>
-                    <form action="#" class="ra-form">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <input type="text" placeholder="Name*">
-                            </div>
-                            <div class="col-lg-6">
-                                <input type="text" placeholder="Email*">
-                            </div>
-                            <div class="col-lg-12">
-                                <div>
-                                    <h5>Your Rating:</h5>
-                                    <div class="rating">
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star-half_alt"></i>
-                                    </div>
-                                </div>
-                                <textarea placeholder="Your Review"></textarea>
-                                <button type="submit">Submit Now</button>
-                            </div>
-                        </div>
-                    </form>
+                    <h2>₹ @Model.Property.PricePerNight.ToString("N0") <span>/ Per Night</span></h2>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="r-o">Location:</td>
+                                <td>@Model.Property.City, @Model.Property.State, @Model.Property.Country</td>
+                            </tr>
+                            <tr>
+                                <td class="r-o">Guests:</td>
+                                <td>Max @Model.Property.MaxGuests guests</td>
+                            </tr>
+                            <tr>
+                                <td class="r-o">Bedrooms:</td>
+                                <td>@Model.Property.Bedrooms</td>
+                            </tr>
+                            <tr>
+                                <td class="r-o">Address:</td>
+                                <td>@Model.Property.Address</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>@Model.Property.Description</p>
                 </div>
             </div>
+
+            <!-- Reviews Section -->
+            <div class="rd-reviews">
+                <h4>Reviews</h4>
+                @if (Model.Reviews.Any())
+                {
+                    @foreach (var review in Model.Reviews)
+                    {
+                        <div class="review-item">
+                            <div class="ri-pic">
+                                <img src="https://via.placeholder.com/80" alt="">
+                            </div>
+                            <div class="ri-text">
+                                <div class="rating">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <i class="@(i <= review.Rating ? "icon_star" : "icon_star_alt")"></i>
+                                    }
+                                </div>
+                                <h5>@review.UserName</h5>
+                                <p>@review.Comment</p>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No reviews available for this property.</p>
+                }
+            </div>
+
+
+            <!-- Add Review Section -->
+            <!-- Add Review Section -->
+            <div class="review-add">
+                <h4>Add Review</h4>
+                <form asp-action="UserAddReviews" asp-controller="Reviews" method="post" class="ra-form">
+                    <input type="hidden" name="PropertyID" value="@Model.Property.PropertyID" />
+                    <input type="hidden" name="UserID" value="@CommonVariable.UserID()" />
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="text" name="UserName" value="@CommonVariable.UserName()" readonly>
+                        </div>
+                        <div class="col-lg-6">
+                            <select name="Rating" class="form-control" required>
+                                <option value="5">★★★★★ (5)</option>
+                                <option value="4">★★★★☆ (4)</option>
+                                <option value="3">★★★☆☆ (3)</option>
+                                <option value="2">★★☆☆☆ (2)</option>
+                                <option value="1">★☆☆☆☆ (1)</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-12">
+                            <textarea name="Comment" placeholder="Your Review" required></textarea>
+                            <button type="submit">Submit Now</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            
         </div>
-    
+    </div>
 </section>
-<!-- Room Details Section End -->
+
 <!-- Bootstrap CSS and JS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

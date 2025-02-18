@@ -1,6 +1,7 @@
 ﻿using HomeRentalFrontEnd.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 
@@ -112,6 +113,64 @@ namespace HomeRentalFrontEnd.Controllers
 
             await _httpClient.SendAsync(request);
             return RedirectToAction("AdminPropertiesList");
+        }
+        
+        public async Task<IActionResult> PropertiesList()
+        {
+            var token = HttpContext.Session.GetString("Token");
+
+            List<PropertiesModel> properties = new List<PropertiesModel>();
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{_httpClient.BaseAddress}/Properties");
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var response = _httpClient.SendAsync(request).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                string data = await response.Content.ReadAsStringAsync();
+                properties = JsonConvert.DeserializeObject<List<PropertiesModel>>(data);
+            }
+            return View(properties);
+        }
+        [HttpGet]
+        public async Task<IActionResult> PropertiesDetails(int PropertyID)
+        {
+            var token = HttpContext.Session.GetString("Token");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "Users");
+            }
+
+            // Fetch property details
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{_httpClient.BaseAddress}/Properties/{PropertyID}");
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var response = await _httpClient.SendAsync(request);
+
+            PropertiesModel property = null;
+            if (response.IsSuccessStatusCode)
+            {
+                var data = await response.Content.ReadAsStringAsync();
+                property = JsonConvert.DeserializeObject<PropertiesModel>(data);
+            }
+
+            // Fetch reviews
+            var reviewsRequest = new HttpRequestMessage(HttpMethod.Get, $"{_httpClient.BaseAddress}/Reviews/GetReviewsByProperty/{PropertyID}");
+            reviewsRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var reviewsResponse = await _httpClient.SendAsync(reviewsRequest);
+
+            List<ReviewsModel> reviews = new List<ReviewsModel>();
+            if (reviewsResponse.IsSuccessStatusCode)
+            {
+                var reviewsData = await reviewsResponse.Content.ReadAsStringAsync();
+                reviews = JsonConvert.DeserializeObject<List<ReviewsModel>>(reviewsData);
+            }
+
+            // Pass data to the view
+            var model = new PropertyDetailsViewModel
+            {
+                Property = property,
+                Reviews = reviews
+            };
+
+            return View(model);
         }
 
         private async Task LoadUserList()

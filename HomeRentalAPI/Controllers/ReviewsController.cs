@@ -78,17 +78,18 @@ namespace HomeRentalAPI.Controllers
 
             return NoContent();
         }
-        [Authorize]
-        [HttpGet("property/{id}")]
-        public IActionResult GetReviewsByProperty(int id)
+        [Authorize]        
+        [HttpGet("GetReviewsByProperty/{PropertyID}")]
+        public IActionResult GetReviewsByProperty(int PropertyID)
         {
-            var review = _ReviewsRepository.GetReviewsByProperty(id);
-            if (review == null)
+            var reviews = _ReviewsRepository.GetReviewsByProperty(PropertyID);
+            if (reviews == null)
             {
                 return NotFound(new { Message = "Reviews not found." });
             }
-            return Ok(review);
+            return Ok(reviews);
         }
+
         [Authorize]
         [HttpGet("GetUsers")]
         public IActionResult GetUsers()

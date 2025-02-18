@@ -122,9 +122,9 @@ namespace HomeRentalAPI.Data
                 return rowsAffected > 0;
             }
         }
-        public ReviewsModel GetReviewsByProperty(int PropertyID)
+        public List<ReviewsModel> GetReviewsByProperty(int PropertyID)
         {
-            ReviewsModel review = null;
+            List<ReviewsModel> reviews = new List<ReviewsModel>();
 
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -137,9 +137,9 @@ namespace HomeRentalAPI.Data
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                if (reader.Read())
+                while (reader.Read())  // Use while loop to fetch multiple reviews
                 {
-                    review = new ReviewsModel
+                    reviews.Add(new ReviewsModel
                     {
                         ReviewID = Convert.ToInt32(reader["ReviewID"]),
                         UserID = Convert.ToInt32(reader["UserID"]),
@@ -148,12 +148,13 @@ namespace HomeRentalAPI.Data
                         Title = reader["Title"].ToString(),
                         Rating = Convert.ToInt32(reader["Rating"]),
                         Comment = reader["Comment"].ToString()
-                    };
+                    });
                 }
             }
 
-            return review;
+            return reviews;
         }
+
         public IEnumerable<UserDropDownModel> GetUsers()
         {
             var users = new List<UserDropDownModel>();
