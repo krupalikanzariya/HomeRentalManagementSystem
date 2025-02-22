@@ -1,59 +1,73 @@
 ﻿@model HomeRentalFrontEnd.Models.BookingsModel
 
-<div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1" align="center">
-    <div class="booking-form">
-        <h3>Book Your Stay</h3>
-        <form asp-action="UserBookings" method="post">
-            <input type="hidden" asp-for="BookingID" />
+<div class="row">
+    <div class="col-xl-4 col-lg-5 " align="center">
+        <div class="booking-form">
+            <h2 style="color: #dfa974;">Book Your Stay</h2>
+            <form asp-action="UserBookings" method="post">
+                <input type="hidden" asp-for="BookingID" />
 
-            <!-- Hidden Field to Store UserID -->
-            <input type="hidden" asp-for="UserID" />
-            <input type="hidden" asp-for="PropertyID" />
+                <!-- Hidden Field to Store UserID -->
+                <input type="hidden" asp-for="UserID" />
+                <input type="hidden" asp-for="PropertyID" />
 
 
-            <!-- Property Selection (Read-Only) -->
-            <div class="select-option">
-                <label>Room:</label>
-                <h3>@ViewBag.PropertyTitle"</h3>
+                <!-- Property Selection (Read-Only) -->
+                <div class="select-option">
+                    <h4>Property Name : @Model.PropertyTitle</h4>
+                </div>
+
+                <!-- Check-in Date -->
+                <div class="check-date">
+                    <label for="CheckInDate">Check In:</label>
+                    <input type="date" class="date-input" asp-for="CheckInDate" id="CheckInDate" required>
+                    <span class="text-danger" asp-validation-for="CheckInDate"></span>
+                </div>
+
+                <!-- Check-out Date -->
+                <div class="check-date">
+                    <label for="CheckOutDate">Check Out:</label>
+                    <input type="date" class="date-input" asp-for="CheckOutDate" id="CheckOutDate" required>
+                    <span class="text-danger" asp-validation-for="CheckOutDate"></span>
+                </div>
+
+                <!-- Guests Dropdown -->
+                <div class="select-option">
+                    <label for="Guests">Guests:</label>
+                    <select asp-for="Guests" id="Guests" class="form-control">
+                        <option value="1">1 Guest</option>
+                        <option value="2">2 Guests</option>
+                        <option value="3">3 Guests</option>
+                        <option value="4">4 Guests</option>
+                        <option value="5">5 Guests</option>
+                    </select>
+                    <span class="text-danger" asp-validation-for="Guests"></span>
+                </div>
+
+                <!-- Total Price -->
+                <div class="check-date">
+                    <label for="TotalPrice">Total Price:</label>
+                    <input type="text" class="form-control" asp-for="TotalPrice" id="TotalPrice">
+                    <span class="text-danger" asp-validation-for="TotalPrice"></span>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary w-100 mt-3">Book Property</button>
+            </form>
+        </div>
+    </div>
+    <div class="col">
+        @if (!string.IsNullOrEmpty(Model.PropertyImage))
+        {
+            <div class="property-image">
+                <img src="@Model.PropertyImage" alt="Property Image" class="img-fluid" style="max-width: 100%; height: 750px;">
             </div>
-
-            <!-- Check-in Date -->
-            <div class="check-date">
-                <label for="CheckInDate">Check In:</label>
-                <input type="date" class="date-input" asp-for="CheckInDate" id="CheckInDate" required>
-                <span class="text-danger" asp-validation-for="CheckInDate"></span>
+        }
+        @if (string.IsNullOrEmpty(Model.PropertyImage))
+        {
+            <div class="property-image">
+                <img src="https://via.placeholder.com/800x400" alt="No Image Available" class="img-fluid">
             </div>
-
-            <!-- Check-out Date -->
-            <div class="check-date">
-                <label for="CheckOutDate">Check Out:</label>
-                <input type="date" class="date-input" asp-for="CheckOutDate" id="CheckOutDate" required>
-                <span class="text-danger" asp-validation-for="CheckOutDate"></span>
-            </div>
-
-            <!-- Guests Dropdown -->
-            <div class="select-option">
-                <label for="Guests">Guests:</label>
-                <select asp-for="Guests" id="Guests" class="form-control">
-                    <option value="1">1 Guest</option>
-                    <option value="2">2 Guests</option>
-                    <option value="3">3 Guests</option>
-                    <option value="4">4 Guests</option>
-                    <option value="5">5 Guests</option>
-                </select>
-                <span class="text-danger" asp-validation-for="Guests"></span>
-            </div>
-
-            <!-- Total Price -->
-            <div class="check-date">
-                <label for="TotalPrice">Total Price:</label>
-                <input type="text" class="form-control" asp-for="TotalPrice" id="TotalPrice">
-                <span class="text-danger" asp-validation-for="TotalPrice"></span>
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit" class="btn btn-primary w-100 mt-3">Book Property</button>
-        </form>
+        }
     </div>
 </div>
-

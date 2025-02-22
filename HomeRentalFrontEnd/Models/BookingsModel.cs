@@ -12,5 +12,7 @@
         public DateTime CheckOutDate { get; set; } = DateTime.Now;
         public int Guests { get; set; }
         public decimal TotalPrice { get; set; }
+        public string? PropertyTitle { get; set; }
+        public string? PropertyImage { get; set; }
     }
 }

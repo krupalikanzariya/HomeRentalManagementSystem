@@ -199,3 +199,17 @@ p {
             .form-container .switch-link a:hover {
                 text-decoration: underline;
             }
+/*Ratings*/
+.rating-stars {
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.icon_star {
+    color: gold;
+}
+
+.icon_star_alt {
+    color: gray;
+}

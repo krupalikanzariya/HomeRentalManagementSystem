@@ -1,5 +1,6 @@
 ﻿using HomeRentalFrontEnd.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
@@ -52,15 +53,32 @@ namespace HomeRentalFrontEnd.Controllers
             {
                 return RedirectToAction("Login", "Users");
             }
+            var token = HttpContext.Session.GetString("Token");
+
+            // Fetch property details from API
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{_httpClient.BaseAddress}/Properties/{PropertyID}");
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var response = await _httpClient.SendAsync(request);
+
+            PropertiesModel property = null;
+            if (response.IsSuccessStatusCode)
+            {
+                var data = await response.Content.ReadAsStringAsync();
+                property = JsonConvert.DeserializeObject<PropertiesModel>(data);
+            }
 
             var model = new BookingsModel
             {
                 UserID = userId.Value,
-                PropertyID = PropertyID
+                PropertyID = PropertyID,
+                PropertyTitle = property?.Title, // Store the property title
+                PropertyImage = property?.Images?.FirstOrDefault()?.ImageURL // Store the first image URL
             };
 
             return View(model);
         }
+
+
 
         [HttpPost]
         public async Task<IActionResult> UserBookings(BookingsModel booking)
