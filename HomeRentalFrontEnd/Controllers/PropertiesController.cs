@@ -118,6 +118,11 @@ namespace HomeRentalFrontEnd.Controllers
         public async Task<IActionResult> PropertiesList()
         {
             var token = HttpContext.Session.GetString("Token");
+            if (string.IsNullOrEmpty(token))
+            {
+                ViewBag.LoginMesssage = "Please, Login To View Properties";
+                return RedirectToAction("Login", "Users");
+            }
 
             List<PropertiesModel> properties = new List<PropertiesModel>();
             var request = new HttpRequestMessage(HttpMethod.Get, $"{_httpClient.BaseAddress}/Properties");

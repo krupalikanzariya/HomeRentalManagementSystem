@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<HomeRentalFrontEnd.Models.PropertiesModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 <!-- Hero Section Begin -->
@@ -7,7 +9,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="hero-text">
-                    <h1>Sona A Luxury Hotel</h1>
+                    <h1>Sona: Luxury Properties</h1>
                     <p>
                         Here are the best hotel booking sites, including recommendations for international
                         travel and for finding low-priced hotel rooms.
@@ -19,10 +21,23 @@
         </div>
     </div>
     <div class="hero-slider owl-carousel">
-        <div class="hs-item set-bg" data-setbg="@Url.Content("~/img/hero/hero-1.jpg")"></div>
-        <div class="hs-item set-bg" data-setbg="@Url.Content("~/img/hero/hero-2.jpg")"></div>
-        <div class="hs-item set-bg" data-setbg="@Url.Content("~/img/hero/hero-3.jpg")"></div>
+        @foreach (var property in Model)
+        {
+            @if (property.Images != null && property.Images.Any())
+            {
+                @foreach (var image in property.Images)
+                {
+                    <div class="hs-item set-bg" data-setbg="@image.ImageURL" style="height:800px"></div>
+                }
+            }
+            else
+            {
+                <div class="hs-item set-bg" data-setbg="https://via.placeholder.com/800x400"></div>
+            }
+        }
     </div>
+
+
 </section>
 <!-- Hero Section End -->
 <!-- About Us Section Begin -->

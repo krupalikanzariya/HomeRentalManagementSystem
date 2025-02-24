@@ -1,10 +1,14 @@
 ﻿@model HomeRentalFrontEnd.Models.UserLoginModel
 
+@if (ViewBag.LoginMesssage != null)
+{
+    <p>@ViewBag.LoginMesssage</p>
+}
 <div class="body-signup-in" align="center">
     <div id="form-container-login">
         <h3>Login</h3>
         <form id="form-login" asp-controller="Users" asp-action="UserLogin">
-            <div id="form-group-login radio-group-login">
+            @* <div id="form-group-login radio-group-login">
                 <label for="RoleID">Role:</label>
                 <label>
                     <input type="radio" asp-for="RoleID" value="1"> Admin
@@ -12,7 +16,7 @@
                 <label>
                     <input type="radio" asp-for="RoleID" value="2" checked> User
                 </label>
-            </div>
+            </div> *@
             <div id="form-group-login">
                 <label for="username">User Name</label>
                 <input type="text" asp-for="UserName" id="email" placeholder="Enter user name" required>
