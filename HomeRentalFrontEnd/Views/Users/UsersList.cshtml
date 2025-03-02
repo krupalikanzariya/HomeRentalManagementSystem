@@ -50,7 +50,15 @@
                                     <td>@user.FirstName</td>
                                     <td>@user.LastName</td>
                                     <td>@user.Email</td>
-                                    <td>@user.Password</td>
+                                    <td>
+                                        @{
+                                            var password = user.Password.ToString();
+                                            var maskedPassword = password.Length > 2
+                                            ? password[0] + new string('*', password.Length - 2) + password[^1]
+                                            : password;
+                                        }
+                                        @maskedPassword
+                                    </td>
                                     <td>
                                         <span>
                                             <a asp-controller="Users" asp-action="UsersAddEdit" asp-route-UserID="@user.UserID" data-toggle="tooltip" data-placement="top" title="Edit">

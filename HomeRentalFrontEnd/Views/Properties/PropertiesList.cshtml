@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<HomeRentalFrontEnd.Models.PropertiesModel>
 
-@if (!(ViewBag.LoginMesssage))
+@if (ViewBag.LoginMesssage != null)
 {
     <p>@ViewBag.LoginMesssage</p>
 }

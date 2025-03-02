@@ -72,11 +72,13 @@ namespace HomeRentalFrontEnd.Controllers
                 UserID = userId.Value,
                 PropertyID = PropertyID,
                 PropertyTitle = property?.Title, // Store the property title
-                PropertyImage = property?.Images?.FirstOrDefault()?.ImageURL // Store the first image URL
+                PropertyImage = property?.Images?.FirstOrDefault()?.ImageURL, // Store the first image URL
+                PricePerNight = property?.PricePerNight ?? 0 // Pass property price per night
             };
 
             return View(model);
         }
+
 
 
 

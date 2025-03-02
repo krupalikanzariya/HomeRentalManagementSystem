@@ -29,10 +29,10 @@
                     <table class="table table-bordered verticle-middle">
                         <thead>
                             <tr>
-                                <th scope="col">User Name</th>
                                 <th scope="col">Property Name</th>
                                 <th scope="col">Rating</th>
                                 <th scope="col">Comment</th>
+                                <th scope="col">User Name</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
@@ -40,10 +40,10 @@
                             @foreach (var review in Model)
                             {
                                 <tr>
-                                    <td>@review.UserName</td>
                                     <td>@review.Title</td>
                                     <td>@review.Rating</td>
                                     <td>@review.Comment</td>
+                                    <td>@review.UserName</td>
                                     <td>
                                         <span>
                                             <a asp-controller="Reviews" asp-action="ReviewsAddEdit" asp-route-ReviewID="@review.ReviewID" data-toggle="tooltip" data-placement="top" title="Edit">

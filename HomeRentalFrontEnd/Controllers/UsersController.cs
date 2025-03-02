@@ -25,7 +25,6 @@ namespace HomeRentalFrontEnd.Controllers
         {
             List<UsersModel> users = new List<UsersModel>();
 
-            // Retrieve JWT token from session
             var token = HttpContext.Session.GetString("Token");
 
             if (string.IsNullOrEmpty(token))
@@ -157,6 +156,7 @@ namespace HomeRentalFrontEnd.Controllers
                         // Cast dynamic object to correct types
                         int userID = (int)responseObject.user.userID;
                         string userName = (string)responseObject.user.userName;
+                        string profilePictureURL = (string)responseObject.user.profilePictureURL;
 
                         var token = (string)responseObject.token; // Extract JWT token
 
@@ -165,7 +165,7 @@ namespace HomeRentalFrontEnd.Controllers
                         // Now safely store values in session
                         HttpContext.Session.SetString("UserID", userID.ToString());
                         HttpContext.Session.SetString("UserName", userName);
-
+                        HttpContext.Session.SetString("ProfilePictureURL", profilePictureURL);
 
                         // Redirect based on role
                         if (user.roleID == 1)

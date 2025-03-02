@@ -1,20 +1,18 @@
 ﻿@model HomeRentalFrontEnd.Models.BookingsModel
 
 <div class="row">
-    <div class="col-xl-4 col-lg-5 " align="center">
+    <div class="col-xl-4 col-lg-5" align="center">
         <div class="booking-form">
             <h2 style="color: #dfa974;">Book Your Stay</h2>
             <form asp-action="UserBookings" method="post">
                 <input type="hidden" asp-for="BookingID" />
-
-                <!-- Hidden Field to Store UserID -->
                 <input type="hidden" asp-for="UserID" />
                 <input type="hidden" asp-for="PropertyID" />
-
+                <input type="hidden" asp-for="PricePerNight" id="PricePerNight" />
 
                 <!-- Property Selection (Read-Only) -->
                 <div class="select-option">
-                    <h4>Property Name : @Model.PropertyTitle</h4>
+                    <h4>Property Name: @Model.PropertyTitle</h4>
                 </div>
 
                 <!-- Check-in Date -->
@@ -47,7 +45,7 @@
                 <!-- Total Price -->
                 <div class="check-date">
                     <label for="TotalPrice">Total Price:</label>
-                    <input type="text" class="form-control" asp-for="TotalPrice" id="TotalPrice">
+                    <input type="text" class="form-control" asp-for="TotalPrice" id="TotalPrice" readonly>
                     <span class="text-danger" asp-validation-for="TotalPrice"></span>
                 </div>
 
@@ -56,6 +54,8 @@
             </form>
         </div>
     </div>
+
+    <!-- Property Image -->
     <div class="col">
         @if (!string.IsNullOrEmpty(Model.PropertyImage))
         {
@@ -63,7 +63,7 @@
                 <img src="@Model.PropertyImage" alt="Property Image" class="img-fluid" style="max-width: 100%; height: 750px;">
             </div>
         }
-        @if (string.IsNullOrEmpty(Model.PropertyImage))
+        else
         {
             <div class="property-image">
                 <img src="https://via.placeholder.com/800x400" alt="No Image Available" class="img-fluid">
@@ -71,3 +71,31 @@
         }
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const checkInInput = document.getElementById("CheckInDate");
+        const checkOutInput = document.getElementById("CheckOutDate");
+        const totalPriceInput = document.getElementById("TotalPrice");
+        const pricePerNight = parseFloat(document.getElementById("PricePerNight").value);
+
+        function calculateTotalPrice() {
+            const checkInDate = new Date(checkInInput.value);
+            const checkOutDate = new Date(checkOutInput.value);
+
+            if (!isNaN(checkInDate) && !isNaN(checkOutDate) && checkOutDate > checkInDate) {
+                const timeDiff = checkOutDate - checkInDate;
+                const numberOfNights = timeDiff / (1000 * 3600 * 24); // Convert milliseconds to days
+                const totalPrice = numberOfNights * pricePerNight;
+
+                // Set the numeric value without currency symbols
+                totalPriceInput.value = totalPrice.toFixed(2); // Ensure proper decimal format
+            } else {
+                totalPriceInput.value = "";
+            }
+        }
+
+        checkInInput.addEventListener("change", calculateTotalPrice);
+        checkOutInput.addEventListener("change", calculateTotalPrice);
+    });
+</script>

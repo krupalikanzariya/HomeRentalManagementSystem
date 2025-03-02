@@ -14,5 +14,7 @@
         public decimal TotalPrice { get; set; }
         public string? PropertyTitle { get; set; }
         public string? PropertyImage { get; set; }
+        public decimal? PricePerNight { get; set; }
+
     }
 }

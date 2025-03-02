@@ -7,14 +7,11 @@ namespace HomeRentalAPI.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
-        
         public string Email { get; set; }
-        
         public string Password { get; set; }
-        
         public string ProfilePictureURL { get; set; }
         public int RoleID { get; set; }
-
+        public string RoleName { get; set; }
     }
     public class UserDropDownModel
     {
@@ -32,18 +29,13 @@ namespace HomeRentalAPI.Models
     public class UserRegisterModel
     {
         public int? UserID { get; set; }
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
-
         public string Email { get; set; }
-
         public string Password { get; set; }
-
         public string? ProfilePictureURL { get; set; } = null;
         public int? RoleID { get; set; } = 2;
-
     }
 
 }

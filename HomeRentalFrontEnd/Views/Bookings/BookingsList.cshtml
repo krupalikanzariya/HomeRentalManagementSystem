@@ -29,12 +29,12 @@
                     <table class="table table-bordered verticle-middle">
                         <thead>
                             <tr>
-                                <th scope="col">User Name</th>
                                 <th scope="col">Property Name</th>
                                 <th scope="col">Check In Date</th>
                                 <th scope="col">Check Out Date</th>
                                 <th scope="col">Guests</th>
                                 <th scope="col">Total Price</th>
+                                <th scope="col">User Name</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
@@ -42,12 +42,12 @@
                             @foreach (var booking in Model)
                             {
                                 <tr>
-                                    <td>@booking.UserName</td>
                                     <td>@booking.Title</td>
                                     <td>@booking.CheckInDate</td>
                                     <td>@booking.CheckOutDate</td>
                                     <td>@booking.Guests</td>
                                     <td>@booking.TotalPrice</td>
+                                    <td>@booking.UserName</td>
                                     <td>
                                         <span>
                                             <a asp-controller="Bookings" asp-action="BookingsAddEdit" asp-route-BookingID="@booking.BookingID" data-toggle="tooltip" data-placement="top" title="Edit">

@@ -28,7 +28,6 @@
                     <table class="table table-bordered verticle-middle">
                         <thead>
                             <tr>
-                                <th scope="col">UserName</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Address</th>
@@ -38,13 +37,14 @@
                                 <th scope="col">Price Per Night</th>
                                 <th scope="col">Maximum Guests</th>
                                 <th scope="col">Bedrooms</th>
+                                <th scope="col">User Name</th>
+                                <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var property in Model)
                             {
                                 <tr>
-                                    <td>@property.UserName</td>
                                     <td>@property.Title</td>
                                     <td>@property.Description</td>
                                     <td>@property.Address</td>
@@ -54,6 +54,7 @@
                                     <td>@property.PricePerNight</td>
                                     <td>@property.MaxGuests</td>
                                     <td>@property.Bedrooms</td>
+                                    <td>@property.UserName</td>
                                     <td>
                                         <span>
                                             <a asp-controller="Properties" asp-action="PropertiesAddEdit" asp-route-PropertyID="@property.PropertyID" data-toggle="tooltip" data-placement="top" title="Edit">
