@@ -40,6 +40,14 @@
             }
             return _HttpContextAccessor.HttpContext.Session.GetString("RoleID");
         }
+        public static string HostID()
+        {
+            if (_HttpContextAccessor.HttpContext.Session.GetString("HostID") == null)
+            {
+                return null;
+            }
+            return _HttpContextAccessor.HttpContext.Session.GetString("HostID");
+        }
         public static string ProfilePictureURL()
         {
             if (_HttpContextAccessor.HttpContext.Session.GetString("ProfilePictureURL") == null)

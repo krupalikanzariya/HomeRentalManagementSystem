@@ -1,8 +1,9 @@
 ﻿using HomeRentalFrontEnd.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
+using System.Security.Claims;
 using System.Text;
 
 namespace HomeRentalFrontEnd.Controllers
@@ -46,7 +47,6 @@ namespace HomeRentalFrontEnd.Controllers
         public async Task<IActionResult> PropertiesAddEdit(int? PropertyID)
         {
             await LoadUserList();
-
             var token = HttpContext.Session.GetString("Token");
             if (string.IsNullOrEmpty(token))
             {
@@ -70,7 +70,7 @@ namespace HomeRentalFrontEnd.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Save(PropertiesModel property)
+        public async Task<IActionResult> Save(PropertiesModel property, List<string> ImageURLs)
         {
             var token = HttpContext.Session.GetString("Token");
             if (string.IsNullOrEmpty(token))
@@ -78,13 +78,30 @@ namespace HomeRentalFrontEnd.Controllers
                 return RedirectToAction("Login", "Users");
             }
 
+            var hostIdString = HttpContext.Session.GetString("HostID");
+            if (string.IsNullOrEmpty(hostIdString) || !int.TryParse(hostIdString, out int hostId) || hostId <= 0)
+            {
+                return Unauthorized("User ID not found or invalid in session.");
+            }
+
+            // Remove ModelState error for HostID before assigning
+            ModelState.Remove(nameof(property.HostID));
+            property.HostID = int.Parse(hostIdString);
+
+            // Ensure ModelState uses the correct value
+            ModelState.SetModelValue(nameof(property.HostID), new ValueProviderResult(hostId.ToString()));
+
             if (ModelState.IsValid)
             {
+                property.Images = ImageURLs
+                    .Where(url => !string.IsNullOrWhiteSpace(url))
+                    .Select(url => new ImagesModel { ImageURL = url })
+                    .ToList();
+
                 var json = JsonConvert.SerializeObject(property);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                var request = new HttpRequestMessage(property.PropertyID == null ? HttpMethod.Post : HttpMethod.Put,
-                    $"{_httpClient.BaseAddress}/Properties" + (property.PropertyID != null ? $"/{property.PropertyID}" : ""))
+                var request = new HttpRequestMessage(HttpMethod.Post, $"{_httpClient.BaseAddress}/Properties")
                 {
                     Content = content
                 };
@@ -96,7 +113,6 @@ namespace HomeRentalFrontEnd.Controllers
                     return RedirectToAction("AdminPropertiesList");
             }
 
-            await LoadUserList();
             return View("PropertiesAddEdit", property);
         }
 
@@ -114,20 +130,20 @@ namespace HomeRentalFrontEnd.Controllers
             await _httpClient.SendAsync(request);
             return RedirectToAction("AdminPropertiesList");
         }
-        
+
         public async Task<IActionResult> PropertiesList()
         {
             var token = HttpContext.Session.GetString("Token");
             if (string.IsNullOrEmpty(token))
             {
-                ViewBag.LoginMesssage = "Please, Login To View Properties";
+                ViewBag.LoginMessage = "Please, Login To View Properties";
                 return RedirectToAction("Login", "Users");
             }
 
             List<PropertiesModel> properties = new List<PropertiesModel>();
             var request = new HttpRequestMessage(HttpMethod.Get, $"{_httpClient.BaseAddress}/Properties");
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var response = _httpClient.SendAsync(request).Result;
+            var response = await _httpClient.SendAsync(request);
             if (response.IsSuccessStatusCode)
             {
                 string data = await response.Content.ReadAsStringAsync();
@@ -135,6 +151,7 @@ namespace HomeRentalFrontEnd.Controllers
             }
             return View(properties);
         }
+
         [HttpGet]
         public async Task<IActionResult> PropertiesDetails(int PropertyID)
         {
@@ -168,7 +185,6 @@ namespace HomeRentalFrontEnd.Controllers
                 reviews = JsonConvert.DeserializeObject<List<ReviewsModel>>(reviewsData);
             }
 
-            // Pass data to the view
             var model = new PropertyDetailsViewModel
             {
                 Property = property,
@@ -177,7 +193,6 @@ namespace HomeRentalFrontEnd.Controllers
 
             return View(model);
         }
-
         private async Task LoadUserList()
         {
             var token = HttpContext.Session.GetString("Token");

@@ -8,6 +8,7 @@ namespace HomeRentalFrontEnd.Validatiors
         public PropertiesValidator()
         {
             RuleFor(x => x.HostID)
+                .NotNull().WithMessage("HostID is required.")
                 .GreaterThan(0).WithMessage("HostID must be a valid positive number.");
 
             RuleFor(x => x.Title)

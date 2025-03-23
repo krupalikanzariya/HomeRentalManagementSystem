@@ -70,7 +70,6 @@ namespace HomeRentalAPI.Data
                 return properties;
             }
         }
-
         public PropertiesModel GetByPK(int PropertyID)
         {
             PropertiesModel property = null;
@@ -103,10 +102,7 @@ namespace HomeRentalAPI.Data
 
                     };
                 }
-
                 reader.Close();
-
-                
                     cmd = new SqlCommand("PR_Images_GetImagesByProperty", conn)
                     {
                         CommandType = CommandType.StoredProcedure
@@ -127,7 +123,6 @@ namespace HomeRentalAPI.Data
             }
             return property;
         }
-
         public bool Delete(int PropertyID)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -142,53 +137,128 @@ namespace HomeRentalAPI.Data
                 return rowsAffected > 0;
             }
         }
-
         public bool Insert(PropertiesModel property)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                SqlCommand cmd = new SqlCommand("PR_Properties_Add", conn)
-                {
-                    CommandType = CommandType.StoredProcedure
-                }; 
-                cmd.Parameters.Add("@HostID", SqlDbType.Int).Value = property.HostID;
-                cmd.Parameters.Add("@Title", SqlDbType.VarChar).Value = property.Title;
-                cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = property.Description;
-                cmd.Parameters.Add("@Address", SqlDbType.VarChar).Value = property.Address;
-                cmd.Parameters.Add("@City", SqlDbType.VarChar).Value = property.City;
-                cmd.Parameters.Add("@State", SqlDbType.VarChar).Value = property.State;
-                cmd.Parameters.Add("@Country", SqlDbType.VarChar).Value = property.Country;
-                cmd.Parameters.Add("@PricePerNight", SqlDbType.Decimal).Value = property.PricePerNight;
-                cmd.Parameters.Add("@MaxGuests", SqlDbType.Int).Value = property.MaxGuests;
-                cmd.Parameters.Add("@Bedrooms", SqlDbType.Int).Value = property.Bedrooms;
                 conn.Open();
-                int rowsAffected = cmd.ExecuteNonQuery();
-                return rowsAffected > 0;
+                SqlTransaction transaction = conn.BeginTransaction();
+
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("PR_Properties_Add", conn, transaction)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    cmd.Parameters.AddWithValue("@HostID", property.HostID);
+                    cmd.Parameters.AddWithValue("@Title", property.Title);
+                    cmd.Parameters.AddWithValue("@Description", property.Description);
+                    cmd.Parameters.AddWithValue("@Address", property.Address);
+                    cmd.Parameters.AddWithValue("@City", property.City);
+                    cmd.Parameters.AddWithValue("@State", property.State);
+                    cmd.Parameters.AddWithValue("@Country", property.Country);
+                    cmd.Parameters.AddWithValue("@PricePerNight", property.PricePerNight);
+                    cmd.Parameters.AddWithValue("@MaxGuests", property.MaxGuests);
+                    cmd.Parameters.AddWithValue("@Bedrooms", property.Bedrooms);
+
+                    // Output parameter for new PropertyID
+                    SqlParameter outputIdParam = new SqlParameter("@NewPropertyID", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(outputIdParam);
+
+                    cmd.ExecuteNonQuery();
+                    int newPropertyID = (int)outputIdParam.Value;
+
+                    // Insert Images if they exist
+                    if (property.Images != null && property.Images.Count > 0)
+                    {
+                        foreach (var image in property.Images)
+                        {
+                            SqlCommand imgCmd = new SqlCommand("PR_Images_Add", conn, transaction)
+                            {
+                                CommandType = CommandType.StoredProcedure
+                            };
+                            imgCmd.Parameters.AddWithValue("@PropertyID", newPropertyID);
+                            imgCmd.Parameters.AddWithValue("@ImageURL", image.ImageURL);
+                            imgCmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    transaction.Commit();
+                    return true;
+                }
+                catch
+                {
+                    transaction.Rollback();
+                    return false;
+                }
             }
         }
-
         public bool Update(PropertiesModel property)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                SqlCommand cmd = new SqlCommand("PR_Properties_Update", conn)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
-                cmd.Parameters.Add("@PropertyID", SqlDbType.Int).Value = property.PropertyID;
-                cmd.Parameters.Add("@HostID", SqlDbType.Int).Value = property.HostID;
-                cmd.Parameters.Add("@Title", SqlDbType.VarChar).Value = property.Title;
-                cmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = property.Description;
-                cmd.Parameters.Add("@Address", SqlDbType.VarChar).Value = property.Address;
-                cmd.Parameters.Add("@City", SqlDbType.VarChar).Value = property.City;
-                cmd.Parameters.Add("@State", SqlDbType.VarChar).Value = property.State;
-                cmd.Parameters.Add("@Country", SqlDbType.VarChar).Value = property.Country;
-                cmd.Parameters.Add("@PricePerNight", SqlDbType.Decimal).Value = property.PricePerNight;
-                cmd.Parameters.Add("@MaxGuests", SqlDbType.Int).Value = property.MaxGuests;
-                cmd.Parameters.Add("@Bedrooms", SqlDbType.Int).Value = property.Bedrooms;
                 conn.Open();
-                int rowsAffected = cmd.ExecuteNonQuery();
-                return rowsAffected > 0;
+                SqlTransaction transaction = conn.BeginTransaction();
+
+                try
+                {
+                    // Update Property
+                    SqlCommand cmd = new SqlCommand("PR_Properties_Update", conn, transaction)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+                    cmd.Parameters.AddWithValue("@PropertyID", property.PropertyID);
+                    cmd.Parameters.AddWithValue("@HostID", property.HostID);
+                    cmd.Parameters.AddWithValue("@Title", property.Title);
+                    cmd.Parameters.AddWithValue("@Description", property.Description);
+                    cmd.Parameters.AddWithValue("@Address", property.Address);
+                    cmd.Parameters.AddWithValue("@City", property.City);
+                    cmd.Parameters.AddWithValue("@State", property.State);
+                    cmd.Parameters.AddWithValue("@Country", property.Country);
+                    cmd.Parameters.AddWithValue("@PricePerNight", property.PricePerNight);
+                    cmd.Parameters.AddWithValue("@MaxGuests", property.MaxGuests);
+                    cmd.Parameters.AddWithValue("@Bedrooms", property.Bedrooms);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected == 0)
+                    {
+                        transaction.Rollback();
+                        return false;
+                    }
+
+                    // Delete existing images before adding new ones
+                    cmd = new SqlCommand("DELETE FROM Images WHERE PropertyID = @PropertyID", conn, transaction);
+                    cmd.Parameters.AddWithValue("@PropertyID", property.PropertyID);
+                    cmd.ExecuteNonQuery();
+
+                    // Insert new images
+                    if (property.Images != null && property.Images.Count > 0)
+                    {
+                        foreach (var image in property.Images)
+                        {
+                            SqlCommand imgCmd = new SqlCommand("PR_Images_Add", conn, transaction)
+                            {
+                                CommandType = CommandType.StoredProcedure
+                            };
+                            imgCmd.Parameters.AddWithValue("@PropertyID", property.PropertyID);
+                            imgCmd.Parameters.AddWithValue("@ImageURL", image.ImageURL);
+                            imgCmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    transaction.Commit();
+                    return true;
+                }
+                catch
+                {
+                    transaction.Rollback();
+                    return false;
+                }
             }
         }
         public IEnumerable<PropertiesModel> GetPropertiesByHost(int hostID)

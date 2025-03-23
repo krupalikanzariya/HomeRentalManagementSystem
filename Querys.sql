@@ -246,7 +246,7 @@ BEGIN
 	ORDER BY [dbo].[Properties].[Title]
 END
 --Add property
-CREATE PROCEDURE PR_Properties_Add
+ALTER PROCEDURE PR_Properties_Add
     @HostID INT,
     @Title NVARCHAR(250),
     @Description NVARCHAR(MAX),
@@ -256,12 +256,17 @@ CREATE PROCEDURE PR_Properties_Add
     @Country NVARCHAR(100),
     @PricePerNight DECIMAL(10,2),
     @MaxGuests INT,
-    @Bedrooms INT
+    @Bedrooms INT,
+    @NewPropertyID INT OUTPUT
 AS
 BEGIN
     INSERT INTO Properties (HostID, Title, Description, Address, City, State, Country, PricePerNight, MaxGuests, Bedrooms)
     VALUES (@HostID, @Title, @Description, @Address, @City, @State, @Country, @PricePerNight, @MaxGuests, @Bedrooms);
+
+    -- Retrieve the newly inserted PropertyID
+    SET @NewPropertyID = SCOPE_IDENTITY();
 END;
+
 
 --Get all
 ALTER PROCEDURE PR_Properties_GetAll
