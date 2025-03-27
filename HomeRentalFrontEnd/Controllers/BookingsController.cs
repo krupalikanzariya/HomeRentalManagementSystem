@@ -78,10 +78,6 @@ namespace HomeRentalFrontEnd.Controllers
 
             return View(model);
         }
-
-
-
-
         [HttpPost]
         public async Task<IActionResult> UserBookings(BookingsModel booking)
         {
@@ -105,7 +101,8 @@ namespace HomeRentalFrontEnd.Controllers
                 var response = await _httpClient.SendAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("BookingsList");
+                    TempData["BookingSuccess"] = "Your booking has been successfully placed!";
+                    return RedirectToAction("UserBookings", new { PropertyID = booking.PropertyID });
                 }
             }
 

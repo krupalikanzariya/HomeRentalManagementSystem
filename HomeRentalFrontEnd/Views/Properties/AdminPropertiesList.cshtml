@@ -14,13 +14,14 @@
         </div>
     </div>
 
-    <a class="btn btn-primary" asp-controller="Properties" asp-action="PropertiesAddEdit">
-        <i class="bi bi-plus-lg"></i>&nbsp;Add Property
-    </a>
-    <div class="mb-3">
-        <input type="text" class="form-control" id="userSearch" placeholder="Search Properties">
-    </div>
+    
     <div class="container">
+        <a class="btn btn-primary mb-3" asp-controller="Properties" asp-action="PropertiesAddEdit">
+            <i class="bi bi-plus-lg"></i>&nbsp;Add Property
+        </a>
+        <div class="mb-3">
+            <input type="text" class="form-control" id="userSearch" placeholder="Search Properties">
+        </div>
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Properties</h4>
@@ -55,7 +56,7 @@
                                     <td>@property.MaxGuests</td>
                                     <td>@property.Bedrooms</td>
                                     <td>@property.UserName</td>
-                                    <td>
+                                    <td class="action-buttons">
                                         <span>
                                             <a asp-controller="Properties" asp-action="PropertiesAddEdit" asp-route-PropertyID="@property.PropertyID" data-toggle="tooltip" data-placement="top" title="Edit">
                                                 <button class="btn">

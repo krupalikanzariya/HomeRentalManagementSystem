@@ -39,6 +39,76 @@
     <link href="~/Admin/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
     <link href="~/Admin/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
+    <!-- Add this inside the <head> or just before </body> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <style>
+        /* SweetAlert popup box */
+        .swal-popup {
+            font-family: "Arial", sans-serif;
+            font-size: 1rem;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        /* Title */
+        .swal-title {
+            font-size: 22px !important;
+            font-weight: bold !important;
+            color: #333 !important;
+        }
+
+        /* Text */
+        .swal-text {
+            font-size: 16px !important;
+            color: #555 !important;
+        }
+
+        /* Confirm (Delete) Button */
+        .swal-confirm-btn {
+            background-color: #e74c3c !important;
+            color: white !important;
+            padding: 12px 25px !important;
+            font-size: 16px !important;
+            font-weight: bold !important;
+            border-radius: 8px !important;
+            border: none !important;
+            margin-right: 10px !important;
+        }
+
+        /* Cancel Button */
+        .swal-cancel-btn {
+            background-color: #3498db !important;
+            color: white !important;
+            padding: 12px 25px !important;
+            font-size: 16px !important;
+            font-weight: bold !important;
+            border-radius: 8px !important;
+            border: none !important;
+        }
+
+        /* Success Button (After Delete) */
+        .swal-success-btn {
+            background-color: #2ecc71 !important;
+            color: white !important;
+            padding: 12px 25px !important;
+            font-size: 16px !important;
+            font-weight: bold !important;
+            border-radius: 8px !important;
+            border: none !important;
+        }
+
+        /* Better spacing between buttons */
+        .swal2-actions {
+            display: flex !important;
+            justify-content: center !important;
+            gap: 15px !important;
+        }
+    </style>
+
 </head>
 <body>
     <!--*******************
@@ -112,50 +182,58 @@
                         </li>
                     </ul>
 
-                </div> 
+                </div>
+            </div>
         </div>
-    </div>
     </div>
     <!--**********************************
         Header end ti-comment-alt
     ***********************************-->
-    <!--**********************************
-        Sidebar start
-    ***********************************-->
-    <div class="nk-sidebar">
-        <div class="nk-nav-scroll">
-            <ul class="metismenu" id="menu">
-                <li class="nav-label">Dashboard</li>
+    <div class="layout-container">
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="nk-sidebar">
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label"><a asp-controller="Dashboard" asp-action="Index">Dashboard</a></li>
 
-                <li class="nav-label">Table</li>
-                <li>
-                    <a aria-expanded="false">
-                        <i class="icon-menu menu-icon"></i><span class="nav-text">Table</span>
+                    <li class="nav-label">Table</li>
+                    <li class="nav-label"><a asp-controller="Users" asp-action="UsersList">Users</a></li>
+                    <li class="nav-label"><a asp-controller="Properties" asp-action="AdminPropertiesList">Properties</a></li>
+                    <li class="nav-label"><a asp-controller="Bookings" asp-action="BookingsList">Bookings</a></li>
+                    <li class="nav-label"><a asp-controller="Reviews" asp-action="ReviewsList">Reviews</a></li>
+                    <li class="nav-label"><a asp-controller="Amenities" asp-action="AmenitiesList">Amenities</a></li>
+                    <li class="nav-label"><a asp-controller="PropertyAmenities" asp-action="PropertyAmenitiesList">Property-Amenities</a></li>
+                    <li class="nav-label"><a asp-controller="Images" asp-action="ImagesList">Images</a></li>
+                    @*  <li>
+                    <a aria-expanded="true">
+                    <i class="icon-menu menu-icon"></i><span class="nav-text">Table</span>
                     </a>
                     <ul>
-                        <li><a asp-controller="Users" asp-action="UsersList" aria-expanded="false">Users</a></li>
-                        <li><a asp-controller="Properties" asp-action="AdminPropertiesList" aria-expanded="false">Properties</a></li>
-                        <li><a asp-controller="Bookings" asp-action="BookingsList" aria-expanded="false">Bookings</a></li>
-                        <li><a asp-controller="Reviews" asp-action="ReviewsList" aria-expanded="false">Reviews</a></li>
-                        <li><a asp-controller="Amenities" asp-action="AmenitiesList" aria-expanded="false">Amenities</a></li>
-                        <li><a asp-controller="PropertyAmenities" asp-action="PropertyAmenitiesList" aria-expanded="false">Property-Amenities</a></li>
-                        <li><a asp-controller="Images" asp-action="ImagesList" aria-expanded="false">Images</a></li>
+                    <li><a asp-controller="Users" asp-action="UsersList" aria-expanded="true">Users</a></li>
+                    <li><a asp-controller="Properties" asp-action="AdminPropertiesList" aria-expanded="false">Properties</a></li>
+                    <li><a asp-controller="Bookings" asp-action="BookingsList" aria-expanded="false">Bookings</a></li>
+                    <li><a asp-controller="Reviews" asp-action="ReviewsList" aria-expanded="false">Reviews</a></li>
+                    <li><a asp-controller="Amenities" asp-action="AmenitiesList" aria-expanded="false">Amenities</a></li>
+                    <li><a asp-controller="PropertyAmenities" asp-action="PropertyAmenitiesList" aria-expanded="false">Property-Amenities</a></li>
+                    <li><a asp-controller="Images" asp-action="ImagesList" aria-expanded="false">Images</a></li>
 
                     </ul>
-                </li>
-
-            </ul>
+                    </li>
+                    *@
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+        <div class="main-content">
+            <main role="main" class="pb-3 ps-5 ms-5">
+                @RenderBody()
+            </main>
         </div>
     </div>
-    <!--**********************************
-        Sidebar end
-    ***********************************-->
-    <div class="">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
     <!--**********************************
             Footer start
         ***********************************-->
@@ -174,6 +252,9 @@
     <!--**********************************
         Scripts
     ***********************************-->
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script src="~/Admin/plugins/common/common.min.js"></script>
     <script src="~/Admin/js/custom.min.js"></script>
     <script src="~/Admin/js/settings.js"></script>

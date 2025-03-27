@@ -14,13 +14,13 @@
         </div>
     </div>
 
-    <a class="btn btn-primary" asp-controller="Amenities" asp-action="AmenitiesAddEdit">
-        <i class="bi bi-plus-lg"></i>&nbsp;Add Amenity
-    </a>
-    <div class="mb-3">
-        <input type="text" class="form-control" id="userSearch" placeholder="Search Properties">
-    </div>
     <div class="container">
+        <a class="btn btn-primary mb-3" asp-controller="Amenities" asp-action="AmenitiesAddEdit">
+            <i class="bi bi-plus-lg"></i>&nbsp;Add Amenity
+        </a>
+        <div class="mb-3">
+            <input type="text" class="form-control" id="userSearch" placeholder="Search Amenity">
+        </div>
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Reviews</h4>
@@ -40,21 +40,18 @@
                                 <tr>
                                     <td>@amenity.AmenityID</td>
                                     <td>@amenity.Name</td>
-                                    <td>
-                                        <span>
-                                            <a asp-controller="Amenities" asp-action="AmenitiesAddEdit" asp-route-AmenityID="@amenity.AmenityID" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                <button class="btn">
-                                                    <i class="fa fa-pencil color-muted m-r-5"></i>
-                                                </button>
-                                            </a>
-                                            <form method="post" asp-controller="Amenities" asp-action="AmenitiesDelete" onsubmit="return confirm('Are you sure you want to delete this amenity?');" style="display:inline;">
-                                                <input type="hidden" name="AmenityID" value="@amenity.AmenityID" />
-                                                <button type="submit" class="btn" data-toggle="tooltip" data-placement="top" title="Close">
-                                                    <i class="fa fa-close color-danger m-r-5"></i>
-                                                </button>
-                                            </form>
-                                        </span>
+                                    <td class="action-buttons">
+                                        <a asp-controller="Amenities" asp-action="AmenitiesAddEdit" asp-route-AmenityID="@amenity.AmenityID" data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <button class="btn">
+                                                <i class="fa fa-pencil color-muted m-r-5"></i>
+                                            </button>
+                                        </a>
+
+                                        <button class="btn delete-btn" data-id="@amenity.AmenityID">
+                                            <i class="fa fa-close color-danger m-r-5"></i>
+                                        </button>
                                     </td>
+
                                 </tr>
                             }
                         </tbody>
@@ -63,4 +60,61 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.body.addEventListener("click", function (event) {
+            if (event.target.closest(".delete-btn")) {
+                event.preventDefault();
+
+                let button = event.target.closest(".delete-btn");
+                let amenityID = button.getAttribute("data-id");
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "After deletion, Amenity won't be recovered.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#e74c3c", // Better red shade
+                    cancelButtonColor: "#3498db", // Better blue shade
+                    confirmButtonText: "Yes, Delete!",
+                    cancelButtonText: "Cancel",
+                    buttonsStyling: true, // Prevent default styling
+                    customClass: {
+                        popup: "swal-popup",
+                        title: "swal-title",
+                        htmlContainer: "swal-text",
+                        confirmButton: "swal-confirm-btn",
+                        cancelButton: "swal-cancel-btn"
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch(`/Amenities/AmenitiesDelete?AmenityID=${amenityID}`, {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" }
+                        })
+                            .then(response => {
+                                if (response.ok) {
+                                    Swal.fire({
+                                        title: "Deleted!",
+                                        text: "The amenity has been successfully removed.",
+                                        icon: "success",
+                                        confirmButtonColor: "#2ecc71",
+                                        customClass: {
+                                            confirmButton: "swal-success-btn"
+                                        }
+                                    }).then(() => { location.reload(); });
+                                } else {
+                                    Swal.fire("Error!", "Failed to delete. Try again.", "error");
+                                }
+                            })
+                            .catch(error => {
+                                Swal.fire("Error!", "Something went wrong.", "error");
+                            });
+                    }
+                });
+            }
+        });
+    });
+
+</script>

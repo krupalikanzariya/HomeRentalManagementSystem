@@ -13,6 +13,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddControllers()
     .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>());
 
+builder.Services.AddHttpClient("MyHttpClient", client =>
+{
+    client.Timeout = TimeSpan.FromMinutes(5); // Increase timeout to 5 minutes
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

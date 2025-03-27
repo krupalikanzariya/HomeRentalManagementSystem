@@ -4,7 +4,7 @@
     <div class="col-xl-4 col-lg-5" align="center">
         <div class="booking-form">
             <h2 style="color: #dfa974;">Book Your Stay</h2>
-            <form asp-action="UserBookings" method="post">
+            <form asp-action="UserBookings" method="post" id="user-booking">
                 <input type="hidden" asp-for="BookingID" />
                 <input type="hidden" asp-for="UserID" />
                 <input type="hidden" asp-for="PropertyID" />
@@ -49,8 +49,8 @@
                     <span class="text-danger" asp-validation-for="TotalPrice"></span>
                 </div>
 
-                <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary w-100 mt-3">Book Property</button>
+                <!-- Submit Button class="w-100 mt-3"-->
+                <button type="submit" id="user-booking">Book Property</button>
             </form>
         </div>
     </div>
@@ -71,6 +71,26 @@
         }
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const successMessage = '@TempData["BookingSuccess"]';
+        if (successMessage) {
+            Swal.fire({
+                title: "Success!",
+                text: successMessage,
+                icon: "success",
+                confirmButtonColor: "#dfa974",
+                confirmButtonText: "OK"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '@Url.Action("PropertiesList", "Properties")';
+                }
+            });
+        }
+    });
+</script>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

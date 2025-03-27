@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HomeRentalAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+786d53cec29d12ffe9554b54c2bf3541692f674d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4bf578ad2809f209d01b406988a1be07fd7a6d3b")]
 [assembly: System.Reflection.AssemblyProductAttribute("HomeRentalAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HomeRentalAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -3,7 +3,7 @@
 }
  @model IEnumerable<HomeRentalFrontEnd.Models.ImagesModel>
 
- <div class="content-body">
+<div class="content-body">
 
     <div class="row page-titles mx-0">
         <div class="col p-md-0">
@@ -14,13 +14,14 @@
         </div>
     </div>
 
-    <a class="btn btn-primary" asp-controller="Images" asp-action="ImagesAddEdit">
-        <i class="bi bi-plus-lg"></i>&nbsp;Add Image
-    </a>
-    <div class="mb-3">
-        <input type="text" class="form-control" id="userSearch" placeholder="Search Users">
-    </div>
+
     <div class="container">
+        <a class="btn btn-primary mb-3" asp-controller="Images" asp-action="ImagesAddEdit">
+            <i class="bi bi-plus-lg"></i>&nbsp;Add Image
+        </a>
+        <div class="mb-3">
+            <input type="text" class="form-control" id="userSearch" placeholder="Search Image">
+        </div>
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Images</h4>
@@ -38,12 +39,16 @@
                             {
                                 <tr>
                                     @* <td>
-                                        <div class="media pt-5">
-                                            <img class="mr-3 rounded-circle" src=@Url.Content(image.ProfilePictureURL) style="height:50px;width:50px">
-                                        </div>
-                                    </td> *@
+                                <div class="media pt-5">
+                                <img class="mr-3 rounded-circle" src=@Url.Content(image.ProfilePictureURL) style="height:50px;width:50px">
+                                </div>
+                                </td> *@
                                     <td>@image.Title</td>
-                                    <td>@image.ImageURL</td>
+                                    <td class="url-column">
+                                        <div class="text-truncate" style="max-width: 200px; word-wrap: break-word; overflow-wrap: break-word; white-space: normal;">
+                                            @image.ImageURL
+                                        </div>
+                                    </td>
                                     <td>
                                         <span>
                                             <a asp-controller="Images" asp-action="ImagesAddEdit" asp-route-ImageID="@image.ImageID" data-toggle="tooltip" data-placement="top" title="Edit">
@@ -57,7 +62,7 @@
                                                     <i class="fa fa-close color-danger m-r-5"></i>
                                                 </button>
                                             </form>
-                                            
+
                                         </span>
                                     </td>
                                 </tr>
@@ -68,5 +73,5 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
 

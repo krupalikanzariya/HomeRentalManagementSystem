@@ -150,15 +150,15 @@ ul, ol {
 	font-weight: 700;
 	position: relative;
 }
-.primary-btn:after {
-	position: absolute;
-	left: 0;
-	bottom: -5px;
-	width: 100%;
-	height: 2px;
-	background: #dfa974;
-	content: "";
-}
+	.primary-btn:after {
+		position: absolute;
+		left: 0;
+		bottom: -5px;
+		width: 100%;
+		height: 2px;
+		background: #dfa974;
+		content: "";
+	}
 /* Preloder */
 
 #preloder {

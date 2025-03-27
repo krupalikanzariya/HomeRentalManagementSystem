@@ -111,10 +111,19 @@ namespace HomeRentalFrontEnd.Controllers
             var request = new HttpRequestMessage(HttpMethod.Delete, $"{_httpClient.BaseAddress}/Properties/{PropertyID}");
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            await _httpClient.SendAsync(request);
+            var response = await _httpClient.SendAsync(request);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                // Log the error
+                var errorMessage = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Delete failed: {response.StatusCode} - {errorMessage}");
+            }
+
             return RedirectToAction("AdminPropertiesList");
         }
-        
+
+
         public async Task<IActionResult> PropertiesList()
         {
             var token = HttpContext.Session.GetString("Token");
