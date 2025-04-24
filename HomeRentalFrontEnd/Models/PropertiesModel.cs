@@ -19,7 +19,8 @@ namespace HomeRentalFrontEnd.Models
         public decimal PricePerNight { get; set; }
         public int MaxGuests { get; set; }
         public int Bedrooms { get; set; }
-        public List<ImagesModel>? Images { get; set; }
+        public List<ImagesModel> Images { get; set; } = new List<ImagesModel>();
+        public string? PropertyImage { get; set; }
 
     }
     public class PropertiesDropDownModel

@@ -267,6 +267,7 @@ BEGIN
     SET @NewPropertyID = SCOPE_IDENTITY();
 END;
 
+
 --Get all
 ALTER PROCEDURE PR_Properties_GetAll
 AS

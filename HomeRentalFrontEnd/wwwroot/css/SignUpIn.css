@@ -3,6 +3,7 @@
     color: #ffffff;
     transition: all 0.3s ease;
 }
+
 #user-booking button {
     display: block;
     font-size: 14px;
@@ -24,6 +25,7 @@
     overflow-wrap: break-word; /* Ensures wrapping */
     white-space: normal; /* Allows multiple lines */
 }
+
 .action-buttons {
     display: flex;
     gap: 5px; /* Adds small space between buttons */
@@ -54,16 +56,15 @@
     gap: 10px !important;
 }
 
-    .action-buttons a,
-    .action-buttons button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 35px; /* Adjust as needed */
-        height: 35px; /* Adjust as needed */
-        padding: 5px;
-    }
-
+.action-buttons a,
+.action-buttons button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px; /* Adjust as needed */
+    height: 35px; /* Adjust as needed */
+    padding: 5px;
+}
 
 body-signup-in {
     font-family: "Cabin", sans-serif;
@@ -111,7 +112,7 @@ p {
         .form-container form .form-group {
             width: 100%; /* Ensures fields span their column */
         }
-        /*Login*/
+/*Login*/
 #form-container-login {
     background: #ffffff;
     padding: 44px 40px 50px 40px;
@@ -121,21 +122,92 @@ p {
     width: 100%;
     margin: 20px;
 }
+
     #form-container-login h3 {
         color: #19191a;
         margin-bottom: 36px;
         /*text-align: center;*/
     }
+
     #form-container-login #form-login #form-group-login #radio-group-login {
         margin-bottom: 15px;
     }
+
         #form-container-login #form-login #form-group-login #radio-group-login label {
             font-size: 14px;
             color: #707079;
             display: block;
             margin-bottom: 10px;
         }
-#form-container-login #form-login #form-group-login input  {
+
+    #form-container-login #form-login #form-group-login input {
+        width: 100%;
+        height: 50px;
+        border: 1px solid #ebebeb;
+        border-radius: 2px;
+        font-size: 16px;
+        color: #19191a;
+        font-weight: 500;
+        padding-left: 20px;
+    }
+
+    #form-container-login #form-login button {
+        display: block;
+        font-size: 14px;
+        text-transform: uppercase;
+        border: 1px solid #dfa974;
+        border-radius: 2px;
+        color: #dfa974;
+        font-weight: 500;
+        background: transparent;
+        width: 100%;
+        height: 46px;
+        margin-top: 30px;
+        cursor: pointer;
+    }
+
+#radio-group-login {
+    font-size: 14px;
+    background: transparent;
+    margin-top: 15px;
+    color: #19191a;
+    padding-left: 20px;
+}
+
+#radio-label {
+    padding-left: 20px;
+}
+
+#form-container-login #form-login button:hover {
+    background: #dfa974;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+#form-container-login .switch-link {
+    /*text-align: center;*/
+    margin-top: 20px;
+}
+
+    #form-container-login .switch-link a {
+        font-size: 14px;
+        color: #dfa974;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+        #form-container-login .switch-link a:hover {
+            text-decoration: underline;
+        }
+
+.form-container form .form-group label {
+    font-size: 14px;
+    color: #707079;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.form-container form .form-group input {
     width: 100%;
     height: 50px;
     border: 1px solid #ebebeb;
@@ -145,7 +217,9 @@ p {
     font-weight: 500;
     padding-left: 20px;
 }
-#form-container-login #form-login button  {
+
+.form-container form button {
+    grid-column: span 2; /* Make the button span across both columns */
     display: block;
     font-size: 14px;
     text-transform: uppercase;
@@ -159,93 +233,29 @@ p {
     margin-top: 30px;
     cursor: pointer;
 }
-#radio-group-login {
-    font-size: 14px;
-    background: transparent;
-    margin-top: 15px;
-    color: #19191a;
-    padding-left: 20px;
-}
-#radio-label{
-    padding-left: 20px;
-}
-    #form-container-login #form-login button:hover {
+
+    .form-container form button:hover {
         background: #dfa974;
         color: #ffffff;
         transition: all 0.3s ease;
     }
-    #form-container-login .switch-link {
-        /*text-align: center;*/
-        margin-top: 20px;
+
+/* Switch link styles */
+.form-container .switch-link {
+    /*text-align: center;*/
+    margin-top: 20px;
+}
+
+    .form-container .switch-link a {
+        font-size: 14px;
+        color: #dfa974;
+        text-decoration: none;
+        font-weight: 500;
     }
 
-        #form-container-login .switch-link a {
-            font-size: 14px;
-            color: #dfa974;
-            text-decoration: none;
-            font-weight: 500;
+        .form-container .switch-link a:hover {
+            text-decoration: underline;
         }
-
-            #form-container-login .switch-link a:hover {
-                text-decoration: underline;
-            }
-
-            .form-container form .form-group label {
-                font-size: 14px;
-                color: #707079;
-                display: block;
-                margin-bottom: 10px;
-            }
-
-            .form-container form .form-group input {
-                width: 100%;
-                height: 50px;
-                border: 1px solid #ebebeb;
-                border-radius: 2px;
-                font-size: 16px;
-                color: #19191a;
-                font-weight: 500;
-                padding-left: 20px;
-            }
-
-        .form-container form button {
-            grid-column: span 2; /* Make the button span across both columns */
-            display: block;
-            font-size: 14px;
-            text-transform: uppercase;
-            border: 1px solid #dfa974;
-            border-radius: 2px;
-            color: #dfa974;
-            font-weight: 500;
-            background: transparent;
-            width: 100%;
-            height: 46px;
-            margin-top: 30px;
-            cursor: pointer;
-        }
-
-            .form-container form button:hover {
-                background: #dfa974;
-                color: #ffffff;
-                transition: all 0.3s ease;
-            }
-
-    /* Switch link styles */
-    .form-container .switch-link {
-        /*text-align: center;*/
-        margin-top: 20px;
-    }
-
-        .form-container .switch-link a {
-            font-size: 14px;
-            color: #dfa974;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-            .form-container .switch-link a:hover {
-                text-decoration: underline;
-            }
 /*Ratings*/
 .rating-stars {
     display: flex;

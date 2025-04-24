@@ -1,0 +1,197 @@
+﻿@model HomeRentalFrontEnd.Models.PropertiesModel
+@section Styles {
+    <style>
+        .input-group {
+            display: flex;
+            align-items: center;
+            max-width: 500px;
+        }
+
+        .image-url-input {
+            flex-grow: 1;
+            height: 38px;
+            font-size: 16px;
+            padding: 8px;
+        }
+
+        .input-group-append {
+            display: flex;
+            align-items: center;
+            margin-left: 5px !important; /* Ensure spacing between input and button */
+        }
+
+        .add-image {
+            height: 38px !important;
+            width: 38px !important;
+            padding: 0;
+            border-color: #dfa974;
+            color: #dfa974;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin: 0 !important; /* Remove any unwanted margins */
+            box-sizing: border-box;
+        }
+    </style>
+}
+
+<div class="row">
+    <!-- Form Section -->
+    <div class="col-xl-6 col-lg-7" align="center">
+        <div class="booking-form">
+            <h2 style="color: #dfa974;">Host Your Property</h2>
+            <form asp-action="HostProperty" method="post">
+                <input type="hidden" asp-for="PropertyID" />
+
+                <!-- Property Title -->
+                <div class="select-option">
+                    <label for="Title">Property Title<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" asp-for="Title" required>
+                    <span class="text-danger" asp-validation-for="Title"></span>
+                </div>
+
+                <!-- Description -->
+                <div class="select-option">
+                    <label for="Description">Description<span class="text-danger">*</span></label>
+                    <textarea asp-for="Description" class="form-control" rows="3" required></textarea>
+                    <span class="text-danger" asp-validation-for="Description"></span>
+                </div>
+
+                <!-- Address -->
+                <div class="select-option">
+                    <label for="Address">Address<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" asp-for="Address" required>
+                    <span class="text-danger" asp-validation-for="Address"></span>
+                </div>
+
+                <!-- City -->
+                <div class="select-option">
+                    <label for="City">City<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" asp-for="City" required>
+                    <span class="text-danger" asp-validation-for="City"></span>
+                </div>
+
+                <!-- State -->
+                <div class="select-option">
+                    <label for="State">State<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" asp-for="State" required>
+                    <span class="text-danger" asp-validation-for="State"></span>
+                </div>
+
+                <!-- Country -->
+                <div class="select-option">
+                    <label for="Country">Country<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" asp-for="Country" required>
+                    <span class="text-danger" asp-validation-for="Country"></span>
+                </div>
+
+                <!-- Price Per Night -->
+                <div class="select-option">
+                    <label for="PricePerNight">Price Per Night<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" asp-for="PricePerNight" required>
+                    <span class="text-danger" asp-validation-for="PricePerNight"></span>
+                </div>
+
+                <!-- Max Guests -->
+                <div class="select-option">
+                    <label for="MaxGuests">Max Guests<span class="text-danger">*</span></label>
+                    <select asp-for="MaxGuests" class="form-control">
+                        <option value="1">1 Guest</option>
+                        <option value="2">2 Guests</option>
+                        <option value="3">3 Guests</option>
+                        <option value="4">4 Guests</option>
+                        <option value="5">5 Guests</option>
+                        <option value="6">6 Guest</option>
+                        <option value="7">7 Guests</option>
+                        <option value="8">8 Guests</option>
+                        <option value="9">9 Guests</option>
+                        <option value="10">10 Guests</option>
+                    </select>
+                    <span class="text-danger" asp-validation-for="MaxGuests"></span>
+                </div>
+
+                <!-- Bedrooms -->
+                <div class="select-option">
+                    <label for="Bedrooms">Bedrooms<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" asp-for="Bedrooms" required>
+                    <span class="text-danger" asp-validation-for="Bedrooms"></span>
+                </div>
+                <!-- Image URL Input Group -->
+                <div class="select-option">
+                    <label for="PropertyImage">
+                        Image URLs <span class="text-danger">*</span>
+                    </label>
+                    <div id="imageInputs">
+                        <div class="input-group mb-2" style="max-width: 500px;">
+                            <input type="text"
+                                   class="form-control image-url-input"
+                                   name="ImageURLs"
+                                   placeholder="Enter Image URL.."
+                                   required
+                                   style="height: 38px; font-size: 16px; box-sizing: border-box;">
+                            <div class="input-group-append">
+                                <button type="button"
+                                        class="btn btn-outline-warning add-image"
+                                        style="height: 38px; width: 38px; padding: 0;
+                               display: flex; align-items: center; justify-content: center;
+                               border-color: #dfa974; color: #dfa974;">
+                                    <span style="font-size: 1.2rem;">+</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Submit Button -->
+                <button type="submit" id="user-booking">Save Property</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Property Image -->
+    <div class="col">
+        @if (!string.IsNullOrEmpty(Model.PropertyImage))
+        {
+            <div class="property-image">
+                <img src="@Model.PropertyImage" alt="Property Image" class="img-fluid" style="max-width: 100%; height: 750px;">
+            </div>
+        }
+        else
+        {
+            <div class="property-image">
+                <img src="https://via.placeholder.com/800x400" alt="No Image Available" class="img-fluid">
+            </div>
+        }
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const imageInputsContainer = document.getElementById("imageInputs");
+
+        function addImageInput() {
+            const inputGroup = document.createElement("div");
+            inputGroup.className = "input-group mb-2";
+            inputGroup.innerHTML = `
+                    <input type="text" class="form-control image-url-input" name="ImageURLs" placeholder="Enter Image URL.." required
+                        style="font-size: 16px; height: 38px;">
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-danger remove-image"
+                            style="height: 38px; width: 38px; padding: 0;
+                                   display: flex; align-items: center; justify-content: center;">
+                            <span style="font-size: 1.2rem;">-</span>
+                        </button>
+                    </div>
+                `;
+            imageInputsContainer.appendChild(inputGroup);
+        }
+
+        imageInputsContainer.addEventListener("click", function (event) {
+            if (event.target.closest(".add-image")) {
+                addImageInput();
+            }
+            if (event.target.closest(".remove-image")) {
+                event.target.closest(".input-group").remove();
+            }
+        });
+    });
+</script>

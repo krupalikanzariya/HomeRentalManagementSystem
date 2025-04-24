@@ -1,10 +1,9 @@
-﻿ @model HomeRentalFrontEnd.Models.PropertiesModel;
+﻿@model HomeRentalFrontEnd.Models.PropertiesModel
 
 @{
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
 }
 <div class="content-body">
-
     <div class="row page-titles mx-0">
         <div class="col p-md-0">
             <ol class="breadcrumb">
@@ -22,19 +21,9 @@
                         <div class="form-validation">
                             <form class="form-valide" asp-action="Save">
                                 <input type="hidden" asp-for="PropertyID" />
-
-                                <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" asp-for="HostID">
-                                        Host Name<span class="text-danger">*</span>
-                                    </label>
-                                    <div class="col-lg-6">
-                                        <select class="form-control" id="sel1" asp-for="HostID" asp-items="@(new SelectList(ViewBag.UserList, "UserID", "UserName"))">
-                                            <option value="">Select Host</option>
-                                        </select>
-                                        <span class="text-danger" asp-validation-for="HostID"></span>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
+                                <input type="hidden" asp-for="HostID" value="@Model.HostID" />
+          
+                                          <div class="form-group row">
                                     <label class="col-lg-4 col-form-label" asp-for="Title">
                                         Title <span class="text-danger">*</span>
                                     </label>
@@ -43,6 +32,7 @@
                                         <span class="text-danger" asp-validation-for="Title"></span>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label class="col-lg-4 col-form-label" asp-for="Description">
                                         Description <span class="text-danger">*</span>
@@ -52,15 +42,17 @@
                                         <span class="text-danger" asp-validation-for="Description"></span>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label class="col-lg-4 col-form-label" asp-for="Address">
-                                        Address<span class="text-danger">*</span>
+                                        Address <span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control" asp-for="Address" placeholder="Enter Address..">
                                         <span class="text-danger" asp-validation-for="Address"></span>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label class="col-lg-4 col-form-label" asp-for="City">
                                         City <span class="text-danger">*</span>
@@ -70,6 +62,7 @@
                                         <span class="text-danger" asp-validation-for="City"></span>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label class="col-lg-4 col-form-label" asp-for="State">
                                         State <span class="text-danger">*</span>
@@ -79,6 +72,7 @@
                                         <span class="text-danger" asp-validation-for="State"></span>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label class="col-lg-4 col-form-label" asp-for="Country">
                                         Country <span class="text-danger">*</span>
@@ -88,24 +82,27 @@
                                         <span class="text-danger" asp-validation-for="Country"></span>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label class="col-lg-4 col-form-label" asp-for="PricePerNight">
-                                        PricePerNight <span class="text-danger">*</span>
+                                        Price Per Night <span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control" asp-for="PricePerNight" placeholder="Enter Price Per Night..">
                                         <span class="text-danger" asp-validation-for="PricePerNight"></span>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label class="col-lg-4 col-form-label" asp-for="MaxGuests">
-                                        MaxGuests <span class="text-danger">*</span>
+                                        Max Guests <span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-6">
                                         <input type="text" class="form-control" asp-for="MaxGuests" placeholder="Enter Maximum Guests..">
                                         <span class="text-danger" asp-validation-for="MaxGuests"></span>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label class="col-lg-4 col-form-label" asp-for="Bedrooms">
                                         Bedrooms <span class="text-danger">*</span>
@@ -115,13 +112,49 @@
                                         <span class="text-danger" asp-validation-for="Bedrooms"></span>
                                     </div>
                                 </div>
+
+                                <!-- New Image URL Input -->
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label">
+                                        Image URLs <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <div id="imageInputs">
+                                            @if (Model.Images != null && Model.Images.Count > 0)
+                                            {
+                                                @foreach (var image in Model.Images)
+                                                {
+                                                    <div class="input-group mb-2">
+                                                        <input type="text" class="form-control image-url-input" name="ImageURLs" value="@image.ImageURL" placeholder="Enter Image URL..">
+                                                        <div class="input-group-append">
+                                                            <button type="button" class="btn btn-danger remove-image">-</button>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <div class="input-group mb-2">
+                                                    <input type="text" class="form-control image-url-input" name="ImageURLs" placeholder="Enter Image URL..">
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="btn btn-success add-image">+</button>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+
+                                    </div>
+                                </div>
                                 <div class="form-group row">
                                     <div class="col-lg-8 ml-auto">
                                         <button type="submit" class="btn btn-primary">Submit</button>
-                                        <a asp-controller="Users" asp-action="UsersList" class="btn btn-secondary">Cancel</a>
+                                        <a asp-controller="Properties" asp-action="AdminPropertiesList" class="btn btn-secondary">Cancel</a>
                                     </div>
                                 </div>
                             </form>
+
+                            <!-- Preview Image -->
+                            <div id="imagePreview" class="mt-3"></div>
                         </div>
                     </div>
                 </div>
@@ -129,3 +162,54 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const imageInputsDiv = document.getElementById("imageInputs");
+            const previewDiv = document.getElementById("imagePreview");
+
+            function updateImagePreview() {
+                previewDiv.innerHTML = "";
+                document.querySelectorAll(".image-url-input").forEach(input => {
+                    const url = input.value.trim();
+                    if (url) {
+                        const img = document.createElement("img");
+                        img.src = url;
+                        img.alt = "Property Image";
+                        img.className = "img-thumbnail m-1";
+                        img.width = 150;
+                        previewDiv.appendChild(img);
+                    }
+                });
+            }
+
+            // Load existing images on page load
+            updateImagePreview();
+
+            document.addEventListener("input", function (event) {
+                if (event.target.classList.contains("image-url-input")) {
+                    updateImagePreview();
+                }
+            });
+
+            document.addEventListener("click", function (event) {
+                if (event.target.classList.contains("add-image")) {
+                    const newInputDiv = document.createElement("div");
+                    newInputDiv.className = "input-group mb-2";
+                    newInputDiv.innerHTML = `
+                                <input type="text" class="form-control image-url-input" name="ImageURLs" placeholder="Enter another Image URL..">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-danger remove-image">-</button>
+                                </div>`;
+                    imageInputsDiv.appendChild(newInputDiv);
+                }
+
+                if (event.target.classList.contains("remove-image")) {
+                    event.target.closest(".input-group").remove();
+                    updateImagePreview();
+                }
+            });
+        });
+    </script>
+}

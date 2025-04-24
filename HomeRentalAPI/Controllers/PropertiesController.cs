@@ -3,6 +3,7 @@ using HomeRentalAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace HomeRentalAPI.Controllers
 {
@@ -50,34 +51,75 @@ namespace HomeRentalAPI.Controllers
         public IActionResult InsertProperty([FromBody] PropertiesModel property)
         {
             if (property == null)
-                return BadRequest();
+                return BadRequest(new { Message = "Invalid property data." });
+
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized(new { Message = "User authentication failed." });
+            }
+
+            property.HostID = int.Parse(userIdClaim.Value);
+            if (property.Images == null)
+            {
+                property.Images = new List<ImagesModel>();
+            }
 
             bool isInserted = _PropertiesRepository.Insert(property);
             if (isInserted)
-                return Ok(new { Message = "Properties inserted successfully!" });
+            {
+                return Ok(new { Message = "Property listed successfully!", Property = property });
+            }
 
-            return StatusCode(500, "An error occurred while inserting the property.");
+            return StatusCode(500, new { Message = "An error occurred while inserting the property." });
         }
+
         [Authorize]
         [HttpPut("{id}")]
         public IActionResult UpdateProperty(int id, [FromBody] PropertiesModel property)
         {
             if (property == null || id != property.PropertyID)
             {
-                return BadRequest();
+                return BadRequest(new { Message = "Invalid property data." });
+            }
+
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+            {
+                return Unauthorized(new { Message = "User authentication failed." });
+            }
+
+            int userId = int.Parse(userIdClaim.Value);
+            if (userId != property.HostID)
+            {
+                return Unauthorized(new { Message = "You are not authorized to update this property." });
+            }
+
+            if (property.Images == null)
+            {
+                property.Images = new List<ImagesModel>();
             }
 
             bool isUpdated = _PropertiesRepository.Update(property);
             if (isUpdated)
-                return Ok(new { Message = "Property updated successfully!" });
-
-            if (!isUpdated)
             {
-                return NotFound();
+                return Ok(new { Message = "Property updated successfully!" });
             }
 
-            return NoContent();
+            return StatusCode(500, new { Message = "An error occurred while updating the property." });
         }
+
+        //[Authorize]
+        //[HttpGet("ByHost/{hostID}")]
+        //public IActionResult GetPropertiesByHost(int hostID)
+        //{
+        //    var properties = _PropertiesRepository.GetPropertiesByHost(hostID);
+        //    if (properties == null || !properties.Any())
+        //    {
+        //        return NotFound(new { Message = "No properties found for the given host." });
+        //    }
+        //    return Ok(properties);
+        //}
         [Authorize]
         [HttpGet("ByHost/{hostID}")]
         public IActionResult GetPropertiesByHost(int hostID)

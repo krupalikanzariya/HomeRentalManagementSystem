@@ -157,6 +157,7 @@ namespace HomeRentalFrontEnd.Controllers
                         int userID = (int)responseObject.user.userID;
                         string userName = (string)responseObject.user.userName;
                         string profilePictureURL = (string)responseObject.user.profilePictureURL;
+                        int hostID = (int)responseObject.user.hostID;
 
                         var token = (string)responseObject.token; // Extract JWT token
 
@@ -166,6 +167,7 @@ namespace HomeRentalFrontEnd.Controllers
                         HttpContext.Session.SetString("UserID", userID.ToString());
                         HttpContext.Session.SetString("UserName", userName);
                         HttpContext.Session.SetString("ProfilePictureURL", profilePictureURL);
+                        HttpContext.Session.SetString("HostID", hostID.ToString());
 
                         // Redirect based on role
                         if (user.roleID == 1)
