@@ -20,6 +20,7 @@ namespace HomeRentalFrontEnd.Models
         public int MaxGuests { get; set; }
         public int Bedrooms { get; set; }
         public List<ImagesModel> Images { get; set; } = new List<ImagesModel>();
+        public string? PropertyImage { get; set; }
 
     }
     public class PropertiesDropDownModel

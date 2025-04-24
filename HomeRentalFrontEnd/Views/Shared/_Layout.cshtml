@@ -25,7 +25,7 @@
 
     <!--Admin Styles -->
     @* <link href="~/Admin/css/style.css" rel="stylesheet"> *@
-    
+    @RenderSection("Styles", required: false);
 </head>
 <body>
     <!-- Page Preloder -->
@@ -106,7 +106,7 @@
                                 <ul>
                                     <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
                                     <li><a asp-controller="Properties" asp-action="PropertiesList">Properties</a></li>
-                                    @* <li><a asp-controller="Home" asp-action="AboutUs">About Us</a></li> *@
+                                    <li><a asp-controller="Properties" asp-action="HostProperty">Host A Property</a></li>
                                     @* <li>
                                         <a href="#">Pages</a>
                                         <ul class="dropdown">

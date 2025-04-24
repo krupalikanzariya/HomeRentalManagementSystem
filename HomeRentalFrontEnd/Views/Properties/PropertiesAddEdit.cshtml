@@ -120,13 +120,29 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <div id="imageInputs">
-                                            <div class="input-group mb-2">
-                                                <input type="text" class="form-control image-url-input" name="ImageURLs" placeholder="Enter Image URL..">
-                                                <div class="input-group-append">
-                                                    <button type="button" class="btn btn-success add-image">+</button>
+                                            @if (Model.Images != null && Model.Images.Count > 0)
+                                            {
+                                                @foreach (var image in Model.Images)
+                                                {
+                                                    <div class="input-group mb-2">
+                                                        <input type="text" class="form-control image-url-input" name="ImageURLs" value="@image.ImageURL" placeholder="Enter Image URL..">
+                                                        <div class="input-group-append">
+                                                            <button type="button" class="btn btn-danger remove-image">-</button>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <div class="input-group mb-2">
+                                                    <input type="text" class="form-control image-url-input" name="ImageURLs" placeholder="Enter Image URL..">
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="btn btn-success add-image">+</button>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            }
                                         </div>
+
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -167,6 +183,9 @@
                     }
                 });
             }
+
+            // Load existing images on page load
+            updateImagePreview();
 
             document.addEventListener("input", function (event) {
                 if (event.target.classList.contains("image-url-input")) {

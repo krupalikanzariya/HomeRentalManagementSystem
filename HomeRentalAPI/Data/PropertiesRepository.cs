@@ -206,7 +206,7 @@ namespace HomeRentalAPI.Data
 
                 try
                 {
-                    // Update Property
+                    // ✅ Update Property Details (Without affecting images)
                     SqlCommand cmd = new SqlCommand("PR_Properties_Update", conn, transaction)
                     {
                         CommandType = CommandType.StoredProcedure
@@ -224,31 +224,67 @@ namespace HomeRentalAPI.Data
                     cmd.Parameters.AddWithValue("@Bedrooms", property.Bedrooms);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
-
                     if (rowsAffected == 0)
                     {
                         transaction.Rollback();
                         return false;
                     }
 
-                    // Delete existing images before adding new ones
-                    cmd = new SqlCommand("DELETE FROM Images WHERE PropertyID = @PropertyID", conn, transaction);
-                    cmd.Parameters.AddWithValue("@PropertyID", property.PropertyID);
-                    cmd.ExecuteNonQuery();
+                    // ✅ Get Existing Images for this Property
+                    Dictionary<int, string> existingImages = new Dictionary<int, string>();
 
-                    // Insert new images
+                    SqlCommand getImagesCmd = new SqlCommand("SELECT ImageID, ImageURL FROM Images WHERE PropertyID = @PropertyID", conn, transaction);
+                    getImagesCmd.Parameters.AddWithValue("@PropertyID", property.PropertyID);
+                    using (SqlDataReader reader = getImagesCmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            existingImages.Add(reader.GetInt32(0), reader.GetString(1)); // ImageID, ImageURL
+                        }
+                    }
+
+                    // ✅ Update or Delete Existing Images
                     if (property.Images != null && property.Images.Count > 0)
                     {
                         foreach (var image in property.Images)
                         {
-                            SqlCommand imgCmd = new SqlCommand("PR_Images_Add", conn, transaction)
+                            if (image.ImageID.HasValue && existingImages.ContainsKey(image.ImageID.Value))
                             {
-                                CommandType = CommandType.StoredProcedure
-                            };
-                            imgCmd.Parameters.AddWithValue("@PropertyID", property.PropertyID);
-                            imgCmd.Parameters.AddWithValue("@ImageURL", image.ImageURL);
-                            imgCmd.ExecuteNonQuery();
+                                // If image exists but URL has changed, update it
+                                if (existingImages[image.ImageID.Value] != image.ImageURL)
+                                {
+                                    SqlCommand updateCmd = new SqlCommand("PR_Images_Update", conn, transaction)
+                                    {
+                                        CommandType = CommandType.StoredProcedure
+                                    };
+                                    updateCmd.Parameters.AddWithValue("@ImageID", image.ImageID.Value);
+                                    updateCmd.Parameters.AddWithValue("@ImageURL", image.ImageURL);
+                                    updateCmd.ExecuteNonQuery();
+                                }
+
+                                // Remove from dictionary to track images that should remain
+                                existingImages.Remove(image.ImageID.Value);
+                            }
+                            else
+                            {
+                                // If new image, insert it
+                                SqlCommand imgCmd = new SqlCommand("PR_Images_Add", conn, transaction)
+                                {
+                                    CommandType = CommandType.StoredProcedure
+                                };
+                                imgCmd.Parameters.AddWithValue("@PropertyID", property.PropertyID);
+                                imgCmd.Parameters.AddWithValue("@ImageURL", image.ImageURL);
+                                imgCmd.ExecuteNonQuery();
+                            }
                         }
+                    }
+
+                    // ✅ Delete Images that were removed
+                    foreach (var imageId in existingImages.Keys)
+                    {
+                        SqlCommand deleteCmd = new SqlCommand("DELETE FROM Images WHERE ImageID = @ImageID", conn, transaction);
+                        deleteCmd.Parameters.AddWithValue("@ImageID", imageId);
+                        deleteCmd.ExecuteNonQuery();
                     }
 
                     transaction.Commit();
@@ -261,6 +297,7 @@ namespace HomeRentalAPI.Data
                 }
             }
         }
+
         public IEnumerable<PropertiesModel> GetPropertiesByHost(int hostID)
         {
             var properties = new List<PropertiesModel>();
