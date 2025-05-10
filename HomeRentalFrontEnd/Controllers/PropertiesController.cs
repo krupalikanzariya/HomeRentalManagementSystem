@@ -45,7 +45,7 @@ namespace HomeRentalFrontEnd.Controllers
             return View(properties);
         }
 
-        public async Task<IActionResult> PropertiesAddEdit(int? PropertyID)
+        public async Task<IActionResult> AdminPropertiesAddEdit(int? PropertyID)
         {
             await LoadUserList();
             var token = HttpContext.Session.GetString("Token");
@@ -128,7 +128,7 @@ namespace HomeRentalFrontEnd.Controllers
                 }
             }
 
-            return View("PropertiesAddEdit", property);
+            return View("AdminPropertiesAddEdit", property);
         }
         public async Task<IActionResult> HostProperty(int? PropertyID)
         {
@@ -165,8 +165,19 @@ namespace HomeRentalFrontEnd.Controllers
                 return RedirectToAction("Login", "Users");
             }
 
+            // ✅ Get user ID from session and set as hostID
+            var userIdString = HttpContext.Session.GetString("UserID");
+            if (!string.IsNullOrEmpty(userIdString) && int.TryParse(userIdString, out int userId))
+            {
+                property.HostID = userId;
+            }
+
             var jsonContent = new StringContent(JsonConvert.SerializeObject(property), Encoding.UTF8, "application/json");
-            var request = new HttpRequestMessage(property.PropertyID == 0 ? HttpMethod.Post : HttpMethod.Put, $"{_httpClient.BaseAddress}/Properties")
+
+            Console.WriteLine(JsonConvert.SerializeObject(property));
+
+            var request = new HttpRequestMessage(HttpMethod.Post,
+                $"{_httpClient.BaseAddress}/Properties")
             {
                 Headers = { Authorization = new AuthenticationHeaderValue("Bearer", token) },
                 Content = jsonContent
@@ -177,7 +188,7 @@ namespace HomeRentalFrontEnd.Controllers
             if (response.IsSuccessStatusCode)
             {
                 TempData["SuccessMessage"] = "Property hosted successfully!";
-                return RedirectToAction("MyProperties");
+                return RedirectToAction("PropertiesOfHosts");
             }
             else
             {
@@ -185,8 +196,7 @@ namespace HomeRentalFrontEnd.Controllers
                 return View(property);
             }
         }
-
-        public async Task<IActionResult> MyProperties()
+        public async Task<IActionResult> PropertiesOfHosts()
         {
             var token = HttpContext.Session.GetString("Token");
             if (string.IsNullOrEmpty(token))
@@ -194,7 +204,13 @@ namespace HomeRentalFrontEnd.Controllers
                 return RedirectToAction("Login", "Users");
             }
 
-            var request = new HttpRequestMessage(HttpMethod.Get, $"{_httpClient.BaseAddress}/Properties/HostProperties");
+            var userIdString = HttpContext.Session.GetString("UserID");
+            if (string.IsNullOrEmpty(userIdString) || !int.TryParse(userIdString, out int hostID))
+            {
+                return RedirectToAction("Login", "Users"); // or handle it appropriately
+            }
+
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{_httpClient.BaseAddress}/Properties/ByHost/{hostID}");
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var response = await _httpClient.SendAsync(request);
@@ -208,7 +224,7 @@ namespace HomeRentalFrontEnd.Controllers
 
             return View(properties);
         }
-        public async Task<IActionResult> PropertyDelete(int PropertyID)
+        public async Task<IActionResult> EditPropertyOfHost(int PropertyID)
         {
             var token = HttpContext.Session.GetString("Token");
             if (string.IsNullOrEmpty(token))
@@ -216,14 +232,77 @@ namespace HomeRentalFrontEnd.Controllers
                 return RedirectToAction("Login", "Users");
             }
 
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{_httpClient.BaseAddress}/Properties/{PropertyID}");
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _httpClient.SendAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                var data = await response.Content.ReadAsStringAsync();
+                var property = JsonConvert.DeserializeObject<PropertiesModel>(data);
+
+                return View("EditPropertyOfHost", property);
+            }
+
+            return NotFound();
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditPropertyOfHost(PropertiesModel property, List<string> ImageURLs)
+        {
+            var token = HttpContext.Session.GetString("Token");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "Users");
+            }
+
+            var hostIdString = HttpContext.Session.GetString("HostID");
+            if (string.IsNullOrEmpty(hostIdString) || !int.TryParse(hostIdString, out int hostId))
+            {
+                return Unauthorized("Invalid host session.");
+            }
+
+            // Ensure host ID is set correctly
+            property.HostID = hostId;
+
+            // Validate and prepare image data
+            property.Images = ImageURLs?
+                .Where(url => !string.IsNullOrWhiteSpace(url))
+                .Select(url => new ImagesModel { ImageURL = url })
+                .ToList() ?? new List<ImagesModel>();
+
+            if (ModelState.IsValid)
+            {
+                var json = JsonConvert.SerializeObject(property);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var request = new HttpRequestMessage(HttpMethod.Put, $"{_httpClient.BaseAddress}/Properties/{property.PropertyID}")
+                {
+                    Headers = { Authorization = new AuthenticationHeaderValue("Bearer", token) },
+                    Content = content
+                };
+
+                var response = await _httpClient.SendAsync(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("PropertiesOfHosts"); // Show updated list
+                }
+            }
+
+            return View(property); // Return the form with validation errors
+        }
+        public async Task<IActionResult> PropertyDelete(int PropertyID)
+        {
+            var token = HttpContext.Session.GetString("Token");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "Users");
+            }
             var request = new HttpRequestMessage(HttpMethod.Delete, $"{_httpClient.BaseAddress}/Properties/{PropertyID}");
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             await _httpClient.SendAsync(request);
             return RedirectToAction("AdminPropertiesList");
         }
-
-
         public async Task<IActionResult> PropertiesList()
         {
             var token = HttpContext.Session.GetString("Token");

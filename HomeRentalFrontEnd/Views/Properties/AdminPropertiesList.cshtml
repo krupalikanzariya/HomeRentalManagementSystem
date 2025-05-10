@@ -31,7 +31,7 @@
 
     
     <div class="container">
-        <a class="btn btn-primary mb-3" asp-controller="Properties" asp-action="PropertiesAddEdit">
+        <a class="btn btn-primary mb-3" asp-controller="Properties" asp-action="AdminPropertiesAddEdit">
             <i class="bi bi-plus-lg"></i>&nbsp;Add Property
         </a>
         <div class="mb-3">
@@ -73,7 +73,7 @@
                                     <td>@property.UserName</td>
                                     <td class="action-buttons">
                                         <span>
-                                            <a asp-controller="Properties" asp-action="PropertiesAddEdit" asp-route-PropertyID="@property.PropertyID" data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <a asp-controller="Properties" asp-action="AdminPropertiesAddEdit" asp-route-PropertyID="@property.PropertyID" data-toggle="tooltip" data-placement="top" title="Edit">
                                                 <button class="btn">
                                                     <i class="fa fa-pencil color-muted m-r-5"></i>
                                                 </button>

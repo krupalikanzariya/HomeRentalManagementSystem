@@ -309,6 +309,7 @@ namespace HomeRentalAPI.Data
                 };
                 cmd.Parameters.AddWithValue("@HostID", hostID);
                 conn.Open();
+
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -316,7 +317,6 @@ namespace HomeRentalAPI.Data
                     {
                         PropertyID = Convert.ToInt32(reader["PropertyID"]),
                         HostID = Convert.ToInt32(reader["HostID"]),
-                        UserName = reader["UserName"].ToString(),
                         Title = reader["Title"].ToString(),
                         Description = reader["Description"].ToString(),
                         Address = reader["Address"].ToString(),
@@ -326,10 +326,34 @@ namespace HomeRentalAPI.Data
                         PricePerNight = Convert.ToDecimal(reader["PricePerNight"]),
                         MaxGuests = Convert.ToInt32(reader["MaxGuests"]),
                         Bedrooms = Convert.ToInt32(reader["Bedrooms"]),
+                        Images = new List<ImagesModel>() // Initialize Images list
                     });
                 }
+                reader.Close();
+
+                // Fetch images for each property
+                foreach (var property in properties)
+                {
+                    cmd = new SqlCommand("PR_Images_GetImagesByProperty", conn)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+                    cmd.Parameters.AddWithValue("@PropertyID", property.PropertyID);
+                    reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        property.Images.Add(new ImagesModel
+                        {
+                            ImageID = Convert.ToInt32(reader["ImageID"]),
+                            PropertyID = Convert.ToInt32(reader["PropertyID"]),
+                            ImageURL = reader["ImageURL"].ToString()
+                        });
+                    }
+                    reader.Close();
+                }
+
+                return properties;
             }
-            return properties;
         }
         public IEnumerable<PropertiesModel> SearchProperties(string city, decimal minPrice, decimal maxPrice, int guests)
         {

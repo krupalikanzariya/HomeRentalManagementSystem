@@ -1,0 +1,108 @@
+﻿@model IEnumerable<HomeRentalFrontEnd.Models.PropertiesModel>
+
+@if (ViewBag.LoginMesssage != null)
+{
+    <p>@ViewBag.LoginMesssage</p>
+}
+<!-- Breadcrumb Section Begin -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>Our Properties</h2>
+                    <div class="bt-option">
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                        <span>Properties</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section End -->
+<!-- Rooms Section Begin -->
+<section class="rooms-section spad">
+    <div class="container">
+        <div class="row">
+            @foreach (var property in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <!-- Bootstrap Carousel for Property Images -->
+                        <div id="carousel-@property.PropertyID" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                @if (property.Images != null && property.Images.Any())
+                                {
+                                    var firstImage = true;
+                                    @foreach (var image in property.Images)
+                                    {
+                                        <div class="carousel-item @(firstImage ? "active" : "")">
+                                            <img src="@image.ImageURL" class="d-block w-100" style="height: 250px; object-fit: cover;" alt="Property Image">
+                                        </div>
+                                        firstImage = false;
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="carousel-item active">
+                                        <img src="https://via.placeholder.com/300" class="d-block w-100" style="height: 250px; object-fit: cover;" alt="No Image Available">
+                                    </div>
+                                }
+                            </div>
+
+                            <!-- Carousel Controls -->
+                            @if (property.Images != null && property.Images.Count() > 1)
+                            {
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-@property.PropertyID" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carousel-@property.PropertyID" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            }
+                        </div>
+
+                        <div class="ri-text">
+                            <h4>@property.Title</h4>
+                            <h3>₹ @property.PricePerNight.ToString("N2")<span>/ per night</span></h3>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="r-o">Location:</td>
+                                        <td>@property.City, @property.State, @property.Country</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Guests:</td>
+                                        <td>Max @property.MaxGuests guests</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Bedrooms:</td>
+                                        <td>@property.Bedrooms</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Description:</td>
+                                        <td>@property.Description.Substring(0, Math.Min(100, property.Description.Length))...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a asp-controller="Properties" asp-action="EditPropertyOfHost" asp-route-PropertyID="@property.PropertyID" class="primary-btn">Edit Property</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Pagination Section (Static for Now) -->
+        @* <div class="col-lg-12">
+        <div class="room-pagination">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
+        </div>
+        </div> *@
+    </div>
+</section>
+<!-- Rooms Section End -->

@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{20D5A33D-7A1F-4F86-8640-1B2613673781}|HomeRentalFrontEnd.csproj|d:\\college\\sem 6\\homerental\\homerentalfrontend\\wwwroot\\css\\signupin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{20D5A33D-7A1F-4F86-8640-1B2613673781}|HomeRentalFrontEnd.csproj|solutionrelative:wwwroot\\css\\signupin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{20D5A33D-7A1F-4F86-8640-1B2613673781}|HomeRentalFrontEnd.csproj|d:\\college\\sem 6\\homerental\\homerentalfrontend\\controllers\\propertiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{20D5A33D-7A1F-4F86-8640-1B2613673781}|HomeRentalFrontEnd.csproj|solutionrelative:controllers\\propertiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{20D5A33D-7A1F-4F86-8640-1B2613673781}|HomeRentalFrontEnd.csproj|d:\\college\\sem 6\\homerental\\homerentalfrontend\\views\\properties\\hostproperty.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{20D5A33D-7A1F-4F86-8640-1B2613673781}|HomeRentalFrontEnd.csproj|solutionrelative:views\\properties\\hostproperty.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{20D5A33D-7A1F-4F86-8640-1B2613673781}|HomeRentalFrontEnd.csproj|d:\\college\\sem 6\\homerental\\homerentalfrontend\\views\\properties\\editpropertyofhost.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{20D5A33D-7A1F-4F86-8640-1B2613673781}|HomeRentalFrontEnd.csproj|solutionrelative:views\\properties\\editpropertyofhost.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{20D5A33D-7A1F-4F86-8640-1B2613673781}|HomeRentalFrontEnd.csproj|d:\\college\\sem 6\\homerental\\homerentalfrontend\\views\\properties\\adminpropertieslist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{20D5A33D-7A1F-4F86-8640-1B2613673781}|HomeRentalFrontEnd.csproj|solutionrelative:views\\properties\\adminpropertieslist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{20D5A33D-7A1F-4F86-8640-1B2613673781}|HomeRentalFrontEnd.csproj|d:\\college\\sem 6\\homerental\\homerentalfrontend\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -18,30 +30,68 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SignUpIn.css",
-              "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\css\\SignUpIn.css",
-              "RelativeDocumentMoniker": "wwwroot\\css\\SignUpIn.css",
-              "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\wwwroot\\css\\SignUpIn.css",
-              "RelativeToolTip": "wwwroot\\css\\SignUpIn.css",
-              "ViewState": "AQIAADEAAAAAAAAAAAAYwEMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-04-24T10:46:27.478Z",
+              "DocumentIndex": 1,
+              "Title": "HostProperty.cshtml",
+              "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\Views\\Properties\\HostProperty.cshtml",
+              "RelativeDocumentMoniker": "Views\\Properties\\HostProperty.cshtml",
+              "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\Views\\Properties\\HostProperty.cshtml",
+              "RelativeToolTip": "Views\\Properties\\HostProperty.cshtml",
+              "ViewState": "AQIAAM0AAAAAAAAAAAAwwNgAAABKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-10T13:51:05.474Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "EditPropertyOfHost.cshtml",
+              "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\Views\\Properties\\EditPropertyOfHost.cshtml",
+              "RelativeDocumentMoniker": "Views\\Properties\\EditPropertyOfHost.cshtml",
+              "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\Views\\Properties\\EditPropertyOfHost.cshtml",
+              "RelativeToolTip": "Views\\Properties\\EditPropertyOfHost.cshtml",
+              "ViewState": "AQIAALcAAAAAAAAAAAAwwEkBAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-07T10:25:22.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AdminPropertiesList.cshtml",
+              "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\Views\\Properties\\AdminPropertiesList.cshtml",
+              "RelativeDocumentMoniker": "Views\\Properties\\AdminPropertiesList.cshtml",
+              "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\Views\\Properties\\AdminPropertiesList.cshtml",
+              "RelativeToolTip": "Views\\Properties\\AdminPropertiesList.cshtml",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAAAEoAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-07T10:02:54.956Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PropertiesController.cs",
+              "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\Controllers\\PropertiesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PropertiesController.cs",
+              "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\Controllers\\PropertiesController.cs",
+              "RelativeToolTip": "Controllers\\PropertiesController.cs",
+              "ViewState": "AQIAAK0AAAAAAAAAAAAEwMAAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-06T09:31:38.324Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
               "ToolTip": "D:\\College\\sem 6\\HomeRental\\HomeRentalFrontEnd\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAmAAAA",
+              "ViewState": "AQIAAGYAAAAAAAAAAAAAAH0AAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-01-29T02:19:28.547Z"
             }

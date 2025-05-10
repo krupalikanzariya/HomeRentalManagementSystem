@@ -14,11 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HomeRentalAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4bf578ad2809f209d01b406988a1be07fd7a6d3b")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b59b19255a8e73361fa4bc5e5393be570d563aaf")]
->>>>>>> my-local-backup
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0bb873d1a255ccb5ccd2763ebccbcefa3a812dc7")]
 [assembly: System.Reflection.AssemblyProductAttribute("HomeRentalAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HomeRentalAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
